@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from '../../shared/home/home.component';
 import {StudentLoginComponent} from '../../shared/student-login/student-login.component';
+import {NotFoundComponent} from '../../shared/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: 'student',
     loadChildren: () => import('../student/student.module').then(m => m.StudentModule),
     data: { role: 'student' }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

@@ -11,6 +11,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { AddBookComponent } from './add-book/add-book.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -24,7 +26,9 @@ import { AddBookComponent } from './add-book/add-book.component';
     MatIconModule,
     MatProgressBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

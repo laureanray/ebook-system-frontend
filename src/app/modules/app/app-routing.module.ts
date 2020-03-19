@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {StudentLoginComponent} from './student-login/student-login.component';
 import {NotFoundComponent} from '../../shared/not-found/not-found.component';
+import {InstructorAdminLoginComponent} from "./instructor-admin-login/instructor-admin-login.component";
 
 
 const routes: Routes = [
   { path: '', component: StudentLoginComponent},
+  { path: 'admin-login', component: InstructorAdminLoginComponent},
   {
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),

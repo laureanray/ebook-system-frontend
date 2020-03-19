@@ -8,18 +8,23 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { AddBookComponent } from './add-book/add-book.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class AdminModule { }

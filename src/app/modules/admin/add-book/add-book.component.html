@@ -21,7 +21,7 @@
              <input matInput placeholder="" formControlName="firstCtrl" required>
              <mat-icon matSuffix class="orange-icon">image</mat-icon>
            </mat-form-field>
-           <button mat-button routerLink="../add-book" class="browse-button">
+           <button mat-button routerLink="../add-book" class="browse-button flex-end">
              Browse
            </button>
          </div>
@@ -43,26 +43,41 @@
         <ng-template matStepLabel>Add Access</ng-template>
         <div class="d-flex flex-column mt-4">
         <mat-checkbox>Give access to all</mat-checkbox>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <mat-form-field appearance="outline">
+            <mat-label>Course</mat-label>
+            <mat-select formControlName="secondCtrl">
+              <mat-option value="option">Bs in Computer Engineering</mat-option>
+              <mat-option value="option">Bs in Computer Science</mat-option>
+              <mat-option value="option">Bs in Information Technology</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Year Level</mat-label>
+            <mat-select formControlName="secondCtrl">
+              <mat-option value="option">1st Year</mat-option>
+              <mat-option value="option">2nd Year</mat-option>
+              <mat-option value="option">3rd Year</mat-option>
+              <mat-option value="option">4th Year</mat-option>
+              <mat-option value="option">5th Year</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+          <a href="" class="add-more-button">Add More</a>
+        <div class="mt-4 buttons">
+          <button mat-button matStepperPrevious class="button">Back</button>
+          <button routerLink="book-description" mat-button matStepperNext class="button">Save</button>
         </div>
         </div>
       </form>
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
+<!--    <mat-step>-->
+<!--      <ng-template matStepLabel>Done</ng-template>-->
+<!--      <p>"Book name" has created successfully</p>-->
+<!--      <div class="buttons">-->
+<!--        <button mat-button routerLink="../book-manager" class="button text-wrap">Back To Book Manager</button>-->
+<!--        <button mat-button class="button">Proceed</button>-->
+<!--      </div>-->
+<!--    </mat-step>-->
   </mat-horizontal-stepper>
 </div>

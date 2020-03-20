@@ -14,11 +14,13 @@ import { AddBookComponent } from './add-book/add-book.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
+import { BookDescriptionComponent } from './book-description/book-description.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -30,7 +32,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatInputModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }

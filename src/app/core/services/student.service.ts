@@ -10,6 +10,6 @@ export class StudentService {
 
   getStudent(id: number) {
     return this.http
-               .get(`${environment.apigUrl}/student/${id}`);
+               .get(`${environment.apiUrl}/student/${id}`);
   }
 }

@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import { AddBookComponent } from './add-book/add-book.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 
@@ -28,7 +29,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatFormFieldModule,
     MatInputModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ]
 })
 export class AdminModule { }

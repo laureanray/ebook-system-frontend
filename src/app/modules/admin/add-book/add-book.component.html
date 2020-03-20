@@ -1,37 +1,5 @@
-<!--<nav class="mt-4" aria-label="breadcrumb">-->
-<!--  <ol class="breadcrumb">-->
-<!--    <li class="breadcrumb-item active " aria-current="page">-->
-<!--      <a routerLink="../book-manager" class="back-btn">Back</a>-->
-<!--    </li>-->
-<!--  </ol>-->
-<!--</nav>-->
-<button mat-button routerLink="../book-manager" class="mt-4 back-button">
-  Back
-</button>
 <div class="">
-<!--  <p class="title mt-4">Add Book</p>-->
-<!--  <p class="mt-5">-->
-<!--    <mat-form-field class="log-in-input" appearance="outline">-->
-<!--      <mat-label>Book Title</mat-label>-->
-<!--      <input matInput placeholder="">-->
-<!--      <mat-icon matSuffix class="orange-icon"> person</mat-icon>-->
-<!--    </mat-form-field>-->
-<!--  </p>-->
-<!--  <p class="mt-4">-->
-<!--    <mat-form-field class="log-in-input" appearance="outline">-->
-<!--      <mat-label>Author/s</mat-label>-->
-<!--      <input matInput placeholder="">-->
-<!--      <mat-icon matSuffix class="orange-icon"> person</mat-icon>-->
-<!--    </mat-form-field>-->
-<!--  </p>-->
-<!--  <p class="mt-4">-->
-<!--    <mat-form-field class="log-in-input" appearance="outline">-->
-<!--      <mat-label>Author/s</mat-label>-->
-<!--      <input matInput placeholder="">-->
-<!--      <mat-icon matSuffix class="orange-icon"> person</mat-icon>-->
-<!--    </mat-form-field>-->
-<!--  </p>-->
-  <p class="title mt-5 ml-4">Add Book</p>
+  <p class="title mt-4 ml-4">Add Book</p>
   <mat-horizontal-stepper [linear]="isLinear" #stepper class="mt-4">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup" >
@@ -40,7 +8,7 @@
          <mat-form-field appearance="outline">
            <mat-label>Book Title</mat-label>
            <input matInput placeholder="" formControlName="firstCtrl" required>
-           <mat-icon matSuffix class="orange-icon"> person</mat-icon>
+           <mat-icon matSuffix class="orange-icon">book</mat-icon>
          </mat-form-field>
          <mat-form-field appearance="outline">
            <mat-label>Author/s</mat-label>
@@ -53,7 +21,7 @@
              <input matInput placeholder="" formControlName="firstCtrl" required>
              <mat-icon matSuffix class="orange-icon">image</mat-icon>
            </mat-form-field>
-           <button mat-button routerLink="../add-book" class="mt-4 add-book-button">
+           <button mat-button routerLink="../add-book" class="browse-button">
              Browse
            </button>
          </div>
@@ -62,15 +30,21 @@
 <!--          <mat-label>Name</mat-label>-->
 <!--          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
 <!--        </mat-form-field>-->
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <div class="mt-4 buttons">
+          <button mat-button routerLink="../book-manager" class="back-button">
+            Back
+          </button>
+          <button mat-button matStepperNext class="button">Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
+        <ng-template matStepLabel>Add Access</ng-template>
+        <div class="d-flex flex-column mt-4">
+        <mat-checkbox>Give access to all</mat-checkbox>
+
+        <mat-form-field appearance="outline">
           <mat-label>Address</mat-label>
           <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
                  required>
@@ -78,6 +52,7 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
+        </div>
         </div>
       </form>
     </mat-step>
@@ -90,5 +65,4 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-
 </div>

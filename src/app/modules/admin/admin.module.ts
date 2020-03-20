@@ -16,11 +16,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
 import { BookDescriptionComponent } from './book-description/book-description.component';
+import { BookItemCardComponent } from './book-manager/book-item-card/book-item-card.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

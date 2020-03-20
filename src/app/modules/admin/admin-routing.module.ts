@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from './admin/admin.component';
 import {BookManagerComponent} from './book-manager/book-manager.component';
 import {AddBookComponent} from './add-book/add-book.component';
-import {BookDescriptionComponent} from "./book-description/book-description.component";
+import {BookDescriptionComponent} from './book-description/book-description.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'book-manager'},
@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'book-manager', component: BookManagerComponent},
       { path: 'add-book', component: AddBookComponent},
-      { path: 'book-description', component: BookDescriptionComponent}
+      { path: 'book/:id', component: BookDescriptionComponent}
     ]
   }
 ]

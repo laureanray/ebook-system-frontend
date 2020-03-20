@@ -47,4 +47,8 @@ export class AuthenticationService {
         console.log(response);
       }));
   }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
 }

@@ -17,6 +17,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
 import { BookDescriptionComponent } from './book-description/book-description.component';
 import { BookItemCardComponent } from './book-manager/book-item-card/book-item-card.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -34,7 +35,7 @@ import { BookItemCardComponent } from './book-manager/book-item-card/book-item-c
     MatStepperModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
   ]
 })
 export class AdminModule { }

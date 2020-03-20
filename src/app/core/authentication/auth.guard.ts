@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {AuthenticationService} from '../services/authentication.service';
 
 
 
@@ -14,7 +15,7 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
       // check if current route is restricted by role
-      if (!(route.data.role === currentUser.roleName)) {
+      if (!(route.data.role === currentUser.role)) {
         this.router.navigate(['/']);
         return false;
       }

@@ -8,7 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {StudentLoginComponent} from './student-login/student-login.component';
 import {InstructorAdminLoginComponent} from './instructor-admin-login/instructor-admin-login.component';
 import {MatButtonModule} from '@angular/material/button';
-import {SidebarNavComponent} from '../admin/sidebar-nav/sidebar-nav.component';
+import {SidebarNavComponent} from '../admin/components/sidebar-nav/sidebar-nav.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';

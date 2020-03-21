@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './components/admin/admin.component';
 import {AdminRoutingModule} from "./admin-routing.module";
-import { BookManagerComponent } from './book-manager/book-manager.component';
-import {SidebarNavComponent} from "./sidebar-nav/sidebar-nav.component";
+import { BookManagerComponent } from './components/book-manager/book-manager.component';
+import {SidebarNavComponent} from "./components/sidebar-nav/sidebar-nav.component";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { AddBookComponent } from './add-book/add-book.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
 import {MatStepperModule} from "@angular/material/stepper";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSelectModule} from "@angular/material/select";
-import { BookDescriptionComponent } from './book-description/book-description.component';
-import { BookItemCardComponent } from './book-manager/book-item-card/book-item-card.component';
+import { BookDescriptionComponent } from './components/book-description/book-description.component';
+import { BookItemCardComponent } from './components/book-manager/book-item-card/book-item-card.component';
 import {HttpClientModule} from '@angular/common/http';
-import { BookSidebarComponent } from './book-sidebar/book-sidebar.component';
+import { BookSidebarComponent } from './components/book-sidebar/book-sidebar.component';
 import {MatTreeModule} from "@angular/material/tree";
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { BookEditorComponent } from './components/book-editor/book-editor.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent, BookDetailsComponent, BookEditorComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -39,6 +44,10 @@ import {MatTreeModule} from "@angular/material/tree";
     MatCheckboxModule,
     MatSelectModule,
     MatTreeModule,
+    MatExpansionModule,
+    MatRadioModule,
+    FormsModule,
+    MatMenuModule,
   ]
 })
 export class AdminModule { }

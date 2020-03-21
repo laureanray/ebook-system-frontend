@@ -20,11 +20,14 @@ import { BookItemCardComponent } from './book-manager/book-item-card/book-item-c
 import {HttpClientModule} from '@angular/common/http';
 import { BookSidebarComponent } from './book-sidebar/book-sidebar.component';
 import {MatTreeModule} from "@angular/material/tree";
+import { UserAccountsComponent } from './user-accounts/user-accounts.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {MatTableModule} from "@angular/material/table";
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent, UserAccountsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -39,6 +42,8 @@ import {MatTreeModule} from "@angular/material/tree";
     MatCheckboxModule,
     MatSelectModule,
     MatTreeModule,
+    MatRadioModule,
+    MatTableModule,
   ]
 })
 export class AdminModule { }

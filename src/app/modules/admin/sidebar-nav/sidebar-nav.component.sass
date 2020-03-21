@@ -1,12 +1,13 @@
+@import "src/color"
 .side-nav
   height: calc(100vh - 86px)
-  border-right: 1px solid orange
+  border-right: 1px solid $primary
 
 .side-nav-list
 
 .menu-item
   color: black
-
+  font-family: $font
 .menu-item:hover
   text-decoration: none
 
@@ -14,15 +15,18 @@
   text-align: center
   padding-top: 20px
   font-size: 30px
-  color: orange
+  color: $primary
   font-weight: 500
   margin-bottom: 12px
+  font-family: $font
+
 .welcome-name
   text-align: center
-  padding-top: 0px
+  padding-top: 3px
   font-size: 30px
-  color: orange
+  color: $primary
   font-weight: 500
+  font-family: $font
 
 //.menu
 //  border: 1px solid orange

@@ -1,11 +1,11 @@
+@import "src/color"
 .card-title
   font-size: 16px
+  font-family: $font
 
 .card-img-top
   width: 198px
   height: 316px
-
-
 
 .card
   width: 200px
@@ -15,3 +15,6 @@
 .card-container
   display: flex
   flex-flow: row
+
+.mat-progress-bar-fill::after
+  background-color: $primary !important

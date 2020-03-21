@@ -1,22 +1,22 @@
 <div class="">
   <p class="title mt-4 ml-4">Add Book</p>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper class="mt-4">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper class="mt-4 sans-serif">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup" >
-        <ng-template matStepLabel>Book Description</ng-template>
+        <ng-template matStepLabel >Book Description</ng-template>
        <div class="d-flex flex-column">
-         <mat-form-field appearance="outline">
+         <mat-form-field appearance="outline" class="sans-serif">
            <mat-label>Book Title</mat-label>
            <input matInput placeholder="" formControlName="firstCtrl" required>
            <mat-icon matSuffix class="orange-icon">book</mat-icon>
          </mat-form-field>
-         <mat-form-field appearance="outline">
+         <mat-form-field appearance="outline" class="sans-serif">
            <mat-label>Author/s</mat-label>
            <input matInput placeholder="" formControlName="firstCtrl" required>
            <mat-icon matSuffix class="orange-icon"> person</mat-icon>
          </mat-form-field>
          <div>
-           <mat-form-field appearance="outline">
+           <mat-form-field appearance="outline" class="sans-serif">
              <mat-label>Book Cover</mat-label>
              <input matInput placeholder="" formControlName="firstCtrl" required>
              <mat-icon matSuffix class="orange-icon">image</mat-icon>
@@ -42,24 +42,24 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Add Access</ng-template>
         <div class="d-flex flex-column mt-4">
-        <mat-checkbox>Give access to all</mat-checkbox>
+        <mat-checkbox class="sans-serif">Give access to all</mat-checkbox>
         <div>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="sans-serif">
             <mat-label>Course</mat-label>
             <mat-select formControlName="secondCtrl">
-              <mat-option value="option">Bs in Computer Engineering</mat-option>
-              <mat-option value="option">Bs in Computer Science</mat-option>
-              <mat-option value="option">Bs in Information Technology</mat-option>
+              <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
+              <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
+              <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="sans-serif">
             <mat-label>Year Level</mat-label>
             <mat-select formControlName="secondCtrl">
-              <mat-option value="option">1st Year</mat-option>
-              <mat-option value="option">2nd Year</mat-option>
-              <mat-option value="option">3rd Year</mat-option>
-              <mat-option value="option">4th Year</mat-option>
-              <mat-option value="option">5th Year</mat-option>
+              <mat-option value="option" class="sans-serif">1st Year</mat-option>
+              <mat-option value="option" class="sans-serif">2nd Year</mat-option>
+              <mat-option value="option" class="sans-serif">3rd Year</mat-option>
+              <mat-option value="option" class="sans-serif">4th Year</mat-option>
+              <mat-option value="option" class="sans-serif">5th Year</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -72,12 +72,12 @@
       </form>
     </mat-step>
 <!--    <mat-step>-->
-<!--      <ng-template matStepLabel>Done</ng-template>-->
-<!--      <p>"Book name" has created successfully</p>-->
-<!--      <div class="buttons">-->
-<!--        <button mat-button routerLink="../book-manager" class="button text-wrap">Back To Book Manager</button>-->
-<!--        <button mat-button class="button">Proceed</button>-->
-<!--      </div>-->
+    <!--      <ng-template matStepLabel>Done</ng-template>-->
+    <!--      <p>"Book name" has created successfully</p>-->
+    <!--      <div class="buttons">-->
+    <!--        <button mat-button routerLink="../book-manager" class="button text-wrap">Back To Book Manager</button>-->
+    <!--        <button mat-button class="button">Proceed</button>-->
+    <!--      </div>-->
 <!--    </mat-step>-->
   </mat-horizontal-stepper>
 </div>

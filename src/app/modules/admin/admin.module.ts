@@ -18,11 +18,13 @@ import {MatSelectModule} from "@angular/material/select";
 import { BookDescriptionComponent } from './book-description/book-description.component';
 import { BookItemCardComponent } from './book-manager/book-item-card/book-item-card.component';
 import {HttpClientModule} from '@angular/common/http';
+import { BookSidebarComponent } from './book-sidebar/book-sidebar.component';
+import {MatTreeModule} from "@angular/material/tree";
 
 
 
 @NgModule({
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent],
+  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -36,6 +38,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatTreeModule,
   ]
 })
 export class AdminModule { }

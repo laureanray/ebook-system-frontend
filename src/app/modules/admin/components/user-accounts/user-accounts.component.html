@@ -1,61 +1,74 @@
 <div class="d-flex flex-row">
   <button mat-button routerLink="../add-book" class="mt-4 add-user-button">
-    <mat-icon class="add-icon">add</mat-icon>Add Book</button>
+    <mat-icon class="add-icon">add</mat-icon>Add User</button>
   <p class="search-box">
     <mat-form-field class="sans-serif" appearance="outline">
       <mat-label>Search book</mat-label>
-      <input matInput placeholder="">
+      <input matInput (keyup)="applyFilter($event)" placeholder="" >
       <mat-icon matSuffix class="orange-icon">search</mat-icon>
     </mat-form-field>
   </p>
 </div>
 
-<!--<div class="mt-4">-->
-<!--  <mat-radio-group aria-label="Select an option">-->
-<!--    <mat-radio-button value="1">Student</mat-radio-button>-->
-<!--    <mat-radio-button value="2">Faculty</mat-radio-button>-->
-<!--  </mat-radio-group>-->
-<!--</div>-->
+<div class="mt-4">
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1">Student</mat-radio-button>
+    <mat-radio-button value="2">Faculty</mat-radio-button>
+  </mat-radio-group>
+</div>
 
-<!--<div class="example-container">-->
-<!--  <table mat-table [dataSource]="dataSource" class="sans-serif">-->
-<!--    &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="position">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> No. </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
-<!--    </ng-container>-->
+<div class="example-container">
+  <table mat-table [dataSource]="dataSource">
 
-<!--    &lt;!&ndash; Student No. Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="student number">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Student Number </th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.studNum}} </td>-->
-<!--    </ng-container>-->
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
 
-<!--    &lt;!&ndash; Name Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="name">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange">Last Name, First Name, Middle Name</th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
-<!--    </ng-container>-->
+    <!-- Student No. Column -->
+    <ng-container matColumnDef="studNum">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Student Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.studNum}} </td>
+    </ng-container>
 
-<!--    &lt;!&ndash; Course Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="course">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange">Course</th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.course}} </td>-->
-<!--    </ng-container>-->
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Last Name, First Name Middle Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-<!--    &lt;!&ndash; Year Level Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="year level">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange">Year Level</th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.yrLevel}} </td>-->
-<!--    </ng-container>-->
+    <!-- Course Column -->
+    <ng-container matColumnDef="course" >
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Course </th>
+      <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+    </ng-container>
 
-<!--    &lt;!&ndash; Section Column &ndash;&gt;-->
-<!--    <ng-container matColumnDef="section">-->
-<!--      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange">Section</th>-->
-<!--      <td mat-cell *matCellDef="let element"> {{element.section}} </td>-->
-<!--    </ng-container>-->
+    <!-- Year Level Column -->
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Year Level </th>
+      <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+    </ng-container>
 
-<!--    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>-->
-<!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--  </table>-->
-<!--</div>-->
+    <!-- Section Column -->
+    <ng-container matColumnDef="section">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"> Section </th>
+      <td mat-cell *matCellDef="let element"> {{element.section}} </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"></th>
+      <td mat-cell *matCellDef="let element" class="color-orange"><a><mat-icon>{{element.edit}}</mat-icon> </a></td>
+    </ng-container>
+
+    <!-- Trash Column -->
+    <ng-container matColumnDef="trash">
+      <th mat-header-cell *matHeaderCellDef class="font-16 color-orange"></th>
+      <td mat-cell *matCellDef="let element" class="color-orange"><a><mat-icon>{{element.trash}}</mat-icon> </a></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

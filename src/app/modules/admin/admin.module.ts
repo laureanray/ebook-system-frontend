@@ -25,12 +25,23 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { BookEditorComponent } from './components/book-editor/book-editor.component';
+import {UserAccountsComponent} from './components/user-accounts/user-accounts.component';
 
 
 
 @NgModule({
-  // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, BookManagerComponent, SidebarNavComponent, AddBookComponent, BookDescriptionComponent, BookItemCardComponent, BookSidebarComponent, BookDetailsComponent, BookEditorComponent],
+  declarations: [
+    AdminComponent,
+    BookManagerComponent,
+    SidebarNavComponent,
+    AddBookComponent,
+    BookDescriptionComponent,
+    BookItemCardComponent,
+    BookSidebarComponent,
+    BookDetailsComponent,
+    BookEditorComponent,
+    UserAccountsComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

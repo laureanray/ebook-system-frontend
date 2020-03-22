@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {UserAccountsComponent} from './user-accounts/user-accounts.component';
+import {UserAccountsComponent} from './components/user-accounts/user-accounts.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {BookManagerComponent} from './components/book-manager/book-manager.component';
 import {AddBookComponent} from './components/add-book/add-book.component';

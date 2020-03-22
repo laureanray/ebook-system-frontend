@@ -27,6 +27,7 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { BookEditorComponent } from './components/book-editor/book-editor.component';
 import {UserAccountsComponent} from './components/user-accounts/user-accounts.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 
 
@@ -42,7 +43,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     BookDetailsComponent,
     BookEditorComponent,
     UserAccountsComponent,
-    AddUserComponent
+    AddUserComponent,
+    AccountSettingsComponent
   ],
   imports: [
     CommonModule,

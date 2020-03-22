@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-// tslint:disable-next-line:class-name
-export interface studentInfo {
+export interface StudentInfo {
   id: number;
   studNum: string;
   name: string;
@@ -11,8 +10,7 @@ export interface studentInfo {
   edit: string;
   trash: string;
 }
-// tslint:disable-next-line:class-name
-export interface facultyInfo {
+export interface FacultyInfo {
   id: number;
   empNum: string;
   name: string;
@@ -22,12 +20,12 @@ export interface facultyInfo {
   trash: string;
 }
 
-const studentData: studentInfo[] = [
+const studentData: StudentInfo[] = [
   {id: 1, studNum: '2015-0123-MN-0' , name: 'Esteban, Charlene Mae De Guzman',
     course: 'BS in Computer Engineering', year: '5th year', section: '1', edit: 'edit', trash: 'delete'},
 ];
 
-const facultyData: facultyInfo[] = [
+const facultyData: FacultyInfo[] = [
   {id: 1, empNum: '2015-0000-MN-0', name: 'Rodriguez, Joshua Benjamin', honorifics: 'Engr.', username: 'jbrodriguez',
     edit: 'edit', trash: 'delete'}
 ];

@@ -15,6 +15,10 @@ export class BookSidebarComponent implements OnInit {
   isAddingChapter = false;
   activeTopic = null;
 
+
+
+  panelOpenedState;
+
   left = '0';
   top = '0';
 
@@ -33,7 +37,6 @@ export class BookSidebarComponent implements OnInit {
   };
 
 
-  panelOpenState: boolean;
   topic: string;
 
   constructor(private bookEditorService: BookEditorService) {
@@ -62,7 +65,8 @@ export class BookSidebarComponent implements OnInit {
 
   topicClicked(id: number) {
     this.activeTopic = id;
-    this.bookEditorService.isDetailsShown(false);
+    this.bookEditorService.isDetailsShown(true);
+    console.log(this.activeTopic);
   }
 }
 

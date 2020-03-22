@@ -1,40 +1,46 @@
-<div class="pt-4 ">
-  <h2 class="mat-h2"> Book Title </h2>
+<div class="pt-4">
+  <h2 class="mat-h2 sans-serif"> Book Title </h2>
 
-
-
-  <mat-accordion >
+  <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
-      <mat-expansion-panel class="my-2 sans-serif" *ngFor="let chapter of book.chapters">
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item>Settings</button>
-          <button mat-menu-item>Help</button>
-        </mat-menu>
-
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
+      <mat-expansion-panel (opened)="panelOpenedState = true" (closed)="panelOpenedState = false"
+                           class="my-2 sans-serif" *ngFor="let chapter of book.chapters">
+        <!--        <mat-menu #appMenu="matMenu">-->
+        <!--          <button mat-menu-item>Settings</button>-->
+        <!--          <button mat-menu-item>Help</button>-->
+        <!--        </mat-menu>-->
+        <!--        <button mat-icon-button [matMenuTriggerFor]="appMenu">-->
+        <!--          <mat-icon>more_vert</mat-icon>-->
+        <!--        </button>-->
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{ chapter.chapterTitle }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action" (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
-          <a class="list-group-item list-group-item-action"> Add Topic </a>
-          <a class="list-group-item list-group-item-action"> Add Exam </a>
+        <div class="list-group sans-serif">
+          <a class="list-group-item list-group-item-action" [ngClass]="{ 'active' : topic.id === activeTopic }"
+             (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
+          <a class="list-group-item list-group-item-action text-primary"> Add Topic </a>
+          <a class="list-group-item list-group-item-action text-secondary"> Add Exam </a>
         </div>
       </mat-expansion-panel>
     </div>
   </mat-accordion>
 
-<!--  <div class="w-100 pr-4 sans-serif readonly" *ngFor="let chapter of chapters">-->
-<!--    <input (keyup)="onKeyUp($event)" disabled value="{{chapter}}">-->
-<!--  </div>-->
+  <mat-card>
+<!--    <mat-form-field class="w-100 sans-serif" *ngIf="isAddingChapter">-->
+<!--      <mat-label>Chapter Title</mat-label>-->
+<!--      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">-->
+<!--    </mat-form-field>-->
 
-  <mat-form-field class="w-100 sans-serif" *ngIf="isAddingChapter">
-    <mat-label>Chapter Title</mat-label>
-    <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">
-  </mat-form-field>
-  <button mat-raised-button color="primary" class="sans-serif" (click)="addChapter()" [attr.disabled]="isAddingChapter === true ? 'disabled' : null"> Add Chapter </button>
+    <mat-form-field appearance="outline" class="w-100" *ngIf="isAddingChapter">
+      <mat-label>Chapter Title</mat-label>
+      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="sans-serif" (click)="addChapter()"
+            [attr.disabled]="isAddingChapter === true ? 'disabled' : null"> Add Chapter
+    </button>
+  </mat-card>
 </div>

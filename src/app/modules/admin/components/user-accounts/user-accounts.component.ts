@@ -46,8 +46,11 @@ export class UserAccountsComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    // @ts-ignore
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if ( this.showStudent === true) {
+      this.studentDataSource.filter = filterValue.trim().toLowerCase();
+    } else {
+      this.facultyDataSource.filter = filterValue.trim().toLowerCase();
+    }
   }
 
   ngOnInit(): void {

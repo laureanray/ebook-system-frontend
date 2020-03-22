@@ -26,6 +26,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { BookEditorComponent } from './components/book-editor/book-editor.component';
 import {UserAccountsComponent} from './components/user-accounts/user-accounts.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 
 
@@ -40,7 +41,8 @@ import {UserAccountsComponent} from './components/user-accounts/user-accounts.co
     BookSidebarComponent,
     BookDetailsComponent,
     BookEditorComponent,
-    UserAccountsComponent
+    UserAccountsComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,

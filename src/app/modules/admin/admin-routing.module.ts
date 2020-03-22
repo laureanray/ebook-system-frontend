@@ -6,6 +6,7 @@ import {AdminComponent} from './components/admin/admin.component';
 import {BookManagerComponent} from './components/book-manager/book-manager.component';
 import {AddBookComponent} from './components/add-book/add-book.component';
 import {BookDescriptionComponent} from './components/book-description/book-description.component';
+import {AddUserComponent} from './components/add-user/add-user.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'book-manager'},
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'book-manager', component: BookManagerComponent},
       { path: 'add-book', component: AddBookComponent},
       { path: 'book/:id', component: BookDescriptionComponent},
-      { path: 'user-accounts', component: UserAccountsComponent}
+      { path: 'user-accounts', component: UserAccountsComponent},
+      { path: 'add-user', component: AddUserComponent}
     ]
   }
 ]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 
+// noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
   selector: 'app-user-accounts',
   templateUrl: './user-accounts.component.html',
@@ -21,14 +22,14 @@ export class UserAccountsComponent implements OnInit {
 export interface PeriodicElement {
   studNum: string;
   position: number;
-  course: string;
   name: string;
+  course: string;
+  yrLevel: string;
+  section: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, studNum: '2015-12345-MN-0', name: 'Dela Cruz, Juan Reyes', course: 'BS in Computer Engineering'},
-  {position: 2, studNum: '2015-12345-MN-0', name: 'Bahala, Laurean Ray Salvan', course: 'He'},
-  {position: 3, studNum: '2015-12345-MN-0', name: 'Esteban, Charlene Mae De Guzman', course: 'Li'},
-  {position: 4, studNum: '2015-12345-MN-0', name: 'Morita, Ami Verzola', course: 'Be'},
+  // tslint:disable-next-line:max-line-length
+  {position: 1, studNum: '2015-12345-MN-0', name: 'Dela Cruz, Juan Reyes', course: 'BS in Computer Engineering', yrLevel: '5th year', section: '1'},
 
 ];

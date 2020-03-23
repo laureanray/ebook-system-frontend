@@ -7,6 +7,14 @@ import {StudentService} from './student.service';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Student} from '../models/student';
+import {Instructor} from '../models/instructor';
+import {Admin} from '../models/admin';
+
+export interface Response {
+  type: string;
+  instructor: Instructor;
+  admin: Admin;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +37,7 @@ export class AuthenticationService {
     return this.http
       .post(`${environment.apiUrl}/student/auth`, { uniqueIdentifier: studentNumber, password})
       .pipe(map(response => {
-        console.log(response);
+        // console.log(response);
         let student = new Student();
         this.currentUserSubject.next(student);
         student = _.merge(student, response);
@@ -52,6 +60,15 @@ export class AuthenticationService {
       .post(`${environment.apiUrl}/instructor/auth`, { uniqueIdentifier: username, password})
       .pipe(map(response => {
         console.log(response);
+
+        if (response.type === 'Instructor') {
+          let instructor = new Instructor();
+          instructor = _.merge(instructor, response.instructor);
+          this.currentUserSubject.next(instructor);
+          localStorage.setItem('currentUser', JSON.stringify(instructor));
+        }
+
+        return response;
       }));
   }
 

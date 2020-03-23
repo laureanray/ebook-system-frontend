@@ -23,7 +23,7 @@ export class LogoutModalComponent implements OnInit {
 
   logout() {
       this.authenticationService.logout();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
       this.dialogRef.close();
   }
 }

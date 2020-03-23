@@ -29,7 +29,7 @@ export class AuthenticationService {
     return this.http
       .post(`${environment.apiUrl}/student/auth`, { uniqueIdentifier: studentNumber, password})
       .pipe(map(response => {
-        // console.log(response);
+        console.log(response);
         let student = new Student();
         this.currentUserSubject.next(student);
         student = _.merge(student, response);

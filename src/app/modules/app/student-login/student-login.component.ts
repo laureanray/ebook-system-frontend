@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../core/services/authentication.service';
 import {first} from 'rxjs/operators';
@@ -12,10 +12,10 @@ import {first} from 'rxjs/operators';
 export class StudentLoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
-  error = '';
   submitted = false;
-  errorMsg: string;
-  hide = true;
+  studentNumberFormControl = new FormControl('', [Validators.required]);
+  passwordFormControl = new FormControl('', [Validators.required]);
+  errors = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,8 +31,8 @@ export class StudentLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      studentNumber: ['', Validators.required],
-      password: ['', Validators.required]
+      studentNumber: this.studentNumberFormControl,
+      password: this.passwordFormControl,
     });
 
     this.returnUrl = this.route.snapshot.queryParams.returnUrl;
@@ -41,6 +41,7 @@ export class StudentLoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
+    console.log('on submit');
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -57,12 +58,17 @@ export class StudentLoginComponent implements OnInit {
         },
         error => {
           console.log(error);
+
           if (error.status === 400) {
-            this.errorMsg = 'Invalid credentials';
-          } else {
-            this.errorMsg = 'Can\'t connect. Please try again.';
+            this.errors.push(error.error.message);
           }
         }
       );
+  }
+
+  getErrorMessage() {
+    if (this.studentNumberFormControl.hasError('required') || this.passwordFormControl.hasError('required')) {
+      return 'You must enter a value';
+    }
   }
 }

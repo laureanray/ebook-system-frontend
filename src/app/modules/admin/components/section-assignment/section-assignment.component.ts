@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionAssignmentComponent implements OnInit {
 
-  constructor() { }
+  public fieldArray: Array<any> = [];
+  public newAttribute: any = {};
+
+  addFieldValue() {
+    this.fieldArray.push(this.newAttribute);
+    this.newAttribute = {};
+  }
+
+  deleteFieldValue(index) {
+    this.fieldArray.splice(index, 1);
+  }
 
   ngOnInit(): void {
   }

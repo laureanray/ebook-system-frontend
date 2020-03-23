@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from '../../../core/services/authentication.service';
+import {MatDialog} from '@angular/material/dialog';
+import {LogoutModalComponent} from '../../../shared/logout-modal/logout-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,28 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ebook-system-frontend';
+  isLoggedIn = false;
+  user: any;
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    public dialog: MatDialog
+    ) {
+    this.authenticationService.currentUser.subscribe(user => {
+        this.isLoggedIn = !!user;
+        if (user) {
+          this.user = user;
+        }
+    });
+  }
+
+  logout() {
+      const dialogRef = this.dialog.open(LogoutModalComponent, {
+        width: '300px'
+      });
+
+      dialogRef.afterClosed().subscribe(res => {
+        console.log(res);
+      });
+  }
 }

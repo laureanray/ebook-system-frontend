@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 import {BehaviorSubject, Observable, ObservedValueOf} from 'rxjs';
 import {User} from '../models/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -12,7 +13,7 @@ import {Student} from '../models/student';
 })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
-  private currentUser: Observable<User>;
+  public currentUser: Observable<User>;
   private httpOptions: { headers: HttpHeaders };
   public isLoggedIn: boolean;
 
@@ -28,7 +29,13 @@ export class AuthenticationService {
     return this.http
       .post(`${environment.apiUrl}/student/auth`, { uniqueIdentifier: studentNumber, password})
       .pipe(map(response => {
-        console.log(response);
+        // console.log(response);
+        let student = new Student();
+        this.currentUserSubject.next(student);
+        student = _.merge(student, response);
+        localStorage.setItem('currentUser', JSON.stringify(student));
+
+        return student;
       }));
   }
 
@@ -46,6 +53,12 @@ export class AuthenticationService {
       .pipe(map(response => {
         console.log(response);
       }));
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 
   public get currentUserValue(): User {

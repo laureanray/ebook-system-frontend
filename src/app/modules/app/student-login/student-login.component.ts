@@ -23,8 +23,9 @@ export class StudentLoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
+    console.log(this.authenticationService.currentUserValue);
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/student']);
     }
   }
 
@@ -50,22 +51,9 @@ export class StudentLoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
-          //
-          // switch (data) {
-          //   case 'ROLE_STUDENT':
-          //     this.router.navigate([this.returnUrl || 'student']);
-          //     break;
-          //   case 'ROLE_INSTRUCTOR':
-          //     this.router.navigate([this.returnUrl || 'instructor']);
-          //     break;
-          //   case 'ROLE_ADMIN':
-          //     this.router.navigate([this.returnUrl || 'admin']);
-          //     break;
-          //   default:
-          //     this.router.navigate(['/']);
-
-          // }
+          if (data !== null) {
+            this.router.navigate([this.returnUrl || 'student']);
+          }
         },
         error => {
           console.log(error);

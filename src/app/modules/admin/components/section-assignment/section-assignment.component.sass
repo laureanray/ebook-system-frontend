@@ -1,9 +1,57 @@
+@import "src/color"
 mat-nav-list
   flex-grow: 1
   //border: 1px solid green
   overflow: auto
-  height: 480px
+  height: 520px
+
+.label
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  height: 60px
 
 .faculty-name
   font-size: 20px
   margin-top: 42px
+
+::ng-deep .mat-list-item-content
+  padding-left: 0px!important
+
+th
+  font-weight: normal !important
+
+.table thead th
+  border-bottom: none!important
+  position: sticky
+  top: 0
+  background: white
+
+.table th, .table td
+  border-top: none !important
+  font-size: 16px
+
+input
+  border: none !important
+  padding: 0px !important
+  font-family: $font
+  font-size: 16px
+
+.add-button
+  padding-top: 14px
+
+.btn:hover
+  color: $primary !important
+
+.btn
+  color: $primary
+
+td
+  padding-top: 3px
+  padding-bottom: 3px
+
+.scroll
+  overflow: auto
+  margin-top: 20px
+
+

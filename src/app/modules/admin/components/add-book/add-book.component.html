@@ -15,21 +15,23 @@
            <input matInput placeholder="" formControlName="firstCtrl" required>
            <mat-icon matSuffix class="orange-icon"> person</mat-icon>
          </mat-form-field>
-         <div>
-           <mat-form-field appearance="outline" class="sans-serif">
-             <mat-label>Book Cover</mat-label>
-             <input matInput placeholder="" formControlName="firstCtrl" required>
-             <mat-icon matSuffix class="orange-icon">image</mat-icon>
-           </mat-form-field>
-           <button mat-button routerLink="../add-book" class="browse-button flex-end">
-             Browse
-           </button>
+         <div class="row">
+           <div class="col" style="padding-right: 0px;" >
+             <mat-form-field appearance="outline" class="sans-serif" style="width: 100%">
+               <mat-label>Book Cover</mat-label>
+               <input matInput placeholder="" formControlName="firstCtrl" required>
+               <mat-icon matSuffix class="orange-icon">image</mat-icon>
+             </mat-form-field>
+           </div>
+           <div class="col-2">
+             <div class="d-flex justify-content-end">
+               <button mat-button routerLink="../add-book" class="browse-button">
+                 Browse
+               </button>
+             </div>
+           </div>
          </div>
        </div>
-<!--        <mat-form-field>-->
-<!--          <mat-label>Name</mat-label>-->
-<!--          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
-<!--        </mat-form-field>-->
         <div class="mt-4 buttons">
           <button mat-button routerLink="../book-manager" class="back-button">
             Back
@@ -43,25 +45,29 @@
         <ng-template matStepLabel>Add Access</ng-template>
         <div class="d-flex flex-column mt-4">
         <mat-checkbox class="sans-serif">Give access to all</mat-checkbox>
-        <div>
-          <mat-form-field appearance="outline" class="sans-serif">
-            <mat-label>Course</mat-label>
-            <mat-select formControlName="secondCtrl">
-              <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
-              <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
-              <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="sans-serif">
-            <mat-label>Year Level</mat-label>
-            <mat-select formControlName="secondCtrl">
-              <mat-option value="option" class="sans-serif">1st Year</mat-option>
-              <mat-option value="option" class="sans-serif">2nd Year</mat-option>
-              <mat-option value="option" class="sans-serif">3rd Year</mat-option>
-              <mat-option value="option" class="sans-serif">4th Year</mat-option>
-              <mat-option value="option" class="sans-serif">5th Year</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" class="sans-serif w-100" >
+              <mat-label>Course</mat-label>
+              <mat-select formControlName="secondCtrl">
+                <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
+                <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
+                <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline" class="sans-serif w-50">
+              <mat-label>Year Level</mat-label>
+              <mat-select formControlName="secondCtrl">
+                <mat-option value="option" class="sans-serif">1st Year</mat-option>
+                <mat-option value="option" class="sans-serif">2nd Year</mat-option>
+                <mat-option value="option" class="sans-serif">3rd Year</mat-option>
+                <mat-option value="option" class="sans-serif">4th Year</mat-option>
+                <mat-option value="option" class="sans-serif">5th Year</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
           <a href="" class="add-more-button">Add More</a>
         <div class="mt-4 buttons">
@@ -71,13 +77,5 @@
         </div>
       </form>
     </mat-step>
-<!--    <mat-step>-->
-    <!--      <ng-template matStepLabel>Done</ng-template>-->
-    <!--      <p>"Book name" has created successfully</p>-->
-    <!--      <div class="buttons">-->
-    <!--        <button mat-button routerLink="../book-manager" class="button text-wrap">Back To Book Manager</button>-->
-    <!--        <button mat-button class="button">Proceed</button>-->
-    <!--      </div>-->
-<!--    </mat-step>-->
   </mat-horizontal-stepper>
 </div>

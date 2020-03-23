@@ -29,6 +29,7 @@ import {UserAccountsComponent} from './components/user-accounts/user-accounts.co
 import {MatCardModule} from '@angular/material/card';
 import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
+import { SectionAssignmentComponent } from './components/section-assignment/section-assignment.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {AccountSettingsComponent} from './components/account-settings/account-se
     BookEditorComponent,
     UserAccountsComponent,
     AddUserComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    SectionAssignmentComponent
   ],
   imports: [
     CommonModule,

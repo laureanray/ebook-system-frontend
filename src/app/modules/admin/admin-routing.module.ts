@@ -8,6 +8,7 @@ import {AddBookComponent} from './components/add-book/add-book.component';
 import {BookDescriptionComponent} from './components/book-description/book-description.component';
 import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
+import {SectionAssignmentComponent} from './components/section-assignment/section-assignment.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'book-manager'},
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'book/:id', component: BookDescriptionComponent},
       { path: 'user-accounts', component: UserAccountsComponent},
       { path: 'add-user', component: AddUserComponent},
-      { path: 'account-settings', component: AccountSettingsComponent}
+      { path: 'account-settings', component: AccountSettingsComponent},
+      { path: 'section-assignment', component: SectionAssignmentComponent}
     ]
   }
 ]

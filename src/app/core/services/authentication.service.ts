@@ -9,12 +9,8 @@ import {map} from 'rxjs/operators';
 import {Student} from '../models/student';
 import {Instructor} from '../models/instructor';
 import {Admin} from '../models/admin';
+import {Response} from '../models/response';
 
-export interface Response {
-  type: string;
-  instructor: Instructor;
-  admin: Admin;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -58,8 +54,7 @@ export class AuthenticationService {
   instructorLogin(username: string, password: string) {
     return this.http
       .post(`${environment.apiUrl}/instructor/auth`, { uniqueIdentifier: username, password})
-      .pipe(map(response => {
-        console.log(response);
+      .pipe(map((response: Response) => {
 
         if (response.type === 'Instructor') {
           let instructor = new Instructor();

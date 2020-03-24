@@ -11,16 +11,5 @@
 </div>
 
 <div class="card-container book-container d-flex flex-wrap">
-  <app-book-item-card [bookId]="1" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="2" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="3" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="4" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
-  <app-book-item-card [bookId]="5" [bookTitle]="'asdadasdad sdasd'"></app-book-item-card>
+  <app-book-item-card *ngFor="let book of books" [bookId]="book.id" [bookTitle]="book.bookTitle"></app-book-item-card>
 </div>

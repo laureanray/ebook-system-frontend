@@ -13,9 +13,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {SharedModule} from '../../shared/shared.module';
+import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import {SharedModule} from '../../shared/shared.module';
     HttpClientModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

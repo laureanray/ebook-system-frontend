@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../core/services/authentication.service';
 import {first} from 'rxjs/operators';
+import {Admin} from '../../../core/models/admin';
+import {Instructor} from '../../../core/models/instructor';
+import {Response} from '../../../core/models/response';
 
 @Component({
   selector: 'app-instructor-admin-login',
@@ -51,7 +54,7 @@ export class InstructorAdminLoginComponent implements OnInit {
     this.authenticationService.instructorLogin(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
-        data => {
+        (data: Response) => {
           console.log(data);
           if (data !== null) {
             if (data.type === 'Instructor') {

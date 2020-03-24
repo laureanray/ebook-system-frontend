@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {AuthenticationService} from '../../../core/services/authentication.service';
 import {first} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-student-login',
@@ -23,9 +24,19 @@ export class StudentLoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    console.log(this.authenticationService.currentUserValue);
+    // console.log(this.authenticationService.currentUserValue);
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/student']);
+      switch (this.authenticationService.currentUserValue.role) {
+        case 'Student':
+          this.router.navigate(['/student']);
+          break;
+        case 'Admin':
+          this.router.navigate(['/admin']);
+          break;
+        case 'Instructor':
+          this.router.navigate(['/instructor']);
+          break;
+      }
     }
   }
 

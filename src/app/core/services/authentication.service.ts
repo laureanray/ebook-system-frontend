@@ -39,10 +39,10 @@ export class AuthenticationService {
       .pipe(map(response => {
         // console.log(response);
         let student = new Student();
+        student.role = 'Student';
         this.currentUserSubject.next(student);
         student = _.merge(student, response);
         localStorage.setItem('currentUser', JSON.stringify(student));
-
         return student;
       }));
   }
@@ -63,9 +63,16 @@ export class AuthenticationService {
 
         if (response.type === 'Instructor') {
           let instructor = new Instructor();
+          instructor.role = response.type;
           instructor = _.merge(instructor, response.instructor);
           this.currentUserSubject.next(instructor);
           localStorage.setItem('currentUser', JSON.stringify(instructor));
+        } else {
+          let admin = new Admin();
+          admin.role = response.type;
+          admin = _.merge(admin, response.admin);
+          this.currentUserSubject.next(admin);
+          localStorage.setItem('currentUser', JSON.stringify(admin));
         }
 
         return response;

@@ -3,7 +3,7 @@
   <a routerLink="" class="ml-auto nav-top-link" type="submit" *ngIf="!isLoggedIn; else elseBlk">Log In</a>
 
   <ng-template #elseBlk>
-    <a routerLink="" (click)="logout()" class="ml-auto nav-top-link" type="submit">Logout</a>
+    <a (click)="logout()" class="ml-auto nav-top-link" type="submit">Logout</a>
   </ng-template>
 </nav>
 

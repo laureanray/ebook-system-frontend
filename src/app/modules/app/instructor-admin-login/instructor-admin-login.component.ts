@@ -52,12 +52,13 @@ export class InstructorAdminLoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log(data);
           if (data !== null) {
-            // if (data.type === 'Instructor') {
+            if (data.type === 'Instructor') {
               this.router.navigate([this.returnUrl || 'instructor']);
-            // } else {
-            //   this.router.navigate([this.returnUrl || 'admin']);
-            // }
+            } else {
+              this.router.navigate([this.returnUrl || 'admin']);
+            }
           }
         },
         error => {

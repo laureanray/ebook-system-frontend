@@ -1,8 +1,8 @@
 <p class="title mt-4">Add User</p>
 <div class="mt-5">
   <mat-radio-group aria-label="Select an option">
-    <mat-radio-button value="1" checked (click)="toggleStudent()">Student</mat-radio-button>
-    <mat-radio-button value="2" (click)="toggleFaculty()">Faculty</mat-radio-button>
+    <mat-radio-button color="primary" value="1" checked (click)="toggleStudent()">Student</mat-radio-button>
+    <mat-radio-button color="primary" value="2" (click)="toggleFaculty()">Faculty</mat-radio-button>
   </mat-radio-group>
 </div>
 <ng-container *ngIf="showStudent">

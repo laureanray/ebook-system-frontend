@@ -40,5 +40,7 @@ export class BookEditorService {
   }
 
   constructor() {
+    this.currentTopic.next(null);
+    this.bookEditorState.next(null);
   }
 }

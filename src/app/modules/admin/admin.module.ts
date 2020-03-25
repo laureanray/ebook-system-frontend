@@ -31,6 +31,7 @@ import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
 import { SectionAssignmentComponent } from './components/section-assignment/section-assignment.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AddTopicModalComponent } from './components/book-sidebar/add-topic-modal/add-topic-modal.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     UserAccountsComponent,
     AddUserComponent,
     AccountSettingsComponent,
-    SectionAssignmentComponent
+    SectionAssignmentComponent,
+    AddTopicModalComponent
   ],
   imports: [
     CommonModule,

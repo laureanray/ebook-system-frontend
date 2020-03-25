@@ -1,5 +1,5 @@
 <div class="pt-4">
-  <h2 class="mat-h2 sans-serif"> Book Title </h2>
+  <h2 class="mat-h2 sans-serif"> {{ book?.bookTitle }} </h2>
 
   <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
@@ -13,18 +13,18 @@
         <div class="list-group sans-serif">
           <a class="list-group-item list-group-item-action" [ngClass]="{ 'active' : topic.id === activeTopic }"
              (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
-          <a class="list-group-item list-group-item-action text-primary"> Add Topic </a>
-          <a class="list-group-item list-group-item-action text-secondary"> Add Exam </a>
+          <a class="list-group-item list-group-item-action text-primary" (click)="addTopic(chapter.id)"> Add Topic </a>
+          <a class="list-group-item list-group-item-action text-secondary" (click)="addExam(chapter.id)"> Add Exam </a>
         </div>
       </mat-expansion-panel>
     </div>
   </mat-accordion>
 
   <mat-card>
-<!--    <mat-form-field class="w-100 sans-serif" *ngIf="isAddingChapter">-->
-<!--      <mat-label>Chapter Title</mat-label>-->
-<!--      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">-->
-<!--    </mat-form-field>-->
+    <!--    <mat-form-field class="w-100 sans-serif" *ngIf="isAddingChapter">-->
+    <!--      <mat-label>Chapter Title</mat-label>-->
+    <!--      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">-->
+    <!--    </mat-form-field>-->
 
     <mat-form-field appearance="outline" class="w-100" *ngIf="isAddingChapter">
       <mat-label>Chapter Title</mat-label>

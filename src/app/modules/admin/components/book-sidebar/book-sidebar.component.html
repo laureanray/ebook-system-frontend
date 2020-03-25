@@ -3,15 +3,8 @@
 
   <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
-      <mat-expansion-panel (opened)="panelOpenedState = true" (closed)="panelOpenedState = false"
-                           class="my-2 sans-serif" *ngFor="let chapter of book.chapters">
-        <!--        <mat-menu #appMenu="matMenu">-->
-        <!--          <button mat-menu-item>Settings</button>-->
-        <!--          <button mat-menu-item>Help</button>-->
-        <!--        </mat-menu>-->
-        <!--        <button mat-icon-button [matMenuTriggerFor]="appMenu">-->
-        <!--          <mat-icon>more_vert</mat-icon>-->
-        <!--        </button>-->
+      <mat-expansion-panel (opened)="selectChapter(chapter.id)"
+                           class="my-2 sans-serif" *ngFor="let chapter of book?.chapters">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{ chapter.chapterTitle }}

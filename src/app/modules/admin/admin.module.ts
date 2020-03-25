@@ -30,6 +30,7 @@ import {MatCardModule} from '@angular/material/card';
 import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
 import { SectionAssignmentComponent } from './components/section-assignment/section-assignment.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { SectionAssignmentComponent } from './components/section-assignment/sect
   imports: [
     CommonModule,
     AdminRoutingModule,
+    AngularEditorModule,
     MatListModule,
     MatButtonModule,
     MatIconModule,
@@ -68,7 +70,7 @@ import { SectionAssignmentComponent } from './components/section-assignment/sect
     MatRadioModule,
     FormsModule,
     MatMenuModule,
-    MatCardModule,
+    MatCardModule
   ]
 })
 export class AdminModule {

@@ -16,19 +16,22 @@
            <mat-icon matSuffix class="orange-icon"> person</mat-icon>
          </mat-form-field>
          <div class="row">
-           <div class="col" style="padding-right: 0px;" >
-             <mat-form-field appearance="outline" class="sans-serif" style="width: 100%">
-               <mat-label>Book Cover</mat-label>
-               <input matInput placeholder="" formControlName="firstCtrl" required>
-               <mat-icon matSuffix class="orange-icon">image</mat-icon>
-             </mat-form-field>
-           </div>
+
            <div class="col-2">
              <div class="d-flex justify-content-end">
-               <button mat-button routerLink="../add-book" class="browse-button">
+               <button mat-raised-button (click)="$event.preventDefault()"  (click)="imgFileInput.click()"  class="browse-button">
                  Browse
                </button>
+               <input type="file" #imgFileInput/>
              </div>
+           </div>
+           <div class="col" style="padding-right: 0px;" >
+             <h3 class="mat-h3"> Filename </h3>
+             <!--             <mat-form-field appearance="outline" class="sans-serif" style="width: 100%">-->
+             <!--               <mat-label>Book Cover</mat-label>-->
+             <!--               <input matInput placeholder="" readonly >-->
+             <!--               <mat-icon matSuffix class="orange-icon">image</mat-icon>-->
+             <!--             </mat-form-field>-->
            </div>
          </div>
        </div>

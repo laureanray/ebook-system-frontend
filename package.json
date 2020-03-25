@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "@kolkov/angular-editor": "^1.1.1",
     "bootstrap": "^4.4.1",
     "jwt-decode": "latest",
     "lodash": "^4.17.15",

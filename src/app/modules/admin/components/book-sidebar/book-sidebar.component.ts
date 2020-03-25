@@ -10,6 +10,8 @@ import * as _ from 'lodash';
 import {Chapter} from '../../../../core/models/chapter';
 import {Topic} from '../../../../core/models/topic';
 import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {AddTopicModalComponent} from './add-topic-modal/add-topic-modal.component';
 
 @Component({
   selector: 'app-book-sidebar',
@@ -29,17 +31,13 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
-              private activatedRoute: ActivatedRoute) {
-
-
-  }
+              private activatedRoute: ActivatedRoute,
+              public dialog: MatDialog) {  }
 
   ngOnInit(): void {
     // get editing book here
     this.activatedRoute.params.subscribe(params => {
       this.bookId = params.id;
-
-
       this.getBookSub = this.bookService.getBook(this.bookId).subscribe((book: Book) => {
         this.book = book;
       });
@@ -68,17 +66,36 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
   }
 
   topicClicked(id: number) {
-    // this.activeTopic = id;
-    // this.bookEditorService.isDetailsShown(true);
-    // this.selectedTopic = _.find(this.selectedChapter.topics, ((t: Topic) => t.id === id));
-    this.bookEditorService.setCurrentTopic(this.selectedTopic);
+    this.bookEditorService.isDetailsShown(true);
+    this.activeTopic = id;
+    this.selectedTopic = _.find(this.selectedChapter.topics, ((t: Topic) => t.id === id));
+    setTimeout(() => {
+      this.bookEditorService.setCurrentTopic(this.selectedTopic);
+    });
   }
 
   selectChapter(id: number) {
     console.log(this.book);
     this.selectedChapter = _.find(this.book.chapters, ((c: Chapter) => c.id === id));
     console.log(this.selectedChapter);
-    this.bookEditorService.setCurrentChapter(this.selectedChapter);
+    setTimeout(() => {
+      this.bookEditorService.setCurrentChapter(this.selectedChapter);
+    });
+  }
+
+  addTopic(id: number) {
+    console.log('add topic');
+    const dialogRef = this.dialog.open(AddTopicModalComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  addExam(id: number) {
+    console.log('add exam');
   }
 }
 

@@ -1,6 +1,6 @@
 <div class="pt-4">
-  <h1 class="mat-h1"> {{editingChapter.chapterTitle}} </h1>
-  <h2 class="mat-h2"> {{editingTopic.topicTitle}} </h2>
+  <h1 class="mat-h1"> {{editingChapter?.chapterTitle}} </h1>
+  <h2 class="mat-h2"> {{editingTopic?.topicTitle}} </h2>
   <div class="border-bottom border-bottom-1"></div>
   <div [formGroup]="editorFormGroup">
     <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>

@@ -1,21 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Book} from '../../../../core/models/book';
 import {Topic} from '../../../../core/models/topic';
 import {Chapter} from '../../../../core/models/chapter';
 import {BookEditorService} from '../../services/book-editor.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-book-editor',
   templateUrl: './book-editor.component.html',
   styleUrls: ['./book-editor.component.sass']
 })
-export class BookEditorComponent implements OnInit {
+export class BookEditorComponent implements OnInit, OnDestroy {
   editingChapter: Chapter;
   editingTopic: Topic;
 
-
+  topicSub: Subscription;
+  chapterSub: Subscription;
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -66,11 +68,11 @@ export class BookEditorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService
   ) {
-    this.bookEditorService.getCurrentChapter().subscribe((chapter: Chapter) => {
-        this.editingChapter = chapter;
+    this.chapterSub = this.bookEditorService.getCurrentChapter().subscribe((chapter: Chapter) => {
+      this.editingChapter = chapter;
     });
 
-    this.bookEditorService.getCurrentTopic().subscribe((topic: Topic) => {
+    this.topicSub = this.bookEditorService.getCurrentTopic().subscribe((topic: Topic) => {
       this.editingTopic = topic;
     });
   }
@@ -79,6 +81,11 @@ export class BookEditorComponent implements OnInit {
     this.editorFormGroup = this.formBuilder.group({
       htmlContent: new FormControl('', [Validators.required])
     });
+
   }
 
+  ngOnDestroy(): void {
+    this.topicSub.unsubscribe();
+    this.chapterSub.unsubscribe();
+  }
 }

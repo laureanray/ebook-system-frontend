@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Chapter} from '../../../core/models/chapter';
 import {Topic} from '../../../core/models/topic';
 
@@ -7,9 +7,9 @@ import {Topic} from '../../../core/models/topic';
   providedIn: 'root'
 })
 export class BookEditorService {
-  private bookEditorState = new Subject<boolean>();
-  private currentChapter = new Subject<Chapter>();
-  private currentTopic = new Subject<Topic>();
+  private bookEditorState = new BehaviorSubject(false);
+  private currentChapter = new BehaviorSubject(null);
+  private currentTopic = new BehaviorSubject(null);
 
   isDetailsShown(state: boolean) {
     this.bookEditorState.next(state);
@@ -40,7 +40,7 @@ export class BookEditorService {
   }
 
   constructor() {
-    this.currentTopic.next(null);
-    this.bookEditorState.next(null);
+    // this.currentTopic.next(null);
+    // this.currentChapter.next(null);
   }
 }

@@ -6,6 +6,10 @@ import {Topic} from '../../../../core/models/topic';
 import {Chapter} from '../../../../core/models/chapter';
 import {BookEditorService} from '../../services/book-editor.service';
 import {Subscription} from 'rxjs';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+
+import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-book-editor',
@@ -15,77 +19,45 @@ import {Subscription} from 'rxjs';
 export class BookEditorComponent implements OnInit, OnDestroy {
   editingChapter: Chapter;
   editingTopic: Topic;
-
+  public Editor = DecoupledEditor;
   topicSub: Subscription;
   chapterSub: Subscription;
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '500px',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      {class: 'arial', name: 'Arial'},
-      {class: 'times-new-roman', name: 'Times New Roman'},
-      {class: 'calibri', name: 'Calibri'},
-      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-    ],
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
+  htmlContent = '';
+  status = '';
+  public model = {
+    editorData: ''
   };
-  editorFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService
   ) {
     this.chapterSub = this.bookEditorService.getCurrentChapter().subscribe((chapter: Chapter) => {
       this.editingChapter = chapter;
+      console.log(chapter);
     });
 
     this.topicSub = this.bookEditorService.getCurrentTopic().subscribe((topic: Topic) => {
       this.editingTopic = topic;
+      this.model.editorData = topic.htmlContent;
     });
   }
 
-  ngOnInit(): void {
-    this.editorFormGroup = this.formBuilder.group({
-      htmlContent: new FormControl('', [Validators.required])
-    });
-
-  }
+  ngOnInit(): void {  }
 
   ngOnDestroy(): void {
     this.topicSub.unsubscribe();
     this.chapterSub.unsubscribe();
+  }
+
+  onChange({editor}: ChangeEvent) {
+    const data = editor.getData();
+    console.log(data);
+  }
+
+  public onReady( editor ) {
+    editor.ui.getEditableElement().parentElement.insertBefore(
+      editor.ui.view.toolbar.element,
+      editor.ui.getEditableElement()
+    );
   }
 }

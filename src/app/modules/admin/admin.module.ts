@@ -32,6 +32,7 @@ import {AccountSettingsComponent} from './components/account-settings/account-se
 import { SectionAssignmentComponent } from './components/section-assignment/section-assignment.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AddTopicModalComponent } from './components/book-sidebar/add-topic-modal/add-topic-modal.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -51,29 +52,30 @@ import { AddTopicModalComponent } from './components/book-sidebar/add-topic-moda
     SectionAssignmentComponent,
     AddTopicModalComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    AngularEditorModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatStepperModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatTreeModule,
-    MatRadioModule,
-    MatTableModule,
-    MatExpansionModule,
-    MatRadioModule,
-    FormsModule,
-    MatMenuModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        AngularEditorModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatStepperModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatTreeModule,
+        MatRadioModule,
+        MatTableModule,
+        MatExpansionModule,
+        MatRadioModule,
+        FormsModule,
+        MatMenuModule,
+        MatCardModule,
+        CKEditorModule
+    ]
 })
 export class AdminModule {
 }

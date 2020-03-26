@@ -32,7 +32,8 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
               private activatedRoute: ActivatedRoute,
-              public dialog: MatDialog) {  }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     // get editing book here
@@ -54,7 +55,7 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
   }
 
   onKeyUp($event) {
-    if ($event.key === 'Enter' && this.isAddingChapter === true) {
+    if (($event.key === 'Enter' || $event.key === 'Escape') && this.isAddingChapter === true) {
       this.isAddingChapter = false;
     }
   }
@@ -69,18 +70,18 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
     this.bookEditorService.isDetailsShown(true);
     this.activeTopic = id;
     this.selectedTopic = _.find(this.selectedChapter.topics, ((t: Topic) => t.id === id));
-    setTimeout(() => {
-      this.bookEditorService.setCurrentTopic(this.selectedTopic);
-    });
+    // setTimeout(() => {
+    this.bookEditorService.setCurrentTopic(this.selectedTopic);
+    // });
   }
 
   selectChapter(id: number) {
     console.log(this.book);
     this.selectedChapter = _.find(this.book.chapters, ((c: Chapter) => c.id === id));
     console.log(this.selectedChapter);
-    setTimeout(() => {
-      this.bookEditorService.setCurrentChapter(this.selectedChapter);
-    });
+    // setTimeout(() => {
+    this.bookEditorService.setCurrentChapter(this.selectedChapter);
+    // });
   }
 
   addTopic(id: number) {

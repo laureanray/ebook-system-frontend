@@ -1,8 +1,9 @@
 <div class="pt-4">
-  <h1 class="mat-h1"> {{editingChapter?.chapterTitle}} </h1>
+  <h1 class="mat-h1"> {{editingChapter?.chapterTitle}}  <button mat-icon-button aria-label="Example icon-button with a heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button></h1>
   <h2 class="mat-h2"> {{editingTopic?.topicTitle}} </h2>
+  <p class="text-muted"> {{ status }}</p>
   <div class="border-bottom border-bottom-1"></div>
-  <div [formGroup]="editorFormGroup">
-    <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
-  </div>
-</div>
+  <ckeditor [editor]="Editor" [(ngModel)]="model.editorData" (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
+`</div>

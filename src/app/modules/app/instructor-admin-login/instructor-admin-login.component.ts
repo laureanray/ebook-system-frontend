@@ -63,10 +63,11 @@ export class InstructorAdminLoginComponent implements OnInit {
               this.router.navigate([this.returnUrl || 'admin']);
             }
           }
+          this.submitted = false;
         },
         error => {
           console.log(error);
-
+          this.submitted = false;
           if (error.status === 400) {
             this.errors.push(error.error.message);
           }

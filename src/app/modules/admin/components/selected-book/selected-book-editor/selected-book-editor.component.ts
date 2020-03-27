@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {BookService} from '../../../../../core/services/book.service';
 import {ActivatedRoute} from '@angular/router';
+import {EditorState} from '../../../../../core/models/editor-state';
 
 @Component({
   selector: 'app-selected-book-editor',
@@ -18,55 +19,45 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./selected-book-editor.component.sass']
 })
 export class SelectedBookEditorComponent implements OnInit, OnDestroy {
+  // WYSIWYG editor
+  public Editor = DecoupledEditor;
+
   editingChapter: Chapter;
   editingTopic: Topic;
-  public Editor = DecoupledEditor;
-  topicSub: Subscription;
-  chapterSub: Subscription;
   getBookSub: Subscription;
-  htmlContent = '';
-  status = '';
+  chapterAndTopicSub: Subscription;
+  book: Book;
 
-  bookId: number;
-
+  // Initial Variable
   isSaving = false;
+  status = '';
   public model = {
     editorData: ''
   };
 
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService,
-              private bookService: BookService,
-              private activatedRoute: ActivatedRoute
+              private bookService: BookService
   ) {
-    // this.chapterSub = this.bookEditorService.getCurrentChapter().subscribe((chapter: Chapter) => {
-    //     //   this.editingChapter = chapter;
-    //     //   console.log(chapter);
-    //     // });
-    //     //
-    //     // this.topicSub = this.bookEditorService.getCurrentTopic().subscribe((topic: Topic) => {
-    //     //   this.editingTopic = topic;
-    //     //   this.model.editorData = topic.htmlContent;
-    //     // });
-
-    this.activatedRoute.params.subscribe(params => {
-      this.bookId = params.id;
-      // this.getBookSub = this.bookService.getBook(this.bookId).subscribe((book: Book) => {
-      //   this.book = book;
-      // });
+    this.chapterAndTopicSub = this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
+      this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
+        this.book = book;
+        this.editingChapter = _.find(this.book.chapters, (c => c.id === editorState.chapterId));
+        this.editingTopic = _.find(this.editingChapter.topics, (t => t.id === editorState.topicId));
+        this.model.editorData = this.editingTopic.htmlContent;
+      });
     });
   }
 
   ngOnInit(): void {  }
 
   ngOnDestroy(): void {
-    this.topicSub.unsubscribe();
-    this.chapterSub.unsubscribe();
+    this.chapterAndTopicSub.unsubscribe();
+    this.getBookSub.unsubscribe();
   }
 
   onChange({editor}: ChangeEvent) {
     const data = editor.getData();
-    // console.log(data);
   }
 
   public onReady( editor ) {
@@ -78,15 +69,25 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
 
   saveChanges() {
     this.isSaving = true;
-    const topic = new Topic();
-    topic.id = this.editingTopic.id;
-    topic.htmlContent = this.model.editorData;
-    this.bookService.updateTopic(topic).subscribe((t: Topic) => {
-      console.log(t);
-      this.isSaving = false;
-    }, error => {
-      this.isSaving = false;
-    });
+    setTimeout(() => {
+      const topic = new Topic();
+      topic.id = this.editingTopic.id;
+      topic.htmlContent = this.model.editorData;
+      this.bookService.updateTopic(topic).subscribe((t: Topic) => {
+        this.isSaving = false;
+        this.status = 'Changes saved';
+        // Update data on success
+        this.updateData();
+      }, error => {
+        this.isSaving = false;
+      });
+    }, 500);
+  }
+
+  updateData() {
+      this.bookService.getBook(this.book.id).subscribe((book: Book) => {
+        this.bookEditorService.setCurrentBook(book);
+      });
   }
 
 }

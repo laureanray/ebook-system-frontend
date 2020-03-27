@@ -66,6 +66,8 @@ export class StudentLoginComponent implements OnInit {
           if (data !== null) {
             this.router.navigate([this.returnUrl || 'student']);
           }
+
+          this.submitted = false;
         },
         error => {
           console.log(error);
@@ -73,6 +75,8 @@ export class StudentLoginComponent implements OnInit {
           if (error.status === 400) {
             this.errors.push(error.error.message);
           }
+
+          this.submitted = false;
         }
       );
   }

@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-3">
-    <app-book-sidebar></app-book-sidebar>
+    <app-selected-book-sidebar></app-selected-book-sidebar>
   </div>
   <div class="col">
-    <app-book-details *ngIf="!bookDetails; else bookEditor"></app-book-details>
+    <app-selected-book-details *ngIf="!bookDetails; else bookEditor"></app-selected-book-details>
     <ng-template #bookEditor>
-      <app-book-editor></app-book-editor>
+      <app-selected-book-editor></app-selected-book-editor>
     </ng-template>
   </div>
 </div>

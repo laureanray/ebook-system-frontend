@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BookEditorService} from '../../services/book-editor.service';
+import {BookService} from '../../../../core/services/book.service';
+import {Book} from '../../../../core/models/book';
 
 @Component({
   selector: 'app-selected-book',
@@ -10,23 +12,21 @@ import {BookEditorService} from '../../services/book-editor.service';
 export class SelectedBookComponent implements OnInit {
   bookId: number;
   bookDetails: boolean;
-  constructor(private activatedRoute: ActivatedRoute, private bookEditorService: BookEditorService) {
+  constructor(private activatedRoute: ActivatedRoute, private bookEditorService: BookEditorService, private bookService: BookService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+      // Get the book id
       this.bookId = params.id;
-
+      // Initialize the observable
+      this.bookService.getBook(this.bookId).subscribe((book: Book) => {
+          this.bookEditorService.setCurrentBook(book);
+      });
     });
 
     this.bookEditorService.getDetailsShown().subscribe(state => {
       this.bookDetails = state;
-    });
-
-    const that = this;
-
-    setTimeout(() => {
-      that.bookEditorService.initialize();
     });
   }
 

@@ -3,7 +3,7 @@
 
   <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
-      <mat-expansion-panel (opened)="selectChapter(chapter.id)"
+      <mat-expansion-panel [expanded]="!!book" (opened)="selectChapter(chapter.id)"
                            class="my-2 sans-serif" *ngFor="let chapter of book?.chapters">
         <mat-expansion-panel-header>
           <mat-panel-title>

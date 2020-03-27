@@ -15,11 +15,12 @@ import { GradesComponent } from './components/grades/grades.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
+import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 
 
 @NgModule({
-  declarations: [StudentComponent, SetPasswordComponent, StudentSidebarComponent, BookLibraryComponent, GradesComponent],
+  declarations: [StudentComponent, SetPasswordComponent, StudentSidebarComponent, BookLibraryComponent, GradesComponent, ViewProfileComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

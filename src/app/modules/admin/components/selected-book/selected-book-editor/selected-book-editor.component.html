@@ -6,4 +6,5 @@
   <p class="text-muted"> {{ status }}</p>
   <div class="border-bottom border-bottom-1"></div>
   <ckeditor [editor]="Editor" [(ngModel)]="model.editorData" (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
+  <button mat-raised-button [disabled]="isSaving" (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
 `</div>

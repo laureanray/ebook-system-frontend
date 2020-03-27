@@ -15,24 +15,24 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
-import {BookDescriptionComponent} from './components/book-description/book-description.component';
+import {SelectedBookComponent} from './components/selected-book/selected-book.component';
 import {BookItemCardComponent} from './components/book-manager/book-item-card/book-item-card.component';
-import {BookSidebarComponent} from './components/book-sidebar/book-sidebar.component';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
-import {BookDetailsComponent} from './components/book-details/book-details.component';
-import {BookEditorComponent} from './components/book-editor/book-editor.component';
+import {SelectedBookEditorComponent} from './components/selected-book/selected-book-editor/selected-book-editor.component';
 import {UserAccountsComponent} from './components/user-accounts/user-accounts.component';
 import {MatCardModule} from '@angular/material/card';
 import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
-import { SectionAssignmentComponent } from './components/section-assignment/section-assignment.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { AddTopicModalComponent } from './components/book-sidebar/add-topic-modal/add-topic-modal.component';
+import {SectionAssignmentComponent} from './components/section-assignment/section-assignment.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
+import {AddTopicModalComponent} from './components/selected-book/selected-book-sidebar/add-topic-modal/add-topic-modal.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {SelectedBookSidebarComponent} from './components/selected-book/selected-book-sidebar/selected-book-sidebar.component';
+import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
 
 
 @NgModule({
@@ -41,41 +41,41 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
     BookManagerComponent,
     SidebarNavComponent,
     AddBookComponent,
-    BookDescriptionComponent,
+    SelectedBookComponent,
     BookItemCardComponent,
-    BookSidebarComponent,
-    BookDetailsComponent,
-    BookEditorComponent,
+    SelectedBookDetailsComponent,
+    SelectedBookSidebarComponent,
+    SelectedBookEditorComponent,
     UserAccountsComponent,
     AddUserComponent,
     AccountSettingsComponent,
     SectionAssignmentComponent,
-    AddTopicModalComponent
+    AddTopicModalComponent,
   ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        AngularEditorModule,
-        MatListModule,
-        MatButtonModule,
-        MatIconModule,
-        MatProgressBarModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatStepperModule,
-        ReactiveFormsModule,
-        MatCheckboxModule,
-        MatSelectModule,
-        MatTreeModule,
-        MatRadioModule,
-        MatTableModule,
-        MatExpansionModule,
-        MatRadioModule,
-        FormsModule,
-        MatMenuModule,
-        MatCardModule,
-        CKEditorModule
-    ]
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    AngularEditorModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTreeModule,
+    MatRadioModule,
+    MatTableModule,
+    MatExpansionModule,
+    MatRadioModule,
+    FormsModule,
+    MatMenuModule,
+    MatCardModule,
+    CKEditorModule
+  ]
 })
 export class AdminModule {
 }

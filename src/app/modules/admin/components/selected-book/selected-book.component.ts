@@ -3,11 +3,11 @@ import {ActivatedRoute} from '@angular/router';
 import {BookEditorService} from '../../services/book-editor.service';
 
 @Component({
-  selector: 'app-book-description',
-  templateUrl: './book-description.component.html',
-  styleUrls: ['./book-description.component.sass']
+  selector: 'app-selected-book',
+  templateUrl: './selected-book.component.html',
+  styleUrls: ['./selected-book.component.sass']
 })
-export class BookDescriptionComponent implements OnInit {
+export class SelectedBookComponent implements OnInit {
   bookId: number;
   bookDetails: boolean;
   constructor(private activatedRoute: ActivatedRoute, private bookEditorService: BookEditorService) {
@@ -16,6 +16,7 @@ export class BookDescriptionComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.bookId = params.id;
+
     });
 
     this.bookEditorService.getDetailsShown().subscribe(state => {

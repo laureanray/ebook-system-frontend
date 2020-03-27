@@ -5,7 +5,7 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {Book} from '../../../../../core/models/book';
 import {BookService} from '../../../../../core/services/book.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {Chapter} from '../../../../../core/models/chapter';
 import {Topic} from '../../../../../core/models/topic';
@@ -23,27 +23,22 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
   isAddingChapter = false;
   activeTopic = null;
-  bookId: number;
   book: Book;
-  selectedChapter: Chapter;
-  selectedTopic: Topic;
   getBookSub: Subscription;
+  lastSelectedChapter: number;
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     // get editing book here
-    this.activatedRoute.params.subscribe(params => {
-      this.bookId = params.id;
-      this.getBookSub = this.bookService.getBook(this.bookId).subscribe((book: Book) => {
-        this.book = book;
-      });
+    this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
+      this.book = book;
     });
-
   }
 
   ngOnDestroy(): void {
@@ -69,19 +64,17 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   topicClicked(id: number) {
     this.bookEditorService.isDetailsShown(true);
     this.activeTopic = id;
-    this.selectedTopic = _.find(this.selectedChapter.topics, ((t: Topic) => t.id === id));
-    // setTimeout(() => {
-    // this.bookEditorService.setCurrentTopic(this.selectedTopic);
-    // });
+    this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, id);
+    this.router.navigate([], {
+      queryParams: {
+        topic: this.activeTopic
+      },
+      queryParamsHandling: 'merge'
+    });
   }
 
   selectChapter(id: number) {
-    console.log(this.book);
-    this.selectedChapter = _.find(this.book.chapters, ((c: Chapter) => c.id === id));
-    console.log(this.selectedChapter);
-    // setTimeout(() => {
-    // this.bookEditorService.setCurrentChapter(this.selectedChapter);
-    // });
+    this.lastSelectedChapter = id;
   }
 
   addTopic(id: number) {

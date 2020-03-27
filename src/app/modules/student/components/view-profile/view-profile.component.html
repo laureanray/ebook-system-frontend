@@ -1,1 +1,28 @@
-<p>view-profile works!</p>
+<div>
+  <p class="title mt-4" style="">Bahala, Laurean Ray S.</p>
+  <p class="information mt-3">Course: <span style="color: black">Bs in Computer Engineering</span></p>
+  <p class="information mt-3">Year Level: <span style="color: black">5th Year</span> &nbsp; Section: <span
+    style="color: black">1</span></p>
+</div>
+
+<div>
+  <div class="example-container">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Book Title Column -->
+      <ng-container matColumnDef="bookTitle">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Subject/Book Title </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.bookTitle}} </td>
+      </ng-container>
+
+      <!-- Professor Column -->
+      <ng-container matColumnDef="professor">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Professor </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.professor}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

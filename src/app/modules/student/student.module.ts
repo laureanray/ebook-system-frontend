@@ -10,14 +10,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { StudentSidebarComponent } from './components/student-sidebar/student-sidebar.component';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { InitialHomeComponent } from './components/initial-home/initial-home.component';
-import { HomeComponent } from './components/home/home.component';
 import { BookLibraryComponent } from './components/book-library/book-library.component';
+import { GradesComponent } from './components/grades/grades.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSelectModule} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
 
 
 
 @NgModule({
-  declarations: [StudentComponent, SetPasswordComponent, StudentSidebarComponent, InitialHomeComponent, HomeComponent, BookLibraryComponent],
+  declarations: [StudentComponent, SetPasswordComponent, StudentSidebarComponent, BookLibraryComponent, GradesComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
@@ -26,7 +28,10 @@ import { BookLibraryComponent } from './components/book-library/book-library.com
     MatInputModule,
     MatButtonModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule,
+    MatSelectModule,
+    FormsModule
   ],
   bootstrap: [StudentComponent]
 })

@@ -3,18 +3,17 @@ import {RouterModule, Routes} from '@angular/router';
 import {StudentComponent} from './components/student/student.component';
 import {NgModule} from '@angular/core';
 import {SetPasswordComponent} from './components/set-password/set-password.component';
-import {HomeComponent} from './components/home/home.component';
 import {BookLibraryComponent} from './components/book-library/book-library.component';
-import {InitialHomeComponent} from "./components/initial-home/initial-home.component";
+import {GradesComponent} from './components/grades/grades.component';
 // import {InitialHomeComponent} from './components/initial-home/initial-home.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'book-library'},
   { path: 'set-password', component: SetPasswordComponent},
   { path: '', component: StudentComponent,
     children: [
-      { path: 'home1', component: InitialHomeComponent},
-      { path: 'home', component: HomeComponent},
-      { path: 'book-library', component: BookLibraryComponent}
+      { path: 'book-library', component: BookLibraryComponent},
+      { path: 'grades', component: GradesComponent}
     ]
     }
 ];

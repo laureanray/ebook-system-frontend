@@ -2,23 +2,23 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {MatMenuTrigger} from '@angular/material/menu';
-import {BookEditorService} from '../../services/book-editor.service';
-import {Book} from '../../../../core/models/book';
-import {BookService} from '../../../../core/services/book.service';
+import {BookEditorService} from '../../../services/book-editor.service';
+import {Book} from '../../../../../core/models/book';
+import {BookService} from '../../../../../core/services/book.service';
 import {ActivatedRoute} from '@angular/router';
 import * as _ from 'lodash';
-import {Chapter} from '../../../../core/models/chapter';
-import {Topic} from '../../../../core/models/topic';
+import {Chapter} from '../../../../../core/models/chapter';
+import {Topic} from '../../../../../core/models/topic';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {AddTopicModalComponent} from './add-topic-modal/add-topic-modal.component';
 
 @Component({
-  selector: 'app-book-sidebar',
-  templateUrl: './book-sidebar.component.html',
-  styleUrls: ['./book-sidebar.component.sass']
+  selector: 'app-selected-book-sidebar',
+  templateUrl: './selected-book-sidebar.component.html',
+  styleUrls: ['./selected-book-sidebar.component.sass']
 })
-export class BookSidebarComponent implements OnInit, OnDestroy {
+export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   isAddingChapter = false;
@@ -71,7 +71,7 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
     this.activeTopic = id;
     this.selectedTopic = _.find(this.selectedChapter.topics, ((t: Topic) => t.id === id));
     // setTimeout(() => {
-    this.bookEditorService.setCurrentTopic(this.selectedTopic);
+    // this.bookEditorService.setCurrentTopic(this.selectedTopic);
     // });
   }
 
@@ -80,7 +80,7 @@ export class BookSidebarComponent implements OnInit, OnDestroy {
     this.selectedChapter = _.find(this.book.chapters, ((c: Chapter) => c.id === id));
     console.log(this.selectedChapter);
     // setTimeout(() => {
-    this.bookEditorService.setCurrentChapter(this.selectedChapter);
+    // this.bookEditorService.setCurrentChapter(this.selectedChapter);
     // });
   }
 

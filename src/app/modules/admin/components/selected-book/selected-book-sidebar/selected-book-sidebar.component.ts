@@ -13,6 +13,7 @@ import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {AddTopicModalComponent} from './add-topic-modal/add-topic-modal.component';
 
+
 @Component({
   selector: 'app-selected-book-sidebar',
   templateUrl: './selected-book-sidebar.component.html',
@@ -22,7 +23,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   isAddingChapter = false;
-  activeTopic = null;
+  activeTopic: number;
   book: Book;
   getBookSub: Subscription;
   lastSelectedChapter: number;
@@ -35,10 +36,31 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // get editing book here
+    // get editing book here\
+    console.log('selected-sidebar-editor ngOnInit');
     this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
+
+      console.log(book);
+
+      if (book != null) {
+        this.activatedRoute.queryParams.subscribe(params => {
+          if (!_.isEmpty(params)) {
+            // tslint:disable-next-line:radix
+            this.lastSelectedChapter = parseInt(params.chapter);
+            // tslint:disable-next-line:radix
+            this.activeTopic = parseInt(params.topic);
+            this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
+            this.bookEditorService.isDetailsShown(true);
+          } else {
+            console.log('else');
+          }
+        });
+      }
+
+
     });
+
   }
 
   ngOnDestroy(): void {
@@ -62,12 +84,13 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   topicClicked(id: number) {
-    this.bookEditorService.isDetailsShown(true);
-    this.activeTopic = id;
-    this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, id);
+    // this.bookEditorService.isDetailsShown(true);
+    // this.activeTopic = id;
+    // this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, id);
     this.router.navigate([], {
       queryParams: {
-        topic: this.activeTopic
+        chapter: this.lastSelectedChapter,
+        topic: id
       },
       queryParamsHandling: 'merge'
     });

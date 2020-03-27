@@ -16,7 +16,9 @@ export class SelectedBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('selected-book ngOnInit');
     this.activatedRoute.params.subscribe(params => {
+      console.log('activatedRoute selected-book');
       // Get the book id
       this.bookId = params.id;
       // Initialize the observable

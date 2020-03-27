@@ -1,4 +1,4 @@
-<div class="pt-4" style="height: calc(100vh - 200px)!important; overflow-y: auto">
+<div class="pt-4">
   <h1 class="mat-h1"> {{editingChapter?.chapterTitle}}  <button mat-icon-button aria-label="Example icon-button with a heart icon">
     <mat-icon>favorite</mat-icon>
   </button></h1>
@@ -13,8 +13,10 @@
   </div>
 
   <div class="border-bottom border-bottom-1"></div>
-  <ckeditor [editor]="Editor" [(ngModel)]="model.editorData" (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
-  <div class="row mt-4">
+  <div style="max-height: 500px!important; overflow-y: auto">
+    <ckeditor [editor]="Editor"  [config]="{ removePlugins: ['resize', 'autogrow'] }" [(ngModel)]="model.editorData" (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
+  </div>
+  <div class="row  my-4">
     <div class="col text-right">
       <button mat-raised-button [disabled]="isSaving" (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
     </div>

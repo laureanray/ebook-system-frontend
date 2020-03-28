@@ -33,6 +33,7 @@ import {AddTopicModalComponent} from './components/selected-book/selected-book-s
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {SelectedBookSidebarComponent} from './components/selected-book/selected-book-sidebar/selected-book-sidebar.component';
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
+import {SharedModule} from '../../shared/shared.module';
 
 
 @NgModule({
@@ -52,30 +53,31 @@ import {SelectedBookDetailsComponent} from './components/selected-book/selected-
     SectionAssignmentComponent,
     AddTopicModalComponent,
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    AngularEditorModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatStepperModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatTreeModule,
-    MatRadioModule,
-    MatTableModule,
-    MatExpansionModule,
-    MatRadioModule,
-    FormsModule,
-    MatMenuModule,
-    MatCardModule,
-    CKEditorModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        AngularEditorModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatStepperModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatTreeModule,
+        MatRadioModule,
+        MatTableModule,
+        MatExpansionModule,
+        MatRadioModule,
+        FormsModule,
+        MatMenuModule,
+        MatCardModule,
+        CKEditorModule,
+        SharedModule
+    ]
 })
 export class AdminModule {
 }

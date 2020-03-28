@@ -36,30 +36,27 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     editorData: ''
   };
 
+  loading = true;
+
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService,
               private bookService: BookService
   ) {
-      // console.log('selected-book-editor constructor');
-      // this.chapterAndTopicSub = this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
-      //   this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
-      //     this.book = book;
-      //     console.log(book);
-      //     this.editingChapter = _.find(this.book.chapters, (c => c.id === editorState.chapterId));
-      //     console.log(this.editingChapter);
-      //     this.editingTopic = _.find(this.editingChapter.topics, (t => t.id === editorState.topicId));
-      //     this.model.editorData = this.editingTopic.htmlContent;
-      //   });
-      // });
+    this.loading = true;
   }
 
   ngOnInit(): void {
-    this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
-      this.bookEditorService.getCurrentBook().subscribe(book => {
+    this.chapterAndTopicSub = this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
+      this.getBookSub = this.bookEditorService.getCurrentBook().subscribe(book => {
         this.book = book;
         this.editingChapter = _.find(this.book.chapters, (c => c.id === editorState.chapterId));
         this.editingTopic = _.find(this.editingChapter.topics, (t => t.id === editorState.topicId));
         this.model.editorData = this.editingTopic.htmlContent;
+
+
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
       });
     });
   }
@@ -73,7 +70,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     const data = editor.getData();
   }
 
-  public onReady( editor ) {
+  public onReady(editor) {
     editor.ui.getEditableElement().parentElement.insertBefore(
       editor.ui.view.toolbar.element,
       editor.ui.getEditableElement()
@@ -88,9 +85,9 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
       topic.htmlContent = this.model.editorData;
       this.bookService.updateTopic(topic).subscribe((t: Topic) => {
         this.isSaving = false;
-        this.lastSaved = t.lastUpdated
+        this.lastSaved = t.lastUpdated;
         const time = moment(this.lastSaved).fromNow();
-        this.status = `Changes saved  (${time})})`;
+        this.status = `Changes saved (${time})`;
         // Update data on success
         this.updateData();
       }, error => {
@@ -100,9 +97,9 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   }
 
   updateData() {
-      this.bookService.getBook(this.book.id).subscribe((book: Book) => {
-        this.bookEditorService.setCurrentBook(book);
-      });
+    this.bookService.getBook(this.book.id).subscribe((book: Book) => {
+      this.bookEditorService.setCurrentBook(book);
+    });
   }
 
 

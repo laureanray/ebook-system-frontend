@@ -103,7 +103,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   addTopic(id: number) {
     console.log('add topic');
     const dialogRef = this.dialog.open(AddTopicModalComponent, {
-      width: '250px'
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

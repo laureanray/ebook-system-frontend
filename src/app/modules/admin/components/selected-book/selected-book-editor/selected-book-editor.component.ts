@@ -127,7 +127,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     this.bookService.deleteTopic(this.editingTopic.id).subscribe((topic: Topic) => {
       this.isDeleting = false;
       this.updateData();
-      this.router.navigate(['../']);
+      this.router.navigate(['./']);
     });
   }
 }

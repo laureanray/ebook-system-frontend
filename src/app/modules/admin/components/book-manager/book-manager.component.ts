@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {coerceNumberProperty} from '@angular/cdk/coercion';
 import {BookService} from '../../../../core/services/book.service';
 import {Book} from '../../../../core/models/book';
+import {BookEditorService} from '../../services/book-editor.service';
 
 @Component({
   selector: 'app-book-manager',
@@ -11,9 +12,10 @@ import {Book} from '../../../../core/models/book';
 })
 export class BookManagerComponent implements OnInit {
   books: Book[]
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private bookEditorService: BookEditorService) { }
 
   ngOnInit(): void {
+    this.bookEditorService.isDetailsShown(false);
     this.bookService.getAllBooks().subscribe((books: Book[]) => {
       console.log(books);
       this.books = books;

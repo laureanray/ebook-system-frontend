@@ -3,11 +3,11 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Topic Title</mat-label>
-      <input matInput placeholder="Title" style="width: 100%">
+      <input [(ngModel)]="topicTitle" [disabled]="isAdding" matInput placeholder="Title" style="width: 100%">
       <mat-hint>Hint</mat-hint>
     </mat-form-field>
   </p>
   <div class="text-right">
-    <button mat-raised-button> Add Topic </button>
+    <button mat-raised-button (click)="addTopic()" [disabled]="isAdding"> {{ isAdding ? 'Adding topic' : 'Add Topic' }} </button>
   </div>
 </div>

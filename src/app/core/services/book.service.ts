@@ -22,4 +22,12 @@ export class BookService {
   updateTopic(topic: Topic) {
     return this.http.post(`${environment.apiUrl}/book/topic/update`, topic);
   }
+
+  addTopic(topic: Topic) {
+    return this.http.post(`${environment.apiUrl}/book/topic/add`, topic);
+  }
+
+  deleteTopic(topicId: number) {
+    return this.http.get(`${environment.apiUrl}/book/topic/delete/${topicId}`);
+  }
 }

@@ -10,7 +10,7 @@ import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import * as _ from 'lodash';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {BookService} from '../../../../../core/services/book.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EditorState} from '../../../../../core/models/editor-state';
 import * as moment from 'moment';
 
@@ -31,6 +31,8 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   lastSaved: string;
   // Initial Variable
   isSaving = false;
+  isDeleting = false;
+
   status = '';
   public model = {
     editorData: ''
@@ -40,7 +42,8 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService,
-              private bookService: BookService
+              private bookService: BookService,
+              private router: Router
   ) {
     this.loading = true;
   }
@@ -48,12 +51,11 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.chapterAndTopicSub = this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
       this.getBookSub = this.bookEditorService.getCurrentBook().subscribe(book => {
+        console.log(editorState);
         this.book = book;
-        this.editingChapter = _.find(this.book.chapters, (c => c.id === editorState.chapterId));
-        this.editingTopic = _.find(this.editingChapter.topics, (t => t.id === editorState.topicId));
-        this.model.editorData = this.editingTopic.htmlContent;
-
-
+        this.editingChapter = _.find(this.book.chapters, c => c.id === editorState.chapterId);
+        this.editingTopic = _.find(this.editingChapter.topics, t => t.id === editorState.topicId);
+        this.model.editorData = this.editingTopic.htmlContent ? this.editingTopic.htmlContent : '';
         setTimeout(() => {
           this.loading = false;
         }, 500);
@@ -99,6 +101,15 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   updateData() {
     this.bookService.getBook(this.book.id).subscribe((book: Book) => {
       this.bookEditorService.setCurrentBook(book);
+
+      // check if current params still exists in the book
+
+      // if (!_.find(this.editingChapter.topics, t => t.id === this.editingTopic.id)) {
+      //   const es = new EditorState();
+      //   es.chapterId = this.editingChapter.id;
+      //   es.topicId = this.editingChapter.topics[0].id;
+      //   this.bookEditorService.setCurrentChapterAndTopic(es);
+      // }
     });
   }
 
@@ -111,4 +122,12 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     }, 10000);
   }
 
+  delete() {
+    this.isDeleting = true;
+    this.bookService.deleteTopic(this.editingTopic.id).subscribe((topic: Topic) => {
+      this.isDeleting = false;
+      this.updateData();
+      this.router.navigate(['../']);
+    });
+  }
 }

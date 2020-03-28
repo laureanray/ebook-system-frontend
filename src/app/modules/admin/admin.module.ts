@@ -51,7 +51,7 @@ import {SharedModule} from '../../shared/shared.module';
     AddUserComponent,
     AccountSettingsComponent,
     SectionAssignmentComponent,
-    AddTopicModalComponent,
+    AddTopicModalComponent
   ],
     imports: [
         CommonModule,

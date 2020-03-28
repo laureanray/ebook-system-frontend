@@ -12,6 +12,7 @@ import {Topic} from '../../../../../core/models/topic';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {AddTopicModalComponent} from './add-topic-modal/add-topic-modal.component';
+import {EditorState} from '../../../../../core/models/editor-state';
 
 
 @Component({
@@ -50,8 +51,19 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             this.lastSelectedChapter = parseInt(params.chapter);
             // tslint:disable-next-line:radix
             this.activeTopic = parseInt(params.topic);
-            this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
-            this.bookEditorService.isDetailsShown(true);
+            // check if current chapter contains the topic
+            console.log(this.lastSelectedChapter);
+            const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
+            console.log(chapter);
+            if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
+              // redirect to not found component
+
+              console.log('not found');
+              alert('not found');
+            } else {
+              this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
+              this.bookEditorService.isDetailsShown(true);
+            }
           } else {
             console.log('else');
           }
@@ -98,6 +110,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
   selectChapter(id: number) {
     this.lastSelectedChapter = id;
+    // this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, null);
   }
 
   addTopic(id: number) {
@@ -108,6 +121,10 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      // update here
+      this.bookService.getBook(this.book.id).subscribe((book: Book) => {
+        this.bookEditorService.setCurrentBook(book);
+      });
     });
   }
 

@@ -7,8 +7,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./book-item-card.component.sass']
 })
 export class BookItemCardComponent implements OnInit {
-  userProgress = 20; // this will be pulled from the server
-
   @Input() bookId: number;
   @Input() bookTitle: string;
 

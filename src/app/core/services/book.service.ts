@@ -30,4 +30,8 @@ export class BookService {
   deleteTopic(topicId: number) {
     return this.http.get(`${environment.apiUrl}/book/topic/delete/${topicId}`);
   }
+
+  uploadBookCover(formData: FormData) {
+    return this.http.post(`${environment.apiUrl}/book/upload-cover`, formData, {reportProgress: true, observe: 'events'});
+  }
 }

@@ -3,7 +3,7 @@ mat-nav-list
   flex-grow: 1
   //border: 1px solid green
   overflow: auto
-  height: 520px
+  height: calc(100vh - 270px)
 
 .label
   display: flex
@@ -50,10 +50,12 @@ td
 .scroll
   overflow: auto
   margin-top: 20px
+  height: calc(100vh - 266px)
+
 
 .vl
   border-left: 0.5px solid #D3D3D3
-  height: 576px
+  height: calc(100vh - 214px)
   margin-top: 28px
 
 .mat-list-item:hover
@@ -61,3 +63,6 @@ td
 
 ::ng-deep .name-section .mat-nav-list .mat-list-item .mat-list-item-content
   padding: 0px !important
+
+.form-control:disabled, .form-control[readonly]
+  background-color: white

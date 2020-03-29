@@ -1,1 +1,76 @@
-<h1> Book Details </h1>
+<div class="row pt-4">
+  <div class="col">
+    <div>
+      <h2 class="sans-serif">Title: <span>Basic C++ Programming</span></h2>
+      <h2 class=" sans-serif">Author: <span>Nishant Kundalia</span> </h2>
+      <h2 class=" sans-serif">Access:</h2>
+      <div class="scroll" id="add-section-container">
+        <table class="table">
+          <thead class="sans-serif">
+          <tr>
+            <th>Course</th>
+            <th>Year Level</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let field of fieldArray; let i = index">
+            <td>
+              <input [(ngModel)]="field.course" class="form-control font-16" type="text" name="{{field.course}}"
+                     disabled="disabled"/>
+            </td>
+            <td>
+              <input [(ngModel)]="field.year" class="form-control font-16" type="text" name="{{field.year}}"
+                     disabled="disabled"/>
+            </td>
+            <td>
+              <button class="btn" type="button" (click)="deleteFieldValue(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field appearance="outline" class="sans-serif" >
+                <mat-label class="sans-serif">Course</mat-label>
+                <mat-select id="newAttributeCourse" [(ngModel)]="newAttribute.course" name="newAttributeCourse" required>
+                  <mat-option value="Bs in Computer Engineering" class="sans-serif">BS in Computer Engineering
+                  </mat-option>
+                  <mat-option value="BS in Information Technology" class="sans-serif">BS in Information Technology
+                  </mat-option>
+                  <mat-option value="BS in Computer Science" class="sans-serif">BS in Computer Science</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="outline" class="sans-serif">
+                <mat-label class="sans-serif">Year</mat-label>
+                <mat-select id="newAttributeYear" [(ngModel)]="newAttribute.year" name="newAttributeYear" multiple required>
+                  <mat-option value="1st year" class="sans-serif">1st year</mat-option>
+                  <mat-option value="2nd year" class="sans-serif">2nd year</mat-option>
+                  <mat-option value="3rd year" class="sans-serif">3rd year</mat-option>
+                  <mat-option value="4th year" class="sans-serif">4th year</mat-option>
+                  <mat-option value="5th year" class="sans-serif">5th year</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <button class="btn btn-default add-button" type="button" (click)="addFieldValue()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-4">
+    <div>
+      <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51KPj3gS0vL.jpg" alt="">
+    </div>
+    <a href="" class="change-cover">Change Cover</a>
+
+  </div>
+</div>

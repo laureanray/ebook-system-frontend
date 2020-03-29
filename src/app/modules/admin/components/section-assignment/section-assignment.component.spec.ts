@@ -23,3 +23,4 @@ describe('SectionAssignmentComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

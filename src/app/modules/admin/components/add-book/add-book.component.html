@@ -16,22 +16,23 @@
             <mat-icon matSuffix class="orange-icon"> person</mat-icon>
           </mat-form-field>
           <div class="row">
-            <div class="col-md-3">
-              <input type="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
-                     style="display:none;">
-              <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-            </div>
+           <div class="col-md-3">
+            <input type="file" #file placeholder="Choose file"(change)="fileChange(file.files)"
+                   style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+          </div>
             <div class="col-md-4">
               <span class="upload" *ngIf="progress > 0">{{progress}}%</span>
               <span class="upload" *ngIf="message">{{message}}</span>
             </div>
+
           </div>
-          <div class="mt-4 buttons">
-            <button mat-button routerLink="../book-manager" class="back-button">
-              Back
-            </button>1
-            <button mat-button matStepperNext class="button">Next</button>
-          </div>
+        </div>
+        <div class="mt-4 buttons">
+          <button mat-button routerLink="../book-manager" class="back-button">
+            Back
+          </button>
+          <button mat-button matStepperNext class="button">Next</button>
         </div>
       </form>
     </mat-step>
@@ -42,7 +43,7 @@
           <mat-checkbox class="sans-serif">Give access to all</mat-checkbox>
           <div class="row">
             <div class="col">
-              <mat-form-field appearance="outline" class="sans-serif w-100" >
+              <mat-form-field appearance="outline" class="sans-serif w-100">
                 <mat-label>Course</mat-label>
                 <mat-select formControlName="secondCtrl">
                   <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
@@ -54,7 +55,7 @@
             <div class="col">
               <mat-form-field appearance="outline" class="sans-serif w-50">
                 <mat-label>Year Level</mat-label>
-                <mat-select formControlName="secondCtrl" multiple>
+                <mat-select formControlName="secondCtrl">
                   <mat-option value="option" class="sans-serif">1st Year</mat-option>
                   <mat-option value="option" class="sans-serif">2nd Year</mat-option>
                   <mat-option value="option" class="sans-serif">3rd Year</mat-option>
@@ -63,6 +64,29 @@
                 </mat-select>
               </mat-form-field>
             </div>
+        <mat-checkbox class="sans-serif">Give access to all</mat-checkbox>
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline" class="sans-serif w-100" >
+              <mat-label>Course</mat-label>
+              <mat-select formControlName="secondCtrl">
+                <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
+                <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
+                <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline" class="sans-serif w-50">
+              <mat-label>Year Level</mat-label>
+              <mat-select formControlName="secondCtrl" multiple>
+                <mat-option value="option" class="sans-serif">1st Year</mat-option>
+                <mat-option value="option" class="sans-serif">2nd Year</mat-option>
+                <mat-option value="option" class="sans-serif">3rd Year</mat-option>
+                <mat-option value="option" class="sans-serif">4th Year</mat-option>
+                <mat-option value="option" class="sans-serif">5th Year</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <a href="" class="add-more-button">Add More</a>
           <div class="mt-4 buttons">

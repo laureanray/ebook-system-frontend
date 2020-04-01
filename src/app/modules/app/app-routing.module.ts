@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {StudentLoginComponent} from './student-login/student-login.component';
 import {NotFoundComponent} from '../../shared/not-found/not-found.component';
-import {InstructorAdminLoginComponent} from "./instructor-admin-login/instructor-admin-login.component";
+import {InstructorAdminLoginComponent} from './instructor-admin-login/instructor-admin-login.component';
+import {AuthGuard} from '../../core/authentication/auth.guard';
 
 
 const routes: Routes = [
@@ -12,17 +13,20 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
-    data: { role: 'admin' }
+    canActivate: [AuthGuard],
+    data: { role: 'Admin' }
   },
   {
     path: 'instructor',
     loadChildren: () => import('../instructor/instructor.module').then(m => m.InstructorModule),
-    data: { role: 'instructor'}
+    canActivate: [AuthGuard],
+    data: { role: 'Instructor'}
   },
   {
     path: 'student',
     loadChildren: () => import('../student/student.module').then(m => m.StudentModule),
-    data: { role: 'student' }
+    canActivate: [AuthGuard],
+    data: { role: 'Student' }
   },
   {
     path: '**',

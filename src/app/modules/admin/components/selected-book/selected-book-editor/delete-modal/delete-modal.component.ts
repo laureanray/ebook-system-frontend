@@ -35,7 +35,6 @@ export class DeleteModalComponent implements OnInit {
       this.bookService.getBook(this.data.bookId).subscribe((book: Book) => {
         this.bookEditorService.setCurrentBook(book);
       });
-      // this.router.navigate(['./']);
     });
   }
 

@@ -12,6 +12,7 @@ export class BookEditorService {
   private bookEditorState = new BehaviorSubject(false);
   private currentChapterAndTopic = new BehaviorSubject(null);
   private currentBook = new BehaviorSubject(null);
+  private currentChapter = new BehaviorSubject(null);
 
   isDetailsShown(state: boolean) {
     this.bookEditorState.next(state);
@@ -22,6 +23,14 @@ export class BookEditorService {
     state.chapterId = chapterId;
     state.topicId = topicId;
     this.currentChapterAndTopic.next(state);
+  }
+
+  setCurrentChapter(chapter: Chapter) {
+    this.currentChapter.next(chapter);
+  }
+
+  getCurrentChapter(): Observable<Chapter> {
+    return this.currentChapter.asObservable();
   }
 
   getCurrentChapterAndTopic(): Observable<EditorState> {

@@ -13,6 +13,8 @@ import {BookService} from '../../../../../core/services/book.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditorState} from '../../../../../core/models/editor-state';
 import * as moment from 'moment';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {DeleteModalComponent} from './delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-selected-book-editor',
@@ -43,7 +45,8 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService,
               private bookService: BookService,
-              private router: Router
+              private router: Router,
+              private dialog: MatDialog
   ) {
     this.loading = true;
   }
@@ -123,11 +126,14 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    this.isDeleting = true;
-    this.bookService.deleteTopic(this.editingTopic.id).subscribe((topic: Topic) => {
-      this.isDeleting = false;
-      this.updateData();
-      this.router.navigate(['./']);
+
+    this.dialog.open(DeleteModalComponent, {
+      width: '450px',
+      data: {
+        topicId: this.editingTopic.id,
+        bookId: this.book.id,
+        topicTitle: this.editingTopic.topicTitle
+      }
     });
   }
 }

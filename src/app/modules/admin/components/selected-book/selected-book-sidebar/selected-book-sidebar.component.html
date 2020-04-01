@@ -1,9 +1,9 @@
 <div class="pt-4">
   <a routerLink="" class="text-decoration-none"><h2 class="mat-h2 sans-serif color-orange"> {{ book?.bookTitle }} </h2></a>
 
-  <mat-accordion>
+  <mat-accordion >
     <div (contextmenu)="onRightClick($event)">
-      <mat-expansion-panel (opened)="selectChapter(chapter.id)"
+      <mat-expansion-panel [expanded]="lastSelectedChapter === chapter.id" (opened)="selectChapter(chapter.id)"
                            class="my-2 sans-serif" *ngFor="let chapter of book?.chapters">
         <mat-expansion-panel-header>
           <mat-panel-title>

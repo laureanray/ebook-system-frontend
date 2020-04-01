@@ -51,28 +51,30 @@ export class InstructorAdminLoginComponent implements OnInit {
       return;
     }
 
-    this.authenticationService.instructorLogin(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        (data: Response) => {
-          console.log(data);
-          if (data !== null) {
-            if (data.type === 'Instructor') {
-              this.router.navigate([this.returnUrl || 'instructor']);
-            } else {
-              this.router.navigate([this.returnUrl || 'admin']);
+    setTimeout(() => {
+      this.authenticationService.instructorLogin(this.f.username.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          (data: Response) => {
+            console.log(data);
+            if (data !== null) {
+              if (data.type === 'Instructor') {
+                this.router.navigate([this.returnUrl || 'instructor']);
+              } else {
+                this.router.navigate([this.returnUrl || 'admin']);
+              }
             }
+          },
+          error => {
+            console.log(error);
+            this.submitted = false;
+            if (error.status === 400) {
+              this.errors.push(error.error.message);
+            }
+            this.submitted = false;
           }
-          this.submitted = false;
-        },
-        error => {
-          console.log(error);
-          this.submitted = false;
-          if (error.status === 400) {
-            this.errors.push(error.error.message);
-          }
-        }
-      );
+        );
+    }, 1000);
   }
 
   getErrorMessage() {

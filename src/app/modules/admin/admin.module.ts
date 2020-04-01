@@ -34,7 +34,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {SelectedBookSidebarComponent} from './components/selected-book/selected-book-sidebar/selected-book-sidebar.component';
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
 import {SharedModule} from '../../shared/shared.module';
-import { SelectedBookAddExamComponent } from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
+import { DeleteModalComponent } from './components/selected-book/selected-book-editor/delete-modal/delete-modal.component';
+// import { SelectedBookAddExamComponent } from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SelectedBookAddExamComponent } from './components/selected-book/selecte
     AccountSettingsComponent,
     SectionAssignmentComponent,
     AddTopicModalComponent,
-    SelectedBookAddExamComponent
+    DeleteModalComponent
+    // SelectedBookAddExamComponent
   ],
     imports: [
         CommonModule,

@@ -111,7 +111,10 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   selectChapter(id: number) {
     this.lastSelectedChapter = id;
     // this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, null);
+    const selected = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
+    this.bookEditorService.setCurrentChapter(selected);
   }
+
 
   addTopic(id: number) {
     console.log('add topic');

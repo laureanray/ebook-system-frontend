@@ -11,7 +11,6 @@ import {Book} from '../../../../core/models/book';
 })
 export class SelectedBookComponent implements OnInit {
   bookId: number;
-  bookDetails: boolean;
   constructor(private activatedRoute: ActivatedRoute, private bookEditorService: BookEditorService, private bookService: BookService) {
   }
 
@@ -26,14 +25,5 @@ export class SelectedBookComponent implements OnInit {
           this.bookEditorService.setCurrentBook(book);
       });
     });
-
-    this.bookEditorService.getDetailsShown().subscribe(state => {
-      this.bookDetails = state;
-    });
-  }
-
-  toggle() {
-    this.bookEditorService.isDetailsShown(!this.bookDetails);
-    console.log(this.bookDetails);
   }
 }

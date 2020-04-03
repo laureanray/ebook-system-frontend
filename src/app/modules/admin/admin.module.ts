@@ -35,7 +35,7 @@ import {SelectedBookSidebarComponent} from './components/selected-book/selected-
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
 import {SharedModule} from '../../shared/shared.module';
 import { DeleteModalComponent } from './components/selected-book/selected-book-editor/delete-modal/delete-modal.component';
-// import { SelectedBookAddExamComponent } from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
+import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
 
 
 @NgModule({
@@ -54,8 +54,8 @@ import { DeleteModalComponent } from './components/selected-book/selected-book-e
     AccountSettingsComponent,
     SectionAssignmentComponent,
     AddTopicModalComponent,
-    DeleteModalComponent
-    // SelectedBookAddExamComponent
+    DeleteModalComponent,
+    SelectedBookAddExamComponent
   ],
     imports: [
         CommonModule,

@@ -122,6 +122,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   addExam(id: number) {
+    this.activeTopic = null;
     // console.log('add exam');
     this.router.navigate(['add-exam'], {
       relativeTo: this.activatedRoute,

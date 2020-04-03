@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BookEditorService} from '../../../services/book-editor.service';
 
 @Component({
   selector: 'app-selected-book-add-exam',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectedBookAddExamComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bookEditorService: BookEditorService) { }
 
   ngOnInit(): void {
+    // this.bookEditorService.setCurrentChapterAndTopic(null, null);
   }
 
 }

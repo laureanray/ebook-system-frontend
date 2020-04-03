@@ -8,11 +8,6 @@
         <img src="../assets/logo-only.png" style="width: auto; height: 60px" alt="">
         <h1 class="sans-serif">Log in to CS Ebook</h1>
 
-        <div class="my-2">
-          <h2 class="mat-h2 text-danger" *ngFor="let error of errors"> {{ error }}</h2>
-        </div>
-
-
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field class="log-in-input" appearance="outline">
@@ -20,6 +15,8 @@
               <input matInput formControlName="username">
               <mat-icon matSuffix class="orange-icon"> person</mat-icon>
               <mat-error *ngIf="usernameFormControl.invalid"> {{getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="invalidCredentials"> Invalid Credentials </mat-error>
+
             </mat-form-field>
           </p>
           <p>
@@ -28,6 +25,8 @@
               <input matInput type="password"  placeholder="" formControlName="password">
               <mat-icon matSuffix class="orange-icon">lock</mat-icon>
               <mat-error *ngIf="usernameFormControl.invalid"> {{getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="invalidCredentials"> Invalid Credentials </mat-error>
+
             </mat-form-field>
           </p>
           <button mat-button class="log-in-button" [disabled]="submitted"> {{ submitted ? 'Logging in': 'Login in'}}</button>

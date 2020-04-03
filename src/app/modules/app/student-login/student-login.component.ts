@@ -16,7 +16,7 @@ export class StudentLoginComponent implements OnInit {
   submitted = false;
   studentNumberFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required]);
-  errors = [];
+  invalidCredentials = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,14 +66,14 @@ export class StudentLoginComponent implements OnInit {
           if (data !== null) {
             this.router.navigate([this.returnUrl || 'student']);
           }
-
           this.submitted = false;
         },
         error => {
           console.log(error);
 
           if (error.status === 400) {
-            this.errors.push(error.error.message);
+            this.invalidCredentials = true;
+            console.log('invalid');
           }
 
           this.submitted = false;

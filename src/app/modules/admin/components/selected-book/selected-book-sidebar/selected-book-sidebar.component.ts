@@ -123,6 +123,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       console.log('The dialog was closed');
       // update here
       this.bookService.getBook(this.book.id).subscribe((book: Book) => {

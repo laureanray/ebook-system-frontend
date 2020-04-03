@@ -19,6 +19,7 @@ export class InstructorAdminLoginComponent implements OnInit {
   usernameFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required]);
   errors = [];
+  invalidCredentials = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,8 +70,11 @@ export class InstructorAdminLoginComponent implements OnInit {
             console.log(error);
             this.submitted = false;
             if (error.status === 400) {
-              this.errors.push(error.error.message);
+              // this.errors.push(error.error.message);
+              this.usernameFormControl.markAsTouched();
+              this.invalidCredentials = true;
             }
+
             this.submitted = false;
           }
         );

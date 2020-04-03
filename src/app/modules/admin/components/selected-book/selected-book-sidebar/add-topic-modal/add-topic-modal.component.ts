@@ -32,9 +32,12 @@ export class AddTopicModalComponent implements OnInit {
     const topic = new Topic();
     topic.topicTitle = this.topicTitle;
     topic.chapterId = this.editorState.chapterId;
+
     this.bookService.addTopic(topic).subscribe(res => {
+      console.log('adding topic');
       console.log(res);
       this.isAdding = false;
+      // this.bookEditorService.setCurrentChapterAndTopic(res.chapterId, this.topicId);
       this.dialogRef.close();
     });
   }

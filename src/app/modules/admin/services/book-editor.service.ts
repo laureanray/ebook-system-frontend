@@ -9,14 +9,9 @@ import {EditorState} from '../../../core/models/editor-state';
   providedIn: 'root'
 })
 export class BookEditorService {
-  private bookEditorState = new BehaviorSubject(false);
   private currentChapterAndTopic = new BehaviorSubject(null);
   private currentBook = new BehaviorSubject(null);
   private currentChapter = new BehaviorSubject(null);
-
-  isDetailsShown(state: boolean) {
-    this.bookEditorState.next(state);
-  }
 
   setCurrentChapterAndTopic(chapterId: number, topicId: number) {
     const state = new EditorState();
@@ -35,10 +30,6 @@ export class BookEditorService {
 
   getCurrentChapterAndTopic(): Observable<EditorState> {
     return this.currentChapterAndTopic.asObservable();
-  }
-
-  getDetailsShown(): Observable<boolean> {
-    return this.bookEditorState.asObservable();
   }
 
   setCurrentBook(book: Book) {

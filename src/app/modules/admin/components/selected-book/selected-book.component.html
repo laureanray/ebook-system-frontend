@@ -4,10 +4,7 @@
     <app-selected-book-sidebar></app-selected-book-sidebar>
   </div>
   <div class="col">
-    <app-selected-book-details *ngIf="!bookDetails; else bookEditor"></app-selected-book-details>
-    <ng-template #bookEditor>
-      <app-selected-book-editor></app-selected-book-editor>
-    </ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

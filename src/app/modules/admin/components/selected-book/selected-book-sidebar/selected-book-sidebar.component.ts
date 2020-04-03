@@ -37,13 +37,10 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // get editing book here\
     console.log('selected-sidebar-editor ngOnInit');
     this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
-
       console.log(book);
-
       if (book != null) {
         this.activatedRoute.queryParams.subscribe(params => {
           if (!_.isEmpty(params)) {
@@ -56,23 +53,17 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
             console.log(chapter);
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
-              // redirect to not found component
-
               console.log('not found');
               alert('not found');
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
-              this.bookEditorService.isDetailsShown(true);
             }
           } else {
             console.log('else');
           }
         });
       }
-
-
     });
-
   }
 
   ngOnDestroy(): void {
@@ -96,10 +87,8 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   topicClicked(id: number) {
-    // this.bookEditorService.isDetailsShown(true);
-    // this.activeTopic = id;
-    // this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, id);
-    this.router.navigate([], {
+    this.router.navigate(['editor'], {
+      relativeTo: this.activatedRoute,
       queryParams: {
         chapter: this.lastSelectedChapter,
         topic: id
@@ -133,7 +122,14 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   addExam(id: number) {
-    console.log('add exam');
+    // console.log('add exam');
+    this.router.navigate(['add-exam'], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        chapter: this.lastSelectedChapter
+      },
+      queryParamsHandling: 'merge'
+    });
   }
 }
 

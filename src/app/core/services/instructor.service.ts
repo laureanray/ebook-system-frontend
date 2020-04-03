@@ -12,4 +12,8 @@ export class InstructorService {
   getInstructor(id: number) {
     return this.http.get(`${environment.apiUrl}/admin/${id}`);
   }
+
+  getAllInstructors() {
+    return this.http.get(`${environment.apiUrl}/instructor`);
+  }
 }

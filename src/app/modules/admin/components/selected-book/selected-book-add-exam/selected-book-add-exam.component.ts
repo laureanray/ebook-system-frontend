@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {BookEditorService} from '../../../services/book-editor.service';
 
 @Component({
   selector: 'app-selected-book-add-exam',
   templateUrl: './selected-book-add-exam.component.html',
-  styleUrls: ['./selected-book-add-exam.component.sass']
+  styleUrls: ['./selected-book-add-exam.component.sass'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class SelectedBookAddExamComponent implements OnInit {
 
-  constructor(private bookEditorService: BookEditorService) { }
-
+  isAdding = false;
+  addItem() {
+    this.isAdding = true;
+  }
   ngOnInit(): void {
     // this.bookEditorService.setCurrentChapterAndTopic(null, null);
   }
 
 }
+

@@ -1,1 +1,23 @@
-<p>selected-book-add-exam works!</p>
+<h1 class="sans-serif color-orange pt-4">Chapter 1 - Exam</h1>
+<h2 class="sans-serif">Instructions</h2>
+<form>
+  <mat-form-field class="instruction" appearance="outline">
+    <mat-label></mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</form>
+<div class="d-flex justify-content-end">
+  <button mat-button (click)="addItem()" class="mt-4 add-button">
+    <mat-icon class="add-icon">add</mat-icon>Add Item</button>
+</div>
+<div class="scroll" *ngIf="isAdding">
+  <div class="question-container">
+    <p class="sans-serif font-16">1.
+      <span class="ml-5">
+  <mat-radio-group aria-label="Select an option">
+  <mat-radio-button value="1">Identification</mat-radio-button>
+  <mat-radio-button value="2">Multiple Choice</mat-radio-button>
+</mat-radio-group>
+</span></p>
+  </div>
+</div>

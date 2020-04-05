@@ -54,7 +54,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             console.log(chapter);
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
               console.log('not found');
-              alert('not found');
+              // alert('not found');
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
             }

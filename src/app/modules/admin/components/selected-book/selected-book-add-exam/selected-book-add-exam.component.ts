@@ -11,12 +11,17 @@ import {BookEditorService} from '../../../services/book-editor.service';
 export class SelectedBookAddExamComponent implements OnInit {
 
   isAdding = false;
+  isDisabled = false;
+  identification = true;
   addItem() {
     this.isAdding = true;
+    this.isDisabled = true;
   }
   ngOnInit(): void {
     // this.bookEditorService.setCurrentChapterAndTopic(null, null);
   }
-
+  toggle(bool: boolean) {
+    this.identification = bool;
+  }
 }
 

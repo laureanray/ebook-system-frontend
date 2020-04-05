@@ -18,7 +18,7 @@ export class UserAccountsComponent implements OnInit {
   constructor(private studentService: StudentService, private instructorService: InstructorService) {
   }
   studentDataSource: MatTableDataSource<Student>;
-  instructorDataSource: MatTableDataSource<Instructor>
+  instructorDataSource: MatTableDataSource<Instructor>;
   studentDisplayedColumns: string[] = ['id', 'studNum', 'name', 'course', 'year', 'section', 'edit', 'trash'];
   facultyDisplayedColumns: string[] = ['id', 'empNum', 'name', 'honorifics', 'username', 'edit', 'trash'];
   studentTable = true;

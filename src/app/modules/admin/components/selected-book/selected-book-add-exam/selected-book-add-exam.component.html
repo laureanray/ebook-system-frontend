@@ -1,1 +1,82 @@
-<p>selected-book-add-exam works!</p>
+<h1 class="sans-serif color-orange pt-4">Chapter 1 - Exam</h1>
+<h2 class="sans-serif">Instructions</h2>
+<form>
+  <mat-form-field class="instruction" appearance="outline">
+    <mat-label></mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</form>
+<div class="d-flex justify-content-end">
+  <button mat-button (click)="addItem()" [disabled]="isDisabled" class="mt-4 mr-4 add-button">
+    <mat-icon class="add-icon">add</mat-icon>
+    Add Item
+  </button>
+  <button mat-button class="mt-4 button">
+    Save
+  </button>
+</div>
+<div class="scroll">
+  <div class="question-container" *ngIf="isAdding">
+    <div class="row m-0">
+      <p class="sans-serif font-16">1.
+        <span class="ml-4">
+            <mat-radio-group value="1" class="option">
+              <mat-radio-button color="primary" value="1" (click)="toggle(true)">Identification</mat-radio-button>
+              <mat-radio-button color="primary" value="2" (click)="toggle(false)">Multiple Choice</mat-radio-button>
+            </mat-radio-group>
+          </span>
+      </p>
+      <div class="col-11">
+        <div class="identification" *ngIf="identification">
+          <form>
+            <mat-form-field class="w-100">
+              <mat-label>Type your question here</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Answer</mat-label>
+              <input matInput >
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="multiple" *ngIf="!identification">
+          <form>
+            <mat-form-field class="w-100">
+              <mat-label>Type your question here</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <mat-radio-group class="d-flex flex-column">
+              <mat-radio-button  value="1" color="primary">
+                <mat-form-field>
+                  <input matInput placeholder="Option 1" class="input">
+                </mat-form-field>
+              </mat-radio-button>
+              <mat-radio-button  value="2" color="primary">
+                <mat-form-field>
+                  <input matInput placeholder="Option 2" class="input">
+                </mat-form-field>
+              </mat-radio-button>
+              <mat-radio-button  value="3" color="primary">
+                <mat-form-field>
+                  <input matInput placeholder="Option 3" class="input">
+                </mat-form-field>
+              </mat-radio-button>
+              <mat-radio-button  value="4" color="primary">
+                <mat-form-field>
+                  <input matInput placeholder="Option 4" class="input">
+                </mat-form-field>
+              </mat-radio-button>
+            </mat-radio-group>
+          </form>
+        </div>
+      </div>
+      <div class="col-1 d-flex align-items-center">
+        <button class="btn color-orange" type="button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    </div>
+
+</div>

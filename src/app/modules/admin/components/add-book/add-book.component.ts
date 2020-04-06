@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../../../core/services/book.service';
 import {HttpEventType} from '@angular/common/http';
 import {UploadResponse} from '../../../../core/models/upload-response';
+import {Book} from '../../../../core/models/book';
 
 @Component({
   selector: 'app-add-book',
@@ -29,7 +30,9 @@ export class AddBookComponent implements OnInit {
       authors: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      course: ['', Validators.required],
+      yearLevel: ['', Validators.required],
+      giveAccessToAll: []
     });
   }
 
@@ -58,5 +61,30 @@ export class AddBookComponent implements OnInit {
   fileChange(files) {
     console.log(files);
     this.uploadFile(files);
+  }
+
+  save() {
+    const book = new Book();
+    book.bookTitle = this.firstFormGroup.controls.bookTitle.value;
+    book.bookAuthor = this.firstFormGroup.controls.authors.value;
+    console.log(this.secondFormGroup.controls.giveAccessToAll.value);
+    console.log(book);
+    // this.bookService.addBook(book).subscribe((b: Book) => {
+    //   console.log(b);
+    // });
+  }
+
+  toggle() {
+    setTimeout(() => {
+      if (this.secondFormGroup.controls.giveAccessToAll.value) {
+        this.secondFormGroup.controls.course.disable();
+        this.secondFormGroup.controls.yearLevel.disable();
+        console.log(this.secondFormGroup.controls.giveAccessToAll.value);
+      } else {
+        this.secondFormGroup.controls.course.enable();
+        this.secondFormGroup.controls.yearLevel.enable();
+      }
+      console.log(this.secondFormGroup.controls.giveAccessToAll.value);
+    }, 5);
   }
 }

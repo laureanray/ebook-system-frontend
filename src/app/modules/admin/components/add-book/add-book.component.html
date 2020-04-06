@@ -40,12 +40,12 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Add Access</ng-template>
         <div class="d-flex flex-column mt-4">
-          <mat-checkbox class="sans-serif">Give access to all</mat-checkbox>
+          <mat-checkbox class="sans-serif" (click)="toggle()" formControlName="giveAccessToAll">Give access to all</mat-checkbox>
           <div class="row">
             <div class="col-4">
               <mat-form-field appearance="outline" class="sans-serif w-100">
                 <mat-label>Course</mat-label>
-                <mat-select formControlName="secondCtrl">
+                <mat-select  formControlName="course">
                   <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
                   <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
                   <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
@@ -56,7 +56,7 @@
               <div>
                 <mat-form-field appearance="outline" class="sans-serif w-25">
                   <mat-label>Year Level</mat-label>
-                  <mat-select formControlName="secondCtrl">
+                  <mat-select  formControlName="yearLevel">
                     <mat-option value="option" class="sans-serif">1st Year</mat-option>
                     <mat-option value="option" class="sans-serif">2nd Year</mat-option>
                     <mat-option value="option" class="sans-serif">3rd Year</mat-option>
@@ -72,7 +72,7 @@
         <a href="" class="add-more-button">Add More</a>
           <div class="mt-4 buttons">
             <button mat-button matStepperPrevious class="button">Back</button>
-            <button routerLink="book-description" mat-button matStepperNext class="button">Save</button>
+            <button (click)="save()" mat-button matStepperNext class="button">Save</button>
           </div>
       </form>
     </mat-step>

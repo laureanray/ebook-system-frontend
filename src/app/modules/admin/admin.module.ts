@@ -36,6 +36,7 @@ import {SelectedBookDetailsComponent} from './components/selected-book/selected-
 import {SharedModule} from '../../shared/shared.module';
 import { DeleteModalComponent } from './components/selected-book/selected-book-editor/delete-modal/delete-modal.component';
 import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
+import { RemoveAccessModalComponent } from './components/selected-book/selected-book-details/remove-access-modal/remove-access-modal.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {SelectedBookAddExamComponent} from './components/selected-book/selected-
     SectionAssignmentComponent,
     AddTopicModalComponent,
     DeleteModalComponent,
-    SelectedBookAddExamComponent
+    SelectedBookAddExamComponent,
+    RemoveAccessModalComponent
   ],
     imports: [
         CommonModule,

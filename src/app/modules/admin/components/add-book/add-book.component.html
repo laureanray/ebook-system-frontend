@@ -16,16 +16,17 @@
             <mat-icon matSuffix class="orange-icon"> person</mat-icon>
           </mat-form-field>
           <div class="row">
-            <div class="col-md-1">
+            <div class="col-3">
               <input type="file" formControlName="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
                      style="display:none;">
               <button type="button" mat-button class="button" (click)="file.click()">Upload Image</button>
             </div>
-            <div class="col-md-3">
-              <span class="upload" *ngIf="progress > 0">{{progress}}% </span>
-              <span class="upload" *ngIf="message">{{message}}</span>
+            <div class="col-9">
+              <p class="mat-h2">
+                <span class="upload" *ngIf="progress > 0">{{progress}}% </span>
+                <span class="upload" *ngIf="message">{{message}}</span>
+              </p>
             </div>
-
           </div>
         </div>
         <div class="mt-4 buttons">

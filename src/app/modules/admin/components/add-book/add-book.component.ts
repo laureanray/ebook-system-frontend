@@ -71,11 +71,14 @@ export class AddBookComponent implements OnInit {
     const book = new Book();
     book.bookTitle = this.firstFormGroup.controls.bookTitle.value;
     book.bookAuthor = this.firstFormGroup.controls.authors.value;
-    console.log(this.secondFormGroup.controls.giveAccessToAll.value);
+    book.accessibleToAll = this.secondFormGroup.controls.giveAccessToAll.value;
+    book.bookCoverURL = this.uploadedFilePath;
     console.log(book);
-    // this.bookService.addBook(book).subscribe((b: Book) => {
-    //   console.log(b);
-    // });
+    this.bookService.addBook(book).subscribe((b: Book) => {
+      if (b) {
+        alert('added');
+      }
+    });
   }
 
   toggle() {

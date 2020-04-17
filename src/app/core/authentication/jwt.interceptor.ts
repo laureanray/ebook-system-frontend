@@ -8,7 +8,8 @@ import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -25,6 +26,8 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {
         this.router.navigate(['/']);
+        // Removes the stored user data in localstorage
+        this.authenticationService.logout();
       }
       const error = err.error.message || err.statusText;
       return throwError(error);

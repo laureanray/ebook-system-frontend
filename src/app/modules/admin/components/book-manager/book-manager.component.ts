@@ -11,7 +11,7 @@ import {BookEditorService} from '../../services/book-editor.service';
   styleUrls: ['./book-manager.component.sass']
 })
 export class BookManagerComponent implements OnInit {
-  books: Book[]
+  books: Book[];
   constructor(private bookService: BookService, private bookEditorService: BookEditorService) { }
 
   ngOnInit(): void {

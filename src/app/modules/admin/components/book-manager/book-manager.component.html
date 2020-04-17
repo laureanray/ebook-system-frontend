@@ -11,5 +11,5 @@
 </div>
 
 <div class="card-container book-container d-flex flex-wrap">
-  <app-book-item-card *ngFor="let book of books" [bookId]="book.id" [bookTitle]="book.bookTitle"></app-book-item-card>
+  <app-book-item-card *ngFor="let book of books" [bookId]="book.id" [bookTitle]="book.bookTitle" [bookCover]="book.bookCoverURL"></app-book-item-card>
 </div>

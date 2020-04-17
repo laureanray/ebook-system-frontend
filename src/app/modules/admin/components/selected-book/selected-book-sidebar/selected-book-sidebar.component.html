@@ -12,7 +12,7 @@
         </mat-expansion-panel-header>
         <div class="list-group sans-serif">
           <a class="list-group-item list-group-item-action" [ngClass]="{ 'active' : topic.id === activeTopic }"
-             (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} {{ topic.id === activeTopic ? '(currently editing)' : ''}} </a>
+             (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
           <a class="list-group-item list-group-item-action text-primary" (click)="addTopic(chapter.id)"> Add Topic </a>
           <a class="list-group-item list-group-item-action text-secondary" (click)="addExam(chapter.id)"> Add Exam </a>
         </div>

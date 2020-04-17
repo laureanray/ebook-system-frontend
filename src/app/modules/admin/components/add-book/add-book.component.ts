@@ -24,10 +24,13 @@ export class AddBookComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private bookService: BookService) {
   }
 
+
+
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       bookTitle: ['', Validators.required],
-      authors: ['', Validators.required]
+      authors: ['', Validators.required],
+      file: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       course: ['', Validators.required],
@@ -56,7 +59,8 @@ export class AddBookComponent implements OnInit {
           this.uploadedFilePath = body.dbPath;
         }
       });
-  }
+  };
+
 
   fileChange(files) {
     console.log(files);

@@ -17,7 +17,7 @@
           </mat-form-field>
           <div class="row">
             <div class="col-md-1">
-              <input type="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
+              <input type="file" formControlName="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
                      style="display:none;">
               <button type="button" mat-button class="button" (click)="file.click()">Upload Image</button>
             </div>
@@ -72,7 +72,7 @@
         <a href="" class="add-more-button">Add More</a>
           <div class="mt-4 buttons">
             <button mat-button matStepperPrevious class="button">Back</button>
-            <button (click)="save()" mat-button matStepperNext class="button">Save</button>
+            <button (click)="save()"  mat-button matStepperNext class="button">Save</button>
           </div>
       </form>
     </mat-step>

@@ -13,6 +13,7 @@ export class SelectedBookDetailsComponent implements OnInit {
   book: Book;
   courses: Course[];
   newCourse: Course;
+  accessibleToAll = false;
 
   addFieldValue() {
     console.log('add');
@@ -37,7 +38,7 @@ export class SelectedBookDetailsComponent implements OnInit {
     this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
       this.courses = this.book?.courses;
-
+      console.log(this.book);
       if (this.courses != null) {
         for (const c of this.courses) {
           c.yearsString = '';

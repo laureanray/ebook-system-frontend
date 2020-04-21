@@ -4,6 +4,7 @@ import {BookService} from '../../../../../../core/services/book.service';
 import {Topic} from '../../../../../../core/models/topic';
 import {BookEditorService} from '../../../../services/book-editor.service';
 import {EditorState} from '../../../../../../core/models/editor-state';
+import {Chapter} from '../../../../../../core/models/chapter';
 
 @Component({
   selector: 'app-add-topic-modal',
@@ -13,14 +14,14 @@ import {EditorState} from '../../../../../../core/models/editor-state';
 export class AddTopicModalComponent implements OnInit {
   isAdding = false;
   topicTitle = '';
-  editorState: EditorState;
+  chapter: Chapter;
 
   constructor(
     public dialogRef: MatDialogRef<AddTopicModalComponent>,
     private bookService: BookService,
     private bookEditorService: BookEditorService) {
-    this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
-        this.editorState = editorState;
+    this.bookEditorService.getCurrentChapter().subscribe((chapter: Chapter) => {
+        this.chapter = chapter;
     });
   }
 
@@ -31,13 +32,12 @@ export class AddTopicModalComponent implements OnInit {
     this.isAdding = true;
     const topic = new Topic();
     topic.topicTitle = this.topicTitle;
-    topic.chapterId = this.editorState.chapterId;
+    topic.chapterId = this.chapter.id;
 
     this.bookService.addTopic(topic).subscribe(res => {
       console.log('adding topic');
       console.log(res);
       this.isAdding = false;
-      // this.bookEditorService.setCurrentChapterAndTopic(res.chapterId, this.topicId);
       this.dialogRef.close();
     });
   }

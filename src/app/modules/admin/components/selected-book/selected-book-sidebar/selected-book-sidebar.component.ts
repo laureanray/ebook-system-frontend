@@ -24,10 +24,13 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   isAddingChapter = false;
+  isSaveEnabled = false;
+  isSaving = false;
   activeTopic: number;
   book: Book;
   getBookSub: Subscription;
   lastSelectedChapter: number;
+  chapterTitle: string;
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
@@ -78,6 +81,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     if (($event.key === 'Enter' || $event.key === 'Escape') && this.isAddingChapter === true) {
       this.isAddingChapter = false;
     }
+    this.isSaveEnabled = this.chapterTitle.length > 0;
   }
 
   onRightClick($event) {
@@ -99,7 +103,6 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
   selectChapter(id: number) {
     this.lastSelectedChapter = id;
-    // this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, null);
     const selected = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
     this.bookEditorService.setCurrentChapter(selected);
   }
@@ -112,12 +115,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      console.log('The dialog was closed');
-      // update here
-      this.bookService.getBook(this.book.id).subscribe((book: Book) => {
-        this.bookEditorService.setCurrentBook(book);
-      });
+      this.updateBookData();
     });
   }
 
@@ -130,6 +128,24 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
         chapter: this.lastSelectedChapter
       },
       queryParamsHandling: 'merge'
+    });
+  }
+
+  save() {
+    this.isSaving = true;
+    const chapter = new Chapter();
+    chapter.bookId = this.book.id;
+    chapter.chapterTitle = this.chapterTitle;
+    this.bookService.addChapter(chapter).subscribe((data: Chapter) => {
+      console.log(chapter);
+      this.updateBookData();
+      this.isSaving = false;
+    });
+  }
+
+  updateBookData() {
+    this.bookService.getBook(this.book.id).subscribe((book: Book) => {
+      this.bookEditorService.setCurrentBook(book);
     });
   }
 }

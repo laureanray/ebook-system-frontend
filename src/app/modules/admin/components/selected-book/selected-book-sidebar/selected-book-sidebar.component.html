@@ -1,7 +1,8 @@
 <div class="pt-4">
-  <a routerLink="" class="text-decoration-none"><h2 class="mat-h2 sans-serif color-orange"> {{ book?.bookTitle }} </h2></a>
+  <a routerLink="" class="text-decoration-none"><h2 class="mat-h2 sans-serif color-orange"> {{ book?.bookTitle }} </h2>
+  </a>
 
-  <mat-accordion >
+  <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
       <mat-expansion-panel [expanded]="lastSelectedChapter === chapter.id" (opened)="selectChapter(chapter.id)"
                            class="my-2 sans-serif" *ngFor="let chapter of book?.chapters">
@@ -28,12 +29,18 @@
 
     <mat-form-field appearance="outline" class="w-100" *ngIf="isAddingChapter">
       <mat-label>Chapter Title</mat-label>
-      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">
+      <input matInput placeholder="Chapter Title" [(ngModel)]="chapterTitle" (keyup)="onKeyUp($event)">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Hint</mat-hint>
     </mat-form-field>
     <button mat-raised-button color="primary" class="sans-serif" (click)="addChapter()"
-            [attr.disabled]="isAddingChapter === true ? 'disabled' : null"> Add Chapter
+            *ngIf="!isAddingChapter; else notAdding"> Add Chapter
     </button>
+
+    <ng-template #notAdding>
+      <button [disabled]="!isSaveEnabled" mat-raised-button color="primary" class="sans-serif" (click)="save()"
+      > Save
+      </button>
+    </ng-template>
   </mat-card>
 </div>

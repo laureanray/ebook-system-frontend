@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Topic} from '../models/topic';
 import {Book} from '../models/book';
+import {Chapter} from '../models/chapter';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class BookService {
 
   addTopic(topic: Topic) {
     return this.http.post(`${environment.apiUrl}/book/topic/add`, topic);
+  }
+
+  addChapter(chapter: Chapter) {
+    return this.http.post(`${environment.apiUrl}/book/chapter/add`, chapter);
   }
 
   deleteTopic(topicId: number) {

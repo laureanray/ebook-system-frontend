@@ -138,6 +138,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     chapter.chapterTitle = this.chapterTitle;
     this.bookService.addChapter(chapter).subscribe((data: Chapter) => {
       console.log(chapter);
+      this.chapterTitle = '';
       this.updateBookData();
       this.isSaving = false;
     });

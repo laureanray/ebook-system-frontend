@@ -1,30 +1,12 @@
-<!--<div class="row mb-5">-->
-<!--&lt;!&ndash;  <div class="col-3" style="display: none">&ndash;&gt;-->
-<!--&lt;!&ndash;    <app-selected-book-sidebar></app-selected-book-sidebar>&ndash;&gt;-->
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;  <div class="col-9">&ndash;&gt;-->
-<!--&lt;!&ndash;    <router-outlet></router-outlet>&ndash;&gt;-->
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-<!--&lt;!&ndash;  <div class="spacer">&ndash;&gt;-->
-
-<!--&lt;!&ndash;  </div>&ndash;&gt;-->
-
-<!--</div>-->
-
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-
+<mat-drawer-container class="expand-container" autosize>
+      <mat-drawer #drawer class="sidenav" mode="side">
+        <app-selected-book-sidebar></app-selected-book-sidebar>
+      </mat-drawer>
+      <div class="sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          Toggle sidenav
+        </button>
+        <router-outlet></router-outlet>
+      </div>
 </mat-drawer-container>
 

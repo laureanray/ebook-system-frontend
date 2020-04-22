@@ -1,6 +1,5 @@
-<app-loading *ngIf="loading; else notLoading"></app-loading>
-
-<ng-template #notLoading>
+<app-loading *ngIf="loading; else loaded"></app-loading>
+<ng-template #loaded>
   <div class="pt-4">
     <div class="row">
       <div class="col-2">
@@ -26,7 +25,7 @@
     </div>
 
     <div class="border-bottom border-bottom-1"></div>
-    <div style="min-height: 600px!important; max-height: 700px!important; overflow-y: auto">
+    <div >
       <ckeditor [editor]="Editor" [config]="{ removePlugins: ['resize', 'autogrow'] }" [(ngModel)]="model.editorData"
                 (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
     </div>

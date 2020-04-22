@@ -11,6 +11,7 @@ export class BookItemCardComponent implements OnInit {
   @Input() bookId: number;
   @Input() bookTitle: string;
   @Input() bookCover: string;
+  @Input() bookAuthor: string;
   bookCoverURLParsed: string;
 
   constructor(private router: Router) { }
@@ -18,7 +19,7 @@ export class BookItemCardComponent implements OnInit {
   ngOnInit(): void {
     if (this.bookCover === null) {
       // TODO: replace this with proper placeholder
-      this.bookCoverURLParsed = 'https://images-na.ssl-images-amazon.com/images/I/51KPj3gS0vL.jpg';
+      this.bookCoverURLParsed = '/assets/cover.png';
     } else {
       this.bookCoverURLParsed = `${environment.apiRoot}/${this.bookCover}`;
     }

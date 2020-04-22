@@ -11,6 +11,8 @@ import {Book} from '../../../../core/models/book';
 })
 export class SelectedBookComponent implements OnInit {
   bookId: number;
+  showFiller = false;
+
   constructor(private activatedRoute: ActivatedRoute, private bookEditorService: BookEditorService, private bookService: BookService) {
   }
 

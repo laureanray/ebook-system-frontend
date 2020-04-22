@@ -1,7 +1,7 @@
 <div class="pt-4">
-  <a routerLink="" class="text-decoration-none"><h2 class="mat-h2 sans-serif color-orange"> {{ book?.bookTitle }} </h2>
-  </a>
-
+<!--  <a routerLink="" class="text-decoration-none"><h2 class="mat-h2 sans-serif color-orange"> {{ book?.bookTitle }} </h2>-->
+<!--  </a>-->
+  <h2 class="color-orange sans-serif mat-h2"> {{book?.bookTitle}} </h2>
   <mat-accordion>
     <div (contextmenu)="onRightClick($event)">
       <mat-expansion-panel [expanded]="lastSelectedChapter === chapter.id" (opened)="selectChapter(chapter.id)"

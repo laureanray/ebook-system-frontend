@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InstructorComponent } from './instructor/instructor.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {InstructorComponent} from './instructor/instructor.component';
 import {InstructorRoutingModule} from './instructor-routing.module';
-// import { InstructorSidebarComponent } from './instructor-sidebar/instructor-sidebar.component';
-import {MatListModule} from '@angular/material/list';
+import {MaterialModule} from '../material.module';
 
 @NgModule({
   declarations: [InstructorComponent],
-    imports: [
-        CommonModule,
-        InstructorRoutingModule,
-        MatListModule
-    ]
+  imports: [
+    CommonModule,
+    InstructorRoutingModule,
+    MaterialModule
+  ]
 })
-export class InstructorModule { }
+export class InstructorModule {
+}

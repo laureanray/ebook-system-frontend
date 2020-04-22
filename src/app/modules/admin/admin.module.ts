@@ -23,6 +23,7 @@ import {DeleteModalComponent} from './components/selected-book/selected-book-edi
 import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
 import {RemoveAccessModalComponent} from './components/selected-book/selected-book-details/remove-access-modal/remove-access-modal.component';
 import {MaterialModule} from '../material.module';
+
 @NgModule({
   declarations: [
     AdminComponent,

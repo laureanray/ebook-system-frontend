@@ -1,9 +1,9 @@
 <mat-drawer-container class="expand-container" autosize>
-      <mat-drawer #drawer class="sidenav" mode="side">
+      <mat-drawer #drawer [(opened)]="isDrawerOpened" class="sidenav" mode="side">
         <app-selected-book-sidebar></app-selected-book-sidebar>
       </mat-drawer>
       <div class="sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
+        <button type="button" mat-button class="mt-4" (click)="drawer.toggle()">
           Toggle Sidebar
         </button>
         <router-outlet></router-outlet>

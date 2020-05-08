@@ -40,10 +40,8 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('selected-sidebar-editor ngOnInit');
     this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
-      console.log(book);
       if (book != null) {
         this.activatedRoute.queryParams.subscribe(params => {
           if (!_.isEmpty(params)) {
@@ -52,17 +50,12 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             // tslint:disable-next-line:radix
             this.activeTopic = parseInt(params.topic);
             // check if current chapter contains the topic
-            console.log(this.lastSelectedChapter);
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
-            console.log(chapter);
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
-              console.log('not found');
-              // alert('not found');
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
             }
           } else {
-            console.log('else');
           }
         });
       }
@@ -86,7 +79,6 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
   onRightClick($event) {
     $event.preventDefault();
-    console.log('ry');
     this.trigger.openMenu();
   }
 
@@ -109,7 +101,6 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
 
   addTopic(id: number) {
-    console.log('add topic');
     const dialogRef = this.dialog.open(AddTopicModalComponent, {
       width: '400px'
     });
@@ -137,7 +128,6 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     chapter.bookId = this.book.id;
     chapter.chapterTitle = this.chapterTitle;
     this.bookService.addChapter(chapter).subscribe((data: Chapter) => {
-      console.log(chapter);
       this.chapterTitle = '';
       this.updateBookData();
       this.isSaving = false;

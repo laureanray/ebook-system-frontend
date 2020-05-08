@@ -25,7 +25,6 @@ export class AddBookComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       bookTitle: ['', Validators.required],
@@ -55,7 +54,6 @@ export class AddBookComponent implements OnInit {
         } else if (event.type === HttpEventType.Response) {
           this.message = 'Upload success.';
           const body = event.body as UploadResponse;
-          console.log(body.dbPath);
           this.uploadedFilePath = body.dbPath;
         }
       });
@@ -63,7 +61,6 @@ export class AddBookComponent implements OnInit {
 
 
   fileChange(files) {
-    console.log(files);
     this.uploadFile(files);
   }
 
@@ -73,7 +70,6 @@ export class AddBookComponent implements OnInit {
     book.bookAuthor = this.firstFormGroup.controls.authors.value;
     book.accessibleToAll = this.secondFormGroup.controls.giveAccessToAll.value;
     book.bookCoverURL = this.uploadedFilePath;
-    console.log(book);
     this.bookService.addBook(book).subscribe((b: Book) => {
       if (b) {
         alert('added');
@@ -86,12 +82,10 @@ export class AddBookComponent implements OnInit {
       if (this.secondFormGroup.controls.giveAccessToAll.value) {
         this.secondFormGroup.controls.course.disable();
         this.secondFormGroup.controls.yearLevel.disable();
-        console.log(this.secondFormGroup.controls.giveAccessToAll.value);
       } else {
         this.secondFormGroup.controls.course.enable();
         this.secondFormGroup.controls.yearLevel.enable();
       }
-      console.log(this.secondFormGroup.controls.giveAccessToAll.value);
     }, 5);
   }
 }

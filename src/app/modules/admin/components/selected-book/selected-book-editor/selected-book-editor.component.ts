@@ -54,17 +54,18 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.chapterAndTopicSub = this.bookEditorService.getCurrentChapterAndTopic().subscribe((editorState: EditorState) => {
       this.getBookSub = this.bookEditorService.getCurrentBook().subscribe(book => {
-        console.log(editorState);
-        this.book = book;
-        this.editingChapter = _.find(this.book.chapters, c => c.id === editorState.chapterId);
-        this.editingTopic = _.find(this.editingChapter.topics, t => t.id === editorState.topicId);
-        this.model.editorData = this.editingTopic.htmlContent ? this.editingTopic.htmlContent : '';
+        if (book && editorState) {
+          this.book = book;
+          this.editingChapter = _.find(this.book.chapters, c => c.id === editorState.chapterId);
+          this.editingTopic = _.find(this.editingChapter.topics, t => t.id === editorState.topicId);
+          this.model.editorData = this.editingTopic.htmlContent ? this.editingTopic.htmlContent : '';
+        }
         setTimeout(() => {
           this.loading = false;
         }, 500);
       });
     });
-  }
+  }gi
 
   ngOnDestroy(): void {
     this.chapterAndTopicSub.unsubscribe();

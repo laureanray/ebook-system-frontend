@@ -14,7 +14,8 @@ export class DeleteChapterModalComponent implements OnInit {
   isDeleting = false;
   constructor(private dialogRef: MatDialogRef<DeleteChapterModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private bookService: BookService) {
+              private bookService: BookService,
+              private router: Router) {
     this.chapterTitle = this.data.chapterTitle;
   }
 

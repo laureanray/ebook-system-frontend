@@ -130,14 +130,4 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
 
   }
 
-  deleteChapter() {
-    this.dialog.open(DeleteChapterModalComponent, {
-      width: '450px',
-      data: {
-        chapterId: this.editingChapter.id,
-        bookId: this.book.id,
-        chapterTitle: this.editingChapter.chapterTitle
-      }
-    });
-  }
 }

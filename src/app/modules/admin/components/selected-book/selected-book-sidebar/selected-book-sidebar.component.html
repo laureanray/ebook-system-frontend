@@ -5,16 +5,25 @@
       <mat-expansion-panel [expanded]="lastSelectedChapter === chapter.id" (opened)="selectChapter(chapter.id)"
                            class="my-2 sans-serif" *ngFor="let chapter of book?.chapters">
         <mat-expansion-panel-header>
-          <mat-panel-title>
+          <mat-panel-title class="chapter-title">
             {{ chapter.chapterTitle }}
           </mat-panel-title>
         </mat-expansion-panel-header>
+
         <div class="list-group sans-serif">
           <a class="list-group-item list-group-item-action" [ngClass]="{ 'active' : topic.id === activeTopic }"
              (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
-          <a class="list-group-item list-group-item-action text-primary" (click)="addTopic(chapter.id)"> Add Topic </a>
-          <a class="list-group-item list-group-item-action text-secondary" (click)="addExam(chapter.id)"> Add Exam </a>
+          <a class="list-group-item list-group-item-action text-dark" (click)="addTopic(chapter.id)">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Add Topic </a>
+          <a class="list-group-item list-group-item-action" (click)="addExam(chapter.id)"
+            [ngClass]="{ 'active' : isAddingExam === true } "
+            >
+            <fa-icon [icon]="faPlus"></fa-icon> {{ isAddingExam ? 'Adding Exam' : 'Add Exam'}} </a>
+          <a class="list-group-item list-group-item-action" (click)="deleteChapter()">
+            <fa-icon [icon]="faTrash"></fa-icon> Delete Chapter </a>
         </div>
+
       </mat-expansion-panel>
     </div>
   </mat-accordion>

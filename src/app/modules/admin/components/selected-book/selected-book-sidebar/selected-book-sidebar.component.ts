@@ -13,7 +13,8 @@ import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {AddTopicModalComponent} from './add-topic-modal/add-topic-modal.component';
 import {EditorState} from '../../../../../core/models/editor-state';
-
+import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {DeleteChapterModalComponent} from '../selected-book-editor/delete-chapter-modal/delete-chapter-modal.component';
 
 @Component({
   selector: 'app-selected-book-sidebar',
@@ -31,12 +32,17 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   getBookSub: Subscription;
   lastSelectedChapter: number;
   chapterTitle: string;
+  chapter: Chapter;
+  faTrash = faTrash;
+  faPlus = faPlus;
+  isAddingExam = false;
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog
+              ) {
   }
 
   ngOnInit(): void {
@@ -51,9 +57,11 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             this.activeTopic = parseInt(params.topic);
             // check if current chapter contains the topic
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
+            this.chapter = chapter;
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
+              this.isAddingExam = false;
             }
           } else {
           }
@@ -101,6 +109,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
 
   addTopic(id: number) {
+    this.isAddingExam = false;
     const dialogRef = this.dialog.open(AddTopicModalComponent, {
       width: '400px'
     });
@@ -119,6 +128,8 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
         chapter: this.lastSelectedChapter
       },
       queryParamsHandling: 'merge'
+    }).then(() => {
+      this.isAddingExam = true;
     });
   }
 
@@ -137,6 +148,17 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   updateBookData() {
     this.bookService.getBook(this.book.id).subscribe((book: Book) => {
       this.bookEditorService.setCurrentBook(book);
+    });
+  }
+
+  deleteChapter() {
+    this.dialog.open(DeleteChapterModalComponent, {
+      width: '450px',
+      data: {
+        chapterId: this.lastSelectedChapter,
+        bookId: this.book.id,
+        chapterTitle: this.chapter.chapterTitle
+      }
     });
   }
 }

@@ -24,6 +24,7 @@ import {SelectedBookAddExamComponent} from './components/selected-book/selected-
 import {RemoveAccessModalComponent} from './components/selected-book/selected-book-details/remove-access-modal/remove-access-modal.component';
 import {MaterialModule} from '../material.module';
 import { DeleteChapterModalComponent } from './components/selected-book/selected-book-editor/delete-chapter-modal/delete-chapter-modal.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DeleteChapterModalComponent } from './components/selected-book/selected
     FormsModule,
     CKEditorModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FontAwesomeModule
   ]
 })
 export class AdminModule {

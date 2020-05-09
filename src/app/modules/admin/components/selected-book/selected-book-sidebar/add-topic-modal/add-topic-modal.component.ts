@@ -15,6 +15,7 @@ export class AddTopicModalComponent implements OnInit {
   isAdding = false;
   topicTitle = '';
   chapter: Chapter;
+  disabled = true;
 
   constructor(
     public dialogRef: MatDialogRef<AddTopicModalComponent>,
@@ -40,5 +41,12 @@ export class AddTopicModalComponent implements OnInit {
       this.isAdding = false;
       this.dialogRef.close();
     });
+  }
+
+  change($event) {
+    if ($event.key === 'Enter') {
+      this.addTopic();
+    }
+    this.disabled = this.topicTitle.length <= 0;
   }
 }

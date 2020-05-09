@@ -80,7 +80,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
 
   onKeyUp($event) {
     if (($event.key === 'Enter' || $event.key === 'Escape') && this.isAddingChapter === true) {
-      this.isAddingChapter = false;
+      this.save();
     }
     this.isSaveEnabled = this.chapterTitle.length > 0;
   }

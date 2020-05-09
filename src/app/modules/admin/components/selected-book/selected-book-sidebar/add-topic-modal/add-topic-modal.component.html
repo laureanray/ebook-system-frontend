@@ -1,13 +1,9 @@
 <div>
   <h1 mat-dialog-title>Add Topic </h1>
-  <p>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="width-100">
       <mat-label>Topic Title</mat-label>
-      <input [(ngModel)]="topicTitle" [disabled]="isAdding" matInput placeholder="Title" style="width: 100%">
+      <input (keyup)="change($event)" [(ngModel)]="topicTitle" [disabled]="isAdding" matInput placeholder="Title" style="width: 100%">
       <mat-hint>Hint</mat-hint>
     </mat-form-field>
-  </p>
-  <div class="text-right">
-    <button mat-raised-button (click)="addTopic()" [disabled]="isAdding"> {{ isAdding ? 'Adding topic' : 'Add Topic' }} </button>
-  </div>
+    <button mat-raised-button color="primary" (click)="addTopic()" [disabled]="isAdding || disabled"> {{ isAdding ? 'Adding topic' : 'Add Topic' }} </button>
 </div>

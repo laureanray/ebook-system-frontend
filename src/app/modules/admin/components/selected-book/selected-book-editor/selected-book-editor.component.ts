@@ -61,9 +61,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
           this.editingTopic = _.find(this.editingChapter.topics, t => t.id === editorState.topicId);
           this.model.editorData = this.editingTopic.htmlContent ? this.editingTopic.htmlContent : '';
         }
-        setTimeout(() => {
-          this.loading = false;
-        }, 500);
+        this.loading = false;
       });
     });
   }

@@ -8,7 +8,7 @@
   <div mat-dialog-actions  class="text-right">
     <mat-form-field class="w-100"  appearance="outline">
       <mat-label>Type to confirm</mat-label>
-      <input (keyup)="change()"  autocomplete="off" [(ngModel)]="inputValue" matInput placeholder="Placeholder">
+      <input (keyup)="change()"  autocomplete="off" autofocus [(ngModel)]="inputValue" matInput placeholder="Placeholder">
       <mat-hint>Type <span class="font-weight-bold">{{ chapterTitle }}</span> to confirm</mat-hint>
     </mat-form-field>
     <button mat-raised-button (click)="confirm()" [disabled]="disabled"  color="warn" cdkFocusInitial>Confirm</button>

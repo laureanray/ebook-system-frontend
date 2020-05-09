@@ -118,8 +118,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     }, 10000);
   }
 
-  delete() {
-
+  deleteTopic() {
     this.dialog.open(DeleteModalComponent, {
       width: '450px',
       data: {
@@ -128,6 +127,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
         topicTitle: this.editingTopic.topicTitle
       }
     });
+
   }
 
   deleteChapter() {

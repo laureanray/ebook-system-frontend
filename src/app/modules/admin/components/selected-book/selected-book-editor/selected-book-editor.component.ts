@@ -15,6 +15,7 @@ import {EditorState} from '../../../../../core/models/editor-state';
 import * as moment from 'moment';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {DeleteModalComponent} from './delete-modal/delete-modal.component';
+import {DeleteChapterModalComponent} from './delete-chapter-modal/delete-chapter-modal.component';
 
 @Component({
   selector: 'app-selected-book-editor',
@@ -65,7 +66,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
         }, 500);
       });
     });
-  }gi
+  }
 
   ngOnDestroy(): void {
     this.chapterAndTopicSub.unsubscribe();
@@ -105,15 +106,6 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   updateData() {
     this.bookService.getBook(this.book.id).subscribe((book: Book) => {
       this.bookEditorService.setCurrentBook(book);
-
-      // check if current params still exists in the book
-
-      // if (!_.find(this.editingChapter.topics, t => t.id === this.editingTopic.id)) {
-      //   const es = new EditorState();
-      //   es.chapterId = this.editingChapter.id;
-      //   es.topicId = this.editingChapter.topics[0].id;
-      //   this.bookEditorService.setCurrentChapterAndTopic(es);
-      // }
     });
   }
 
@@ -134,6 +126,17 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
         topicId: this.editingTopic.id,
         bookId: this.book.id,
         topicTitle: this.editingTopic.topicTitle
+      }
+    });
+  }
+
+  deleteChapter() {
+    this.dialog.open(DeleteChapterModalComponent, {
+      width: '450px',
+      data: {
+        chapterId: this.editingChapter.id,
+        bookId: this.book.id,
+        chapterTitle: this.editingChapter.chapterTitle
       }
     });
   }

@@ -33,6 +33,10 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/book/chapter/add`, chapter);
   }
 
+  deleteChapter(chapterId: number) {
+    return this.http.get(`${environment.apiUrl}/book/chapter/delete/${chapterId}`);
+  }
+
   deleteTopic(topicId: number) {
     return this.http.get(`${environment.apiUrl}/book/topic/delete/${topicId}`);
   }

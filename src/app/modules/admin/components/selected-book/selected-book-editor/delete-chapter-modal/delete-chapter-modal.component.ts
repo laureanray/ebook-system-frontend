@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {BookService} from '../../../../../../core/services/book.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-delete-chapter-modal',
@@ -35,6 +36,8 @@ export class DeleteChapterModalComponent implements OnInit {
     this.bookService.deleteChapter(this.data.chapterId).subscribe(chapter => {
       console.log(chapter);
       this.isDeleting = false;
+      this.router.navigate([`/admin/book/${this.data.bookId}/details`]);
+      this.dialogRef.close();
     });
   }
 }

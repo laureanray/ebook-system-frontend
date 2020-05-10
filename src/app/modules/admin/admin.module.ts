@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {AdminComponent} from './components/admin/admin.component';
 import {AdminRoutingModule} from './admin-routing.module';
 import {BookManagerComponent} from './components/book-manager/book-manager.component';
-import {SidebarNavComponent} from './components/sidebar-nav/sidebar-nav.component';
 import {AddBookComponent} from './components/add-book/add-book.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SelectedBookComponent} from './components/selected-book/selected-book.component';
@@ -30,7 +29,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
   declarations: [
     AdminComponent,
     BookManagerComponent,
-    SidebarNavComponent,
     AddBookComponent,
     SelectedBookComponent,
     BookItemCardComponent,

@@ -79,7 +79,10 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   onKeyUp($event) {
-    if (($event.key === 'Enter' || $event.key === 'Escape') && this.isAddingChapter === true) {
+    if ($event.key === 'Escape' && this.isAddingChapter === true) {
+      this.isAddingChapter = false;
+    }
+    if ($event.key === 'Enter' && this.chapterTitle.length > 0) {
       this.save();
     }
     this.isSaveEnabled = this.chapterTitle.length > 0;
@@ -151,13 +154,13 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteChapter() {
+  deleteChapter(chapter: Chapter) {
     this.dialog.open(DeleteChapterModalComponent, {
       width: '450px',
       data: {
-        chapterId: this.lastSelectedChapter,
+        chapterId: chapter.id,
         bookId: this.book.id,
-        chapterTitle: this.chapter.chapterTitle
+        chapterTitle: chapter.chapterTitle
       }
     });
   }

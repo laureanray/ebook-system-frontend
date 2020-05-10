@@ -20,7 +20,7 @@
             [ngClass]="{ 'active' : isAddingExam === true } "
             >
             <fa-icon [icon]="faPlus"></fa-icon> {{ isAddingExam ? 'Adding Exam' : 'Add Exam'}} </a>
-          <a class="list-group-item list-group-item-action" (click)="deleteChapter()">
+          <a class="list-group-item list-group-item-action" (click)="deleteChapter(chapter)">
             <fa-icon [icon]="faTrash"></fa-icon> Delete Chapter </a>
         </div>
 
@@ -29,14 +29,9 @@
   </mat-accordion>
 
   <mat-card>
-    <!--    <mat-form-field class="w-100 sans-serif" *ngIf="isAddingChapter">-->
-    <!--      <mat-label>Chapter Title</mat-label>-->
-    <!--      <input matInput placeholder="Chapter Title" value="" (keyup)="onKeyUp($event)">-->
-    <!--    </mat-form-field>-->
-
     <mat-form-field appearance="outline" class="w-100" *ngIf="isAddingChapter">
       <mat-label>Chapter Title</mat-label>
-      <input matInput placeholder="Chapter Title" [(ngModel)]="chapterTitle" (keyup)="onKeyUp($event)">
+      <input matInput placeholder="Chapter Title" autocomplete="off" [(ngModel)]="chapterTitle" (keyup)="onKeyUp($event)">
     </mat-form-field>
     <button mat-raised-button color="primary" class="sans-serif" (click)="addChapter()"
             *ngIf="!isAddingChapter; else notAdding"> Add Chapter

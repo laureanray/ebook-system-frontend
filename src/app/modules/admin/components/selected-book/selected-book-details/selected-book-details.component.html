@@ -1,81 +1,115 @@
-<div class="row">
-  <div class="col">
-    <div class="row pt-4">
-      <div class="col">
-        <div>
-          <h2 class="sans-serif">Title: <span>{{ book?.bookTitle }}</span></h2>
-          <h2 class=" sans-serif">Author: <span> {{ book?.bookAuthor }}</span></h2>
-          <h2 class=" sans-serif">Access: {{ book?.accessibleToAll ? 'ALL' : '' }}</h2>
-          <div class="scroll" id="add-section-container" *ngIf="!book?.accessibleToAll">
-            <table class="table">
-              <thead class="sans-serif">
-              <tr>
-                <th>Course</th>
-                <th>Year Level</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let course of courses; let i = index">
-                <td>
-                  <input [(ngModel)]="course.courseName" class="form-control font-16" type="text" name="{{course.courseName}}"
-                         disabled="disabled"/>
-                </td>
-                <td>
-                  <input [(ngModel)]="course.yearsString" class="form-control font-16" type="text" name="{{course.yearsString}}"
-                         disabled="disabled"/>
-                </td>
-                <td>
-                  <button class="btn" type="button" (click)="deleteFieldValue(i)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <!--              <tr>-->
-              <!--                <td>-->
-              <!--                  <mat-form-field appearance="outline" class="sans-serif">-->
-              <!--                    <mat-label class="sans-serif">Course</mat-label>-->
-              <!--                    <mat-select id="newAttributeCourse" [(ngModel)]="newCourse.courseName" name="newAttributeCourse"-->
-              <!--                                required>-->
-              <!--                      <mat-option value="Bs in Computer Engineering" class="sans-serif">BS in Computer Engineering-->
-              <!--                      </mat-option>-->
-              <!--                      <mat-option value="BS in Information Technology" class="sans-serif">BS in Information Technology-->
-              <!--                      </mat-option>-->
-              <!--                      <mat-option value="BS in Computer Science" class="sans-serif">BS in Computer Science</mat-option>-->
-              <!--                    </mat-select>-->
-              <!--                  </mat-form-field>-->
-              <!--                </td>-->
-              <!--                <td>-->
-              <!--                  <mat-form-field appearance="outline" class="sans-serif">-->
-              <!--                    <mat-label class="sans-serif">Year</mat-label>-->
-              <!--                    <mat-select id="newAttributeYear" [(ngModel)]="newCourse.years" name="newAttributeYear" multiple-->
-              <!--                                required>-->
-              <!--                      <mat-option value="1st" class="sans-serif">1st year</mat-option>-->
-              <!--                      <mat-option value="2nd" class="sans-serif">2nd year</mat-option>-->
-              <!--                      <mat-option value="3rd" class="sans-serif">3rd year</mat-option>-->
-              <!--                      <mat-option value="4th" class="sans-serif">4th year</mat-option>-->
-              <!--                      <mat-option value="5th" class="sans-serif">5th year</mat-option>-->
-              <!--                    </mat-select>-->
-              <!--                  </mat-form-field>-->
-              <!--                </td>-->
-              <!--                <td>-->
-              <!--                  <button class="btn btn-default add" type="button" (click)="addFieldValue()">-->
-              <!--                    <mat-icon>add</mat-icon>-->
-              <!--                  </button>-->
-              <!--                </td>-->
-              <!--              </tr>-->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div>
-          <img class="cover" src="https://images-na.ssl-images-amazon.com/images/I/51KPj3gS0vL.jpg" alt="">
-        </div>
-        <a href="" class="change-cover">Change Cover</a>
-
-      </div>
+<div class="row mt-4">
+  <div class="col-4">
+    <img class="cover" src="{{ bookCoverURLParsed }}" alt="Card image cap">
+   <p> <button mat-raised-button> Update Image </button></p>
+    <h2 class="mat-h2 sans-serif mb-0"> {{ book?.bookTitle }}</h2>
+    <h3 class="mat-h3"> {{ book?.bookAuthor }}</h3>
+  </div>
+  <div class="col-8">
+    <p class="description"> {{ book?.bookDescription }}</p>
+    <h2 class="mat-h2 sans-serif mb-0"> Access </h2>
+    <div class="access">
+      <p *ngIf="book?.accessibleToAll; else elseBlk"> Accessible To All </p>
+      <ng-template #elseBlk>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let a of book?.courses">
+            <div class="row">
+                <div class="col">
+                  <p> {{ a.courseName }} </p>
+                  <p> {{ a.yearsString }} </p>
+                </div>
+               <div class="col-2">
+                 <button mat-icon-button color="warn" class="ml-auto">
+                   <fa-icon [icon]="faMinus"></fa-icon>
+                 </button>
+               </div>
+            </div>
+          </li>
+        </ul>
+      </ng-template>
     </div>
+    <h2 class="mat-h2 sans-serif mb-0"> Add New </h2>
+
+    <mat-form-field appearance="outline" class="sans-serif">
+      <mat-label class="sans-serif">Course</mat-label>
+      <mat-select id="newAttributeCourse" name="newAttributeCourse"
+                  required>
+        <mat-option value="Bs in Computer Engineering" class="sans-serif">BS in Computer Engineering
+        </mat-option>
+        <mat-option value="BS in Information Technology" class="sans-serif">BS in Information Technology
+        </mat-option>
+        <mat-option value="BS in Computer Science" class="sans-serif">BS in Computer Science</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>
+<!--<div class="row">-->
+<!--  <div class="col">-->
+<!--    <div class="row pt-4">-->
+<!--      <div class="col">-->
+<!--        <div>-->
+<!--          <h2 class="sans-serif">Title: <span>{{ book?.bookTitle }}</span></h2>-->
+<!--          <h2 class=" sans-serif">Author: <span> {{ book?.bookAuthor }}</span></h2>-->
+<!--          <h2 class=" sans-serif">Access: {{ book?.accessibleToAll ? 'ALL' : '' }}</h2>-->
+<!--          <div class="scroll" id="add-section-container" *ngIf="!book?.accessibleToAll">-->
+<!--            <table class="table">-->
+<!--              <thead class="sans-serif">-->
+<!--              <tr>-->
+<!--                <th>Course</th>-->
+<!--                <th>Year Level</th>-->
+<!--                <th></th>-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--              <tr *ngFor="let course of courses; let i = index">-->
+<!--                <td>-->
+<!--                  <input [(ngModel)]="course.courseName" class="form-control font-16" type="text" name="{{course.courseName}}"-->
+<!--                         disabled="disabled"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                  <input [(ngModel)]="course.yearsString" class="form-control font-16" type="text" name="{{course.yearsString}}"-->
+<!--                         disabled="disabled"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                  <button class="btn" type="button" (click)="deleteFieldValue(i)">-->
+<!--                    <mat-icon>delete</mat-icon>-->
+<!--                  </button>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              &lt;!&ndash;              <tr>&ndash;&gt;-->
+<!--              &lt;!&ndash;                <td>&ndash;&gt;-->
+
+<!--                              </td>-->
+<!--                              <td>-->
+<!--                                <mat-form-field appearance="outline" class="sans-serif">-->
+<!--                                  <mat-label class="sans-serif">Year</mat-label>-->
+<!--                                  <mat-select id="newAttributeYear" [(ngModel)]="newCourse.years" name="newAttributeYear" multiple-->
+<!--                                              required>-->
+<!--                                    <mat-option value="1st" class="sans-serif">1st year</mat-option>-->
+<!--                                    <mat-option value="2nd" class="sans-serif">2nd year</mat-option>-->
+<!--                                    <mat-option value="3rd" class="sans-serif">3rd year</mat-option>-->
+<!--                                    <mat-option value="4th" class="sans-serif">4th year</mat-option>-->
+<!--                                    <mat-option value="5th" class="sans-serif">5th year</mat-option>-->
+<!--                                  </mat-select>-->
+<!--                                </mat-form-field>-->
+<!--                              </td>-->
+<!--                              <td>-->
+<!--              &lt;!&ndash;                  <button class="btn btn-default add" type="button" (click)="addFieldValue()">&ndash;&gt;-->
+<!--              &lt;!&ndash;                    <mat-icon>add</mat-icon>&ndash;&gt;-->
+<!--              &lt;!&ndash;                  </button>&ndash;&gt;-->
+<!--              &lt;!&ndash;                </td>&ndash;&gt;-->
+<!--              &lt;!&ndash;              </tr>&ndash;&gt;-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-4">-->
+<!--        <div>-->
+<!--          <img class="cover" src="{{ bookCoverURLParsed }}" alt="Card image cap">-->
+<!--        </div>-->
+<!--        <a href="" class="change-cover">Change Cover</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

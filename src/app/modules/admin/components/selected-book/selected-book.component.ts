@@ -27,6 +27,7 @@ export class SelectedBookComponent implements OnInit {
       // Initialize the observable
       this.bookService.getBook(this.bookId).subscribe((book: Book) => {
           this.bookEditorService.setCurrentBook(book);
+          console.log(book);
       });
     });
   }

@@ -3,6 +3,8 @@ import {BookService} from '../../../../../core/services/book.service';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {Book} from '../../../../../core/models/book';
 import {Course} from '../../../../../core/models/course';
+import {environment} from '../../../../../../environments/environment';
+import {faMinusCircle, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-selected-book-details',
@@ -14,6 +16,9 @@ export class SelectedBookDetailsComponent implements OnInit {
   courses: Course[];
   newCourse: Course;
   accessibleToAll = false;
+  bookCoverURLParsed: any;
+  faTrash = faTrash;
+  faMinus = faMinusCircle;
 
   addFieldValue() {
     this.courses.push(this.newCourse);
@@ -44,12 +49,19 @@ export class SelectedBookDetailsComponent implements OnInit {
             if (i === (c.years.length - 1)) {
               c.yearsString += (y.yearLevel);
             } else {
-              c.yearsString += (y.yearLevel + ',');
+              c.yearsString += (y.yearLevel + ', ');
             }
 
             i++;
           }
         }
+      }
+
+      if (!this.book || !this.book?.bookCoverURL) {
+        // TODO: replace this with proper placeholder
+        this.bookCoverURLParsed = '/assets/cover.png';
+      } else {
+        this.bookCoverURLParsed = `${environment.apiRoot}/${this.book.bookCoverURL}`;
       }
     });
   }

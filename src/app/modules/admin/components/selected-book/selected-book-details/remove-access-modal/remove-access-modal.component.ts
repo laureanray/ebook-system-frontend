@@ -25,7 +25,10 @@ export class RemoveAccessModalComponent implements OnInit {
     this.bookService.removeCourse(this.data.bookId, this.data.courseId).subscribe((book: Book) => {
         if (book) {
           this.bookEditorService.setCurrentBook(book);
-          this.disabled = false;
+          setTimeout(() => {
+            this.disabled = false;
+            this.dialogRef.close();
+          }, 250);
         }
     });
   }

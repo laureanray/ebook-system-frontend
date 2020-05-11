@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../../../../core/services/book.service';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {Book} from '../../../../../core/models/book';
@@ -23,6 +23,8 @@ export class SelectedBookDetailsComponent implements OnInit {
   faMinus = faMinusCircle;
   isEditingAccess = false;
   coursesCopy: Course[];
+  editAccessibleToAll = false;
+  toggleDisabled = false;
 
   addFieldValue() {
     this.courses.push(this.newCourse);
@@ -32,6 +34,7 @@ export class SelectedBookDetailsComponent implements OnInit {
       const element = document.getElementById('add-section-container');
       element.scrollTop = element.scrollHeight;
     }
+
     setInterval(updateScroll, 1);
   }
 
@@ -40,7 +43,9 @@ export class SelectedBookDetailsComponent implements OnInit {
   }
 
   constructor(private bookEditorService: BookEditorService,
-              private dialog: MatDialog) {  }
+              private bookService: BookService,
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
@@ -53,7 +58,7 @@ export class SelectedBookDetailsComponent implements OnInit {
           let i = 0;
           for (const y of c.years) {
             if (i === (c.years.length - 1)) {
-              c.yearsString += (' and ' +  y.yearLevel + ' year');
+              c.yearsString += (' and ' + y.yearLevel + ' year');
             } else {
               c.yearsString += (y.yearLevel + ', ');
             }
@@ -62,7 +67,6 @@ export class SelectedBookDetailsComponent implements OnInit {
           }
         }
       }
-
       if (!this.book || !this.book?.bookCoverURL) {
         // TODO: replace this with proper placeholder
         this.bookCoverURLParsed = '/assets/cover.png';
@@ -90,5 +94,24 @@ export class SelectedBookDetailsComponent implements OnInit {
         bookId: this.book.id
       }
     });
+  }
+
+  changeAccessibility() {
+    this.toggleDisabled = true;
+    if (!this.editAccessibleToAll) {
+      this.bookService.makeAccessibleToAll(this.book.id).subscribe((book: Book) => {
+        this.bookEditorService.setCurrentBook(book);
+        setTimeout(() => {
+          this.toggleDisabled = false;
+        });
+      });
+    } else {
+      this.bookService.makeNotAccessibleToAll(this.book.id).subscribe((book: Book) => {
+        this.bookEditorService.setCurrentBook(book);
+        setTimeout(() => {
+          this.toggleDisabled = false;
+        });
+      });
+    }
   }
 }

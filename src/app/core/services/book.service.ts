@@ -52,4 +52,12 @@ export class BookService {
   removeCourse(bookId: number, courseId: number) {
     return this.http.get(`${environment.apiUrl}/book/removeAccess/${bookId}/${courseId}`);
   }
+
+  makeAccessibleToAll(bookId: number) {
+    return this.http.get(`${environment.apiUrl}/book/makeAccessibleToAll/${bookId}`);
+  }
+
+  makeNotAccessibleToAll(bookId: number) {
+    return this.http.get(`${environment.apiUrl}/book/makeNotAccessibleToAll/${bookId}`);
+  }
 }

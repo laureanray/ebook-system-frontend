@@ -1,2 +1,10 @@
-<h1> Are you sure?
-</h1>
+<div class="pb-3">
+  <h1 mat-dialog-title>Remove Access</h1>
+  <div mat-dialog-content>
+    <p>Are you remove access?</p>
+    <p> Removing access means that this book wont be accessible.  </p>
+  </div>
+  <div mat-dialog-actions  class="text-right">
+    <button mat-raised-button (click)="confirm()" [disabled]="disabled"  color="warn" cdkFocusInitial>Remove Access</button>
+  </div>
+</div>

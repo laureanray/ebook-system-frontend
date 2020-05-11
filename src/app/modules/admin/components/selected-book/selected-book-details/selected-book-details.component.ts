@@ -5,6 +5,8 @@ import {Book} from '../../../../../core/models/book';
 import {Course} from '../../../../../core/models/course';
 import {environment} from '../../../../../../environments/environment';
 import {faMinusCircle, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {MatDialog} from '@angular/material/dialog';
+import {RemoveAccessModalComponent} from './remove-access-modal/remove-access-modal.component';
 
 @Component({
   selector: 'app-selected-book-details',
@@ -19,6 +21,8 @@ export class SelectedBookDetailsComponent implements OnInit {
   bookCoverURLParsed: any;
   faTrash = faTrash;
   faMinus = faMinusCircle;
+  isEditingAccess = false;
+  coursesCopy: Course[];
 
   addFieldValue() {
     this.courses.push(this.newCourse);
@@ -35,19 +39,21 @@ export class SelectedBookDetailsComponent implements OnInit {
     this.courses.splice(index, 1);
   }
 
-  constructor(private bookEditorService: BookEditorService) {  }
+  constructor(private bookEditorService: BookEditorService,
+              private dialog: MatDialog) {  }
 
   ngOnInit(): void {
     this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
       this.courses = this.book?.courses;
       if (this.courses != null) {
+        this.coursesCopy = this.courses;
         for (const c of this.courses) {
           c.yearsString = '';
           let i = 0;
           for (const y of c.years) {
             if (i === (c.years.length - 1)) {
-              c.yearsString += (y.yearLevel);
+              c.yearsString += (' and ' +  y.yearLevel + ' year');
             } else {
               c.yearsString += (y.yearLevel + ', ');
             }
@@ -66,4 +72,23 @@ export class SelectedBookDetailsComponent implements OnInit {
     });
   }
 
+  edit() {
+    this.isEditingAccess = true;
+  }
+
+  done() {
+    this.isEditingAccess = false;
+
+    // update the actual access
+  }
+
+  removeAccess(courseId: number) {
+    this.dialog.open(RemoveAccessModalComponent, {
+      width: '250px',
+      data: {
+        courseId,
+        bookId: this.book.id
+      }
+    });
+  }
 }

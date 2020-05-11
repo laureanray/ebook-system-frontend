@@ -48,4 +48,8 @@ export class BookService {
   addBook(book: Book) {
     return this.http.post(`${environment.apiUrl}/book/add`, book);
   }
+
+  removeCourse(bookId: number, courseId: number) {
+    return this.http.get(`${environment.apiUrl}/book/removeAccess/${bookId}/${courseId}`);
+  }
 }

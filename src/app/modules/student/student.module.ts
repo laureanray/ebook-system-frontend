@@ -9,6 +9,8 @@ import {GradesComponent} from './components/grades/grades.component';
 import {FormsModule} from '@angular/forms';
 import {ViewProfileComponent} from './components/view-profile/view-profile.component';
 import {MaterialModule} from '../material.module';
+import { BookComponent } from './components/book/book.component';
+import { BookCardComponent } from './components/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {MaterialModule} from '../material.module';
     StudentSidebarComponent,
     BookLibraryComponent,
     GradesComponent,
-    ViewProfileComponent],
+    ViewProfileComponent,
+    BookComponent,
+    BookCardComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

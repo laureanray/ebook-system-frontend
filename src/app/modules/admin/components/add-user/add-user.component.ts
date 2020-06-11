@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormFieldControlHarness} from '@angular/material/form-field/testing';
 
 @Component({
   selector: 'app-add-user',
@@ -8,10 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class AddUserComponent implements OnInit {
   public showStudent = true;
   public showFaculty = false;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor() {  }
+  ngOnInit() {  }
   toggleStudent() {
     this.showStudent = true;
     this.showFaculty = false;

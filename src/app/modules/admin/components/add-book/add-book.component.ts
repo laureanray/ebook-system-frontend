@@ -57,7 +57,7 @@ export class AddBookComponent implements OnInit {
           this.uploadedFilePath = body.dbPath;
         }
       });
-  };
+  }
 
 
   fileChange(files) {

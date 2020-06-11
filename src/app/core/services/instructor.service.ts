@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {Instructor} from '../models/instructor';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,16 @@ export class InstructorService {
 
   getAllInstructors() {
     return this.http.get(`${environment.apiUrl}/instructor`);
+  }
+  addInstructor(instructor: Instructor) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/add`, instructor);
+  }
+  updatePassword(newPassword: string, instructorId: string) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/update-id`, {
+        newPassword,
+        instructorId
+      });
   }
 }

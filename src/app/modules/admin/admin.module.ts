@@ -24,6 +24,8 @@ import {RemoveAccessModalComponent} from './components/selected-book/selected-bo
 import {MaterialModule} from '../material.module';
 import { DeleteChapterModalComponent } from './components/selected-book/selected-book-editor/delete-chapter-modal/delete-chapter-modal.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { AddStudentComponent } from './components/add-user/add-student/add-student.component';
+import { AddInstructorComponent } from './components/add-user/add-instructor/add-instructor.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     SelectedBookAddExamComponent,
     RemoveAccessModalComponent,
     DeleteChapterModalComponent,
+    AddStudentComponent,
+    AddInstructorComponent,
   ],
   imports: [
     CommonModule,

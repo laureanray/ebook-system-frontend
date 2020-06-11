@@ -1,0 +1,63 @@
+<div class="d-flex flex-column mt-4">
+  <form [formGroup]="studentForm">
+    <mat-form-field appearance="outline" class="sans-serif w-25">
+      <mat-label>Student Number</mat-label>
+      <input matInput placeholder="" required formControlName="studentNumber">
+    </mat-form-field>
+    <div>
+      <mat-form-field appearance="outline" class="sans-serif w-25">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="" required formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="sans-serif ml-3 w-25">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="" required formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="sans-serif ml-3 w-25">
+        <mat-label>Middle Name</mat-label>
+        <input matInput placeholder="" required formControlName="middleName">
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="sans-serif w-25">
+      <mat-label>Course</mat-label>
+      <mat-select formControlName="course">
+        <mat-option value="BSCPE" class="sans-serif">Bs in Computer Engineering</mat-option>
+        <mat-option value="BSCS" class="sans-serif">Bs in Computer Science</mat-option>
+        <mat-option value="BSIT" class="sans-serif">Bs in Information Technology</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="sans-serif ml-3 w-25">
+      <mat-label>Year Level</mat-label>
+      <mat-select formControlName="yearLevel">
+        <mat-option value="1" class="sans-serif">1st Year</mat-option>
+        <mat-option value="2" class="sans-serif">2nd Year</mat-option>
+        <mat-option value="3" class="sans-serif">3rd Year</mat-option>
+        <mat-option value="4" class="sans-serif">4th Year</mat-option>
+        <mat-option value="5" class="sans-serif">5th Year</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="sans-serif ml-3 w-25">
+      <mat-label>Section</mat-label>
+      <mat-select formControlName="section">
+        <mat-option value="1" class="sans-serif">1</mat-option>
+        <mat-option value="2" class="sans-serif">2</mat-option>
+        <mat-option value="3" class="sans-serif">3</mat-option>
+        <mat-option value="4" class="sans-serif">4</mat-option>
+        <mat-option value="5" class="sans-serif">5</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <p>
+    Default password for student is: <strong> 1234 </strong>
+  </p>
+  <p>
+    Users will be prompted to change password on their first login attempt.
+  </p>
+  <div class="mt-4 buttons">
+    <button mat-button routerLink="../user-accounts" class="back-button">
+      Back
+    </button>
+    <button mat-button class="button" (click)="create()" [disabled]="isSaving">{{ isSaving ? 'Saving...' : 'Save' }}</button>
+  </div>
+</div>

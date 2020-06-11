@@ -11,6 +11,7 @@ import {ViewProfileComponent} from './components/view-profile/view-profile.compo
 import {MaterialModule} from '../material.module';
 import { BookComponent } from './components/book/book.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
+import { FirstLoginComponent } from './components/first-login/first-login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BookCardComponent } from './components/book-card/book-card.component';
     GradesComponent,
     ViewProfileComponent,
     BookComponent,
-    BookCardComponent],
+    BookCardComponent,
+    FirstLoginComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

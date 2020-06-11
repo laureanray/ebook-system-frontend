@@ -1,0 +1,49 @@
+<div class="d-flex flex-column mt-4 mb-17">
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" class="sans-serif w-25">
+      <mat-label>Employee Number</mat-label>
+      <input matInput placeholder="" required formControlName="employeeNumber">
+    </mat-form-field>
+    <div>
+      <mat-form-field appearance="outline" class="sans-serif w-25">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="" required formControlName="lastName">
+
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="sans-serif w-25 ml-3">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="" required formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="sans-serif w-25 ml-3">
+        <mat-label>Middle Name</mat-label>
+        <input matInput placeholder="" required formControlName="middleName">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="sans-serif w-25">
+        <mat-label>Honorifics</mat-label>
+        <input matInput placeholder="" required formControlName="honorifics">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="sans-serif w-25 ml-3">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="" required formControlName="username">
+      </mat-form-field>
+    </div>
+
+
+    <p>
+      Default password for student is: <strong> 1234 </strong>
+    </p>
+
+    <p>
+      Users will be prompted to change password on their first login attempt.
+    </p>
+
+    <div class="mt-4 buttons">
+      <button mat-button routerLink="../user-accounts" class="back-button">
+        Back
+      </button>
+      <button mat-button class="button" (click)="create()" [disabled]="isSaving">{{ isSaving ? 'Saving...' : 'Save' }}</button>
+    </div>
+  </form>
+</div>

@@ -6,6 +6,7 @@ import {SetPasswordComponent} from './components/set-password/set-password.compo
 import {BookLibraryComponent} from './components/book-library/book-library.component';
 import {GradesComponent} from './components/grades/grades.component';
 import {ViewProfileComponent} from './components/view-profile/view-profile.component';
+import {FirstLoginComponent} from './components/first-login/first-login.component';
 // import {InitialHomeComponent} from './components/initial-home/initial-home.component';
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'book-library', component: BookLibraryComponent},
       { path: 'grades', component: GradesComponent},
-      { path: 'profile', component: ViewProfileComponent}
+      { path: 'profile', component: ViewProfileComponent},
     ]
     }
 ];

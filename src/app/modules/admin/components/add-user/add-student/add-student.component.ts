@@ -49,4 +49,13 @@ export class AddStudentComponent implements OnInit {
 
   }
 
+  update() {
+    this.isDisabled = !(this.studentForm.controls.firstName.value &&
+      this.studentForm.controls.lastName.value &&
+      this.studentForm.controls.middleName.value &&
+      this.studentForm.controls.studentNumber.value &&
+      this.studentForm.controls.course.value &&
+      this.studentForm.controls.yearLevel.value &&
+      this.studentForm.controls.section.value);
+  }
 }

@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 export class AddStudentComponent implements OnInit {
   public studentForm: FormGroup;
   isSaving = false;
+  isDisabled = true;
   constructor(private formBuilder: FormBuilder, private studentService: StudentService, private router: Router) { }
 
   ngOnInit(): void {

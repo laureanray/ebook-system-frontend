@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {AdminService} from '../../../../core/services/admin.service';
+import {AuthenticationService} from '../../../../core/services/authentication.service';
+import {User} from '../../../../core/models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-account-settings',
@@ -6,10 +10,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-settings.component.sass']
 })
 export class AccountSettingsComponent implements OnInit {
+  isDisabled = true;
+  newPassword: string;
+  confirm: string;
 
-  constructor() { }
+  constructor(private adminService: AdminService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+
+  update() {
+    if (this.newPassword === this.confirm) {
+      this.isDisabled = false;
+    }
+  }
+
+  updatePass() {
+    this.isDisabled = true;
+    this.authService.currentUser.subscribe((admin: User) => {
+      console.log(admin);
+      this.adminService.updatePassword(this.newPassword, admin.id).subscribe((res) => {
+        console.log(res);
+        this.isDisabled = false;
+        alert('You will be logged out, please login with your new password.');
+        this.authService.logout();
+        this.router.navigate(['/']);
+      });
+    });
+
+  }
 }

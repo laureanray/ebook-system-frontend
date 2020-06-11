@@ -13,4 +13,12 @@ export class AdminService {
     return this.http
       .get(`${environment.apiUrl}/admin/${id}`);
   }
+
+  updatePassword(newPassword: string, adminId: number) {
+    console.log('update' + adminId);
+    return this.http
+      .post(`${environment.apiUrl}/admin/update-password/${adminId}/${newPassword}`, {
+        newPassword
+      });
+  }
 }

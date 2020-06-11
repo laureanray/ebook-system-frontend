@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Instructor} from '../../../../../core/models/instructor';
+import {InstructorService} from '../../../../../core/services/instructor.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-instructor',
@@ -11,7 +13,7 @@ export class AddInstructorComponent implements OnInit {
   public form: FormGroup;
   isSaving = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private instructorService: InstructorService, private router: Router) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -32,9 +34,17 @@ export class AddInstructorComponent implements OnInit {
     instructor.middleName = this.form.controls.middleName.value;
     instructor.employeeNumber = this.form.controls.employeeNumber.value;
     instructor.honorifics = this.form.controls.honorifics.value;
+    instructor.username = this.form.controls.username.value;
 
     this.isSaving = true;
 
-
+    this.instructorService.addInstructor(instructor).subscribe((ins: Instructor) => {
+      if (ins !== null) {
+        this.router.navigate(['/admin/user-accounts']);
+      } else {
+        this.isSaving = false;
+        alert('Error occured!');
+      }
+    });
   }
 }

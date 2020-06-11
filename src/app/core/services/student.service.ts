@@ -28,9 +28,6 @@ export class StudentService {
 
   updatePassword(newPassword: string, studentId: number) {
     return this.http
-      .post(`${environment.apiUrl}/student/update-password`, {
-        newPassword,
-        studentId
-      });
+      .post(`${environment.apiUrl}/student/update-password/${studentId}/${newPassword}`, {});
   }
 }

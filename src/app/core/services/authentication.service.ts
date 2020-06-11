@@ -39,6 +39,7 @@ export class AuthenticationService {
         this.currentUserSubject.next(student);
         student = _.merge(student, response);
         localStorage.setItem('currentUser', JSON.stringify(student));
+        console.log(student);
         return student;
       }));
   }

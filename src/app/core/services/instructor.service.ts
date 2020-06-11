@@ -23,9 +23,6 @@ export class InstructorService {
   }
   updatePassword(newPassword: string, instructorId: string) {
     return this.http
-      .post(`${environment.apiUrl}/instructor/update-id`, {
-        newPassword,
-        instructorId
-      });
+      .post(`${environment.apiUrl}/instructor/update-id/${instructorId}`, {});
   }
 }

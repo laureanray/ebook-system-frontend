@@ -17,12 +17,23 @@ export class InstructorService {
   getAllInstructors() {
     return this.http.get(`${environment.apiUrl}/instructor`);
   }
+
+  getArchivedInstructors() {
+    return this.http.get(`${environment.apiUrl}/instructor/archived`);
+  }
+
   addInstructor(instructor: Instructor) {
     return this.http
       .post(`${environment.apiUrl}/instructor/add`, instructor);
   }
+
   updatePassword(newPassword: string, instructorId: string) {
     return this.http
       .post(`${environment.apiUrl}/instructor/update-id/${instructorId}`, {});
+  }
+
+  archive(instructorId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/archive/${instructorId}}`, {});
   }
 }

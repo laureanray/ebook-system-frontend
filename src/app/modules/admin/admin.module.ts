@@ -26,6 +26,7 @@ import { DeleteChapterModalComponent } from './components/selected-book/selected
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddStudentComponent } from './components/add-user/add-student/add-student.component';
 import { AddInstructorComponent } from './components/add-user/add-instructor/add-instructor.component';
+import { ArchivedComponent } from './components/archived/archived.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AddInstructorComponent } from './components/add-user/add-instructor/add
     DeleteChapterModalComponent,
     AddStudentComponent,
     AddInstructorComponent,
+    ArchivedComponent,
   ],
   imports: [
     CommonModule,

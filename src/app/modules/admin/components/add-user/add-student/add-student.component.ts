@@ -45,8 +45,9 @@ export class AddStudentComponent implements OnInit {
         this.isSaving = false;
         console.log(s);
         this.router.navigate(['/admin/user-accounts']);
+    }, error => {
+      alert('An error has occurred.');
     });
-
   }
 
   update() {

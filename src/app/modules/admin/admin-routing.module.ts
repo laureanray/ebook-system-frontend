@@ -12,6 +12,7 @@ import {SectionAssignmentComponent} from './components/section-assignment/sectio
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
 import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
 import {SelectedBookEditorComponent} from './components/selected-book/selected-book-editor/selected-book-editor.component';
+import {ArchivedComponent} from './components/archived/archived.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'book-manager'},
@@ -31,6 +32,7 @@ const routes: Routes = [
         ]
       },
       {path: 'user-accounts', component: UserAccountsComponent},
+      {path: 'archived', component: ArchivedComponent},
       {path: 'add-user', component: AddUserComponent},
       {path: 'account-settings', component: AccountSettingsComponent},
       {path: 'section-assignment', component: SectionAssignmentComponent}

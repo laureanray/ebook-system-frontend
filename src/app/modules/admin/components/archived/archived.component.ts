@@ -6,20 +6,18 @@ import {StudentService} from '../../../../core/services/student.service';
 import {InstructorService} from '../../../../core/services/instructor.service';
 
 @Component({
-  selector: 'app-user-accounts',
-  templateUrl: './user-accounts.component.html',
-  styleUrls: ['./user-accounts.component.sass']
+  selector: 'app-archived',
+  templateUrl: './archived.component.html',
+  styleUrls: ['./archived.component.sass']
 })
-export class UserAccountsComponent implements OnInit {
+export class ArchivedComponent implements OnInit {
   students: Student[];
   instructors: Instructor[];
-
-  constructor(private studentService: StudentService, private instructorService: InstructorService) {
-  }
+  constructor(private studentService: StudentService, private instructorService: InstructorService) { }
   studentDataSource: MatTableDataSource<Student>;
   instructorDataSource: MatTableDataSource<Instructor>;
-  studentDisplayedColumns: string[] = ['id', 'studNum', 'name', 'course', 'year', 'section', 'edit', 'trash'];
-  facultyDisplayedColumns: string[] = ['id', 'empNum', 'name', 'honorifics', 'username', 'edit', 'trash'];
+  studentDisplayedColumns: string[] = ['id', 'studNum', 'name', 'course', 'year', 'section', 'trash'];
+  facultyDisplayedColumns: string[] = ['id', 'empNum', 'name', 'honorifics', 'username', 'trash'];
   studentTable = true;
 
   applyFilter(event: Event) {
@@ -49,4 +47,3 @@ export class UserAccountsComponent implements OnInit {
   }
 
 }
-

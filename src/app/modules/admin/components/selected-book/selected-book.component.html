@@ -1,14 +1,15 @@
-<mat-drawer-container class="expand-container" autosize>
-      <mat-drawer disableClose="true" #drawer [(opened)]="isDrawerOpened" class="sidenav" mode="side">
-        <app-selected-book-sidebar></app-selected-book-sidebar>
-      </mat-drawer>
-      <div class="content">
-        <button type="button" mat-raised-button class="mt-3" (click)="drawer.toggle()">
-          <fa-icon [icon]="faLeft" *ngIf="isDrawerOpened"></fa-icon>
-          <fa-icon [icon]="faRight" *ngIf="!isDrawerOpened"></fa-icon>
-          {{ !isDrawerOpened ? 'Show Sidebar' : 'Hide Sidebar'}}
-        </button>
-        <router-outlet></router-outlet>
-      </div>
-</mat-drawer-container>
-
+<div class="container">
+  <mat-drawer-container class="expand-container" autosize>
+    <mat-drawer disableClose="true" #drawer [(opened)]="isDrawerOpened" class="sidenav" mode="side">
+      <app-selected-book-sidebar></app-selected-book-sidebar>
+    </mat-drawer>
+    <div class="content">
+      <button type="button" mat-raised-button class="mt-3" (click)="drawer.toggle()">
+        <fa-icon [icon]="faLeft" *ngIf="isDrawerOpened"></fa-icon>
+        <fa-icon [icon]="faRight" *ngIf="!isDrawerOpened"></fa-icon>
+        {{ !isDrawerOpened ? 'Show Sidebar' : 'Hide Sidebar'}}
+      </button>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

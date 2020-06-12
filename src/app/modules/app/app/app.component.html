@@ -1,19 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light header">
-  <a class="navbar-brand"><img class="logo" src="/assets/logo2.png" alt=""></a>
-  <a routerLink="" class="ml-auto nav-top-link" type="submit" *ngIf="!isLoggedIn; else elseBlk">Log In</a>
-  <ng-template #elseBlk>
-    <div *ngIf="user.role === 'Admin'">
-      <a routerLink="/admin/book-manager" class="nav-top-link mr-3 text-dark" >Book Manager</a>
-      <a routerLink="/admin/user-accounts" class="nav-top-link mr-3 text-dark">User Accounts</a>
-      <a routerLink="/admin/section-assignment" class="nav-top-link mr-3 text-dark">Section Assignments</a>
-      <a routerLink="/admin/account-settings" class="nav-top-link mr-3 text-dark ">Account Settings</a>
-    </div>
+  <div class="container">
+    <a class="navbar-brand"><img class="logo" src="/assets/logo2.png" alt=""></a>
+    <a routerLink="" class="ml-auto nav-top-link" type="submit" *ngIf="!isLoggedIn; else elseBlk">Log In</a>
+    <ng-template #elseBlk>
+      <div *ngIf="user.role === 'Admin'">
+        <a routerLink="/admin/book-manager" class="nav-top-link mr-3 text-dark" >Book Manager</a>
+        <a routerLink="/admin/user-accounts" class="nav-top-link mr-3 text-dark">User Accounts</a>
+        <a routerLink="/admin/section-assignment" class="nav-top-link mr-3 text-dark">Section Assignments</a>
+        <a routerLink="/admin/account-settings" class="nav-top-link mr-3 text-dark ">Account Settings</a>
+      </div>
 
-    <a (click)="logout()" class="ml-auto nav-top-link" type="submit">Logout</a>
-  </ng-template>
+      <a (click)="logout()" class="ml-auto nav-top-link" type="submit">Logout</a>
+    </ng-template>
+  </div>
 </nav>
 
-<div class="container-fluid content-container">
+<div class="content-container">
   <router-outlet></router-outlet>
 </div>
 

@@ -1,15 +1,17 @@
-<div class="d-flex flex-row">
-  <button mat-button routerLink="../add-book" class="mt-4 add-button">
-    <mat-icon class="add-icon">add</mat-icon>Add Book</button>
-  <p class="search-box">
-    <mat-form-field class="sans-serif" appearance="outline">
-      <mat-label>Search book</mat-label>
-      <input matInput placeholder="">
-      <mat-icon matSuffix class="orange-icon">search</mat-icon>
-    </mat-form-field>
-  </p>
-</div>
+<div class="container">
+  <div class="d-flex flex-row">
+    <button mat-button routerLink="../add-book" class="mt-4 add-button">
+      <mat-icon class="add-icon">add</mat-icon>Add Book</button>
+    <p class="search-box">
+      <mat-form-field class="sans-serif" appearance="outline">
+        <mat-label>Search book</mat-label>
+        <input matInput placeholder="">
+        <mat-icon matSuffix class="orange-icon">search</mat-icon>
+      </mat-form-field>
+    </p>
+  </div>
 
-<div class="card-container book-container d-flex flex-wrap">
-  <app-book-item-card *ngFor="let book of books" [bookAuthor]="book.bookAuthor" [bookId]="book.id" [bookTitle]="book.bookTitle" [bookCover]="book.bookCoverURL"></app-book-item-card>
+  <div class="card-container book-container d-flex flex-wrap">
+    <app-book-item-card *ngFor="let book of books" [bookAuthor]="book.bookAuthor" [bookId]="book.id" [bookTitle]="book.bookTitle" [bookCover]="book.bookCoverURL"></app-book-item-card>
+  </div>
 </div>

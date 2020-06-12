@@ -1,10 +1,8 @@
 <div class="container">
-  <h1 class="mt-4"> User Accounts </h1>
+  <h1 class="mt-4"> Archived Accounts </h1>
   <div class="d-flex flex-row">
-    <button mat-button routerLink="../add-user" class="mt-2 add-user-button">
-      <mat-icon class="add-icon">add</mat-icon>Add User</button>
-    <button mat-button routerLink="../archived" class="mt-2 add-user-button ml-2">
-      Archived </button>
+    <button mat-button routerLink="../user-accounts" class="mt-2 add-user-button">
+      Back</button>
     <p class="search-box">
       <mat-form-field class="sans-serif" appearance="outline">
         <mat-label>Search</mat-label>
@@ -59,17 +57,12 @@
           <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.section}} </td>
         </ng-container>
 
-        <!-- Edit Column -->
-        <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif">  </th>
-          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="white" class="w-100"> Edit </button></td>
-        </ng-container>
-
         <!-- Trash Column -->
         <ng-container matColumnDef="trash">
           <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> </th>
-          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="warn" class="w-100 ml-2"> Delete </button></td>
+          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="warn" class="w-100 ml-2"> Restore </button></td>
         </ng-container>
+        ex
         <tr mat-header-row *matHeaderRowDef="studentDisplayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: studentDisplayedColumns;"></tr>
       </table>
@@ -109,15 +102,10 @@
           <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.username}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif">  </th>
-          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="white" class="w-100"> Edit </button></td>
-        </ng-container>
-
         <!-- Trash Column -->
         <ng-container matColumnDef="trash">
           <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> </th>
-          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="warn" class="w-100 ml-2"> Delete </button></td>
+          <td mat-cell *matCellDef="let element" class="color-orange"><button mat-stroked-button color="warn" class="w-100 ml-2"> Restore </button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="facultyDisplayedColumns; sticky: true"></tr>
@@ -125,6 +113,4 @@
       </table>
     </div>
   </ng-container>
-
-
 </div>

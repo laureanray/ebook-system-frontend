@@ -1,37 +1,36 @@
-<app-loading *ngIf="loading; else loaded"></app-loading>
+  <app-loading *ngIf="loading; else loaded"></app-loading>
 <ng-template #loaded>
-  <div class="pt-4 editor-main">
-    <div class="row">
-      <div class="col-2">
-        <h1 class="mat-h1"> {{editingChapter?.chapterTitle}} </h1>
+    <div class="pt-4 editor-main">
+      <div class="row">
+        <div class="col-2">
+          <h1 class="mat-h1"> {{editingChapter?.chapterTitle}} </h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h2 class="mat-h2"> {{editingTopic?.topicTitle}} </h2>
-        <p class="text-muted"> {{ status }}</p>
+      <div class="row">
+        <div class="col">
+          <h2 class="mat-h2"> {{editingTopic?.topicTitle}} </h2>
+          <p class="text-muted"> {{ status }}</p>
+        </div>
+        <!--      <div class="col text-right">-->
+        <!--        <button mat-raised-button color="warn" class="mr-2" (click)="deleteTopic()"-->
+        <!--                [disabled]="isDeleting"> {{ isDeleting ? 'Deleting...' : 'Delete Topic'}}  </button>-->
+        <!--        <button mat-raised-button [disabled]="isSaving"-->
+        <!--                (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>-->
+        <!--      </div>-->
       </div>
-<!--      <div class="col text-right">-->
-<!--        <button mat-raised-button color="warn" class="mr-2" (click)="deleteTopic()"-->
-<!--                [disabled]="isDeleting"> {{ isDeleting ? 'Deleting...' : 'Delete Topic'}}  </button>-->
-<!--        <button mat-raised-button [disabled]="isSaving"-->
-<!--                (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>-->
-<!--      </div>-->
-    </div>
 
-    <div class="border-bottom border-bottom-1"></div>
-    <div >
-      <ckeditor [editor]="Editor" [config]="{ removePlugins: ['resize', 'autogrow'] }" [(ngModel)]="model.editorData"
-                (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
-    </div>
-    <div class="row  my-4">
-      <div class="col text-right">
-        <button mat-raised-button color="warn" class="mr-2"  (click)="deleteTopic()"
-                [disabled]="isDeleting"> {{ isDeleting ? 'Deleting...' : 'Delete Topic'}}  </button>
-        <button mat-raised-button [disabled]="isSaving"
-                (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
+      <div class="border-bottom border-bottom-1"></div>
+      <div >
+        <ckeditor [editor]="Editor" [config]="{ removePlugins: ['resize', 'autogrow'] }" [(ngModel)]="model.editorData"
+                  (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
+      </div>
+      <div class="row  my-4">
+        <div class="col text-right">
+          <button mat-raised-button color="warn" class="mr-2"  (click)="deleteTopic()"
+                  [disabled]="isDeleting"> {{ isDeleting ? 'Deleting...' : 'Delete Topic'}}  </button>
+          <button mat-raised-button [disabled]="isSaving"
+                  (click)="saveChanges()"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
+        </div>
       </div>
     </div>
-  </div>
-
 </ng-template>

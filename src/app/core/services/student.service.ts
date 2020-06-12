@@ -26,8 +26,17 @@ export class StudentService {
       .get(`${environment.apiUrl}/student`);
   }
 
+  getArchivedStudents() {
+    return this.http
+      .get(`${environment.apiUrl}/student-archived`);
+  }
+
   updatePassword(newPassword: string, studentId: number) {
     return this.http
       .post(`${environment.apiUrl}/student/update-password/${studentId}/${newPassword}`, {});
+  }
+  archive(studentId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/student/archive/${studentId}}`, {});
   }
 }

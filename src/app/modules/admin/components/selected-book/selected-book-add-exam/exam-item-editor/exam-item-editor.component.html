@@ -9,46 +9,42 @@
   </p>
   <div class="col-11">
     <div class="identification" *ngIf="identification">
-      <form>
         <mat-form-field class="w-100">
           <mat-label>Type your question here</mat-label>
-          <textarea matInput></textarea>
+          <textarea matInput (blur)="update()" [(ngModel)]="question"></textarea>
         </mat-form-field>
         <mat-form-field class="w-100">
           <mat-label>Answer</mat-label>
-          <input matInput>
+          <input matInput  (blur)="update()" [(ngModel)]="answer">
         </mat-form-field>
-      </form>
     </div>
     <div class="multiple" *ngIf="!identification">
-      <form>
         <mat-form-field class="w-100">
           <mat-label>Type your question here</mat-label>
-          <textarea matInput></textarea>
+          <textarea matInput [(ngModel)]="question"></textarea>
         </mat-form-field>
-        <mat-radio-group class="d-flex flex-column">
+        <mat-radio-group class="d-flex flex-column" (change)="update()" [(ngModel)]="answer">
           <mat-radio-button value="1" color="primary">
             <mat-form-field>
-              <input matInput placeholder="Option 1" class="input">
+              <input matInput placeholder="Option 1" class="input" [(ngModel)]="options[0]">
             </mat-form-field>
           </mat-radio-button>
           <mat-radio-button value="2" color="primary">
             <mat-form-field>
-              <input matInput placeholder="Option 2" class="input">
+              <input matInput placeholder="Option 2" class="input" [(ngModel)]="options[1]">
             </mat-form-field>
           </mat-radio-button>
           <mat-radio-button value="3" color="primary">
             <mat-form-field>
-              <input matInput placeholder="Option 3" class="input">
+              <input matInput placeholder="Option 3" class="input" [(ngModel)]="options[2]">
             </mat-form-field>
           </mat-radio-button>
           <mat-radio-button value="4" color="primary">
             <mat-form-field>
-              <input matInput placeholder="Option 4" class="input">
+              <input matInput placeholder="Option 4" class="input" [(ngModel)]="options[3]">
             </mat-form-field>
           </mat-radio-button>
         </mat-radio-group>
-      </form>
     </div>
   </div>
   <div class="col-1 d-flex align-items-center">

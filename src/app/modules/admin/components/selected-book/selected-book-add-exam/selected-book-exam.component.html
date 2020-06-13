@@ -3,7 +3,7 @@
 <h2 class="sans-serif">Instructions</h2>
   <mat-form-field class="instruction" appearance="outline">
     <mat-label></mat-label>
-    <textarea (keyup)="update()" matInput [(ngModel)]="instructions"></textarea>
+    <textarea (keyup)="update()" matInput (blur)="update()" [(ngModel)]="instructions"></textarea>
   </mat-form-field>
 <div class="d-flex justify-content-end">
   <button mat-button (click)="addItem()" [disabled]="isDisabled" class="mt-4 mr-4 add-button">
@@ -14,4 +14,4 @@
 <!--    Next-->
 <!--  </button>-->
 </div>
-<app-exam-item-editor *ngFor="let x of exam.examItems" ></app-exam-item-editor>
+<app-exam-item-editor *ngFor="let x of exam.examItems" [examItem]="x" ></app-exam-item-editor>

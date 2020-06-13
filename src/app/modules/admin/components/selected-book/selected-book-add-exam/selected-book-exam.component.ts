@@ -52,7 +52,13 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
     });
 
     this.examEditorSub = this.examEditor.getCurrentExam().subscribe((ex: Exam) => {
-      console.log(ex);
+      if (ex !== null) {
+        console.clear();
+        console.table(ex?.examItems);
+        ex.examItems?.forEach((i: ExamItem) => {
+          console.table(i.choices);
+        });
+      }
     });
 
     this.exam = new Exam();
@@ -61,11 +67,14 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
   addItem() {
     // this.isAdding = true;
     // this.isDisabled = true;t
+    const examItem = new ExamItem();
     if (this.exam.examItems == null) {
       this.exam.examItems = [];
-      this.exam.examItems.push(new ExamItem());
+      this.exam.examItems.push(examItem);
+      examItem.num = 1;
     } else {
-      this.exam.examItems.push(new ExamItem());
+      this.exam.examItems.push(examItem);
+      examItem.num = this.exam.examItems.length + 1;
     }
 
     this.update();
@@ -89,5 +98,7 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
     this.bookSub.unsubscribe();
     this.examEditorSub.unsubscribe();
   }
+
+
 }
 

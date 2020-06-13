@@ -14,6 +14,7 @@ import {SelectedBookExamComponent} from './components/selected-book/selected-boo
 import {SelectedBookEditorComponent} from './components/selected-book/selected-book-editor/selected-book-editor.component';
 import {ArchivedComponent} from './components/archived/archived.component';
 import {SelectedBookEditExamComponent} from './components/selected-book/selected-book-edit-exam/selected-book-edit-exam.component';
+import {EditUserComponent} from './components/user-accounts/edit-user/edit-user.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'book-manager'},
@@ -36,6 +37,7 @@ const routes: Routes = [
       {path: 'user-accounts', component: UserAccountsComponent},
       {path: 'archived', component: ArchivedComponent},
       {path: 'add-user', component: AddUserComponent},
+      {path: 'edit', component: EditUserComponent},
       {path: 'account-settings', component: AccountSettingsComponent},
       {path: 'section-assignment', component: SectionAssignmentComponent}
     ]

@@ -4,6 +4,7 @@ import {Student} from '../../../../core/models/student';
 import {Instructor} from '../../../../core/models/instructor';
 import {StudentService} from '../../../../core/services/student.service';
 import {InstructorService} from '../../../../core/services/instructor.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-accounts',
@@ -14,7 +15,9 @@ export class UserAccountsComponent implements OnInit {
   students: Student[];
   instructors: Instructor[];
 
-  constructor(private studentService: StudentService, private instructorService: InstructorService) {
+  constructor(private studentService: StudentService,
+              private instructorService: InstructorService,
+              private router: Router) {
   }
   studentDataSource: MatTableDataSource<Student>;
   instructorDataSource: MatTableDataSource<Instructor>;
@@ -48,5 +51,19 @@ export class UserAccountsComponent implements OnInit {
     this.studentTable = bool;
   }
 
+
+  edit(id: number, type: string) {
+    this.router.navigate(['/edit'], {
+      queryParams: {
+        id,
+        type
+      },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  archive(id: number, type: string) {
+
+  }
 }
 

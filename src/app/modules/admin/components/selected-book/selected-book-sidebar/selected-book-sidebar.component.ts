@@ -49,6 +49,20 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getBookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
+      // sort the topic titles
+      if (this.book != null) {
+        this.book.chapters.forEach((ch: Chapter) => {
+          ch.topics.sort((a: Topic, b: Topic) => {
+            if (a.topicTitle > b.topicTitle) {
+              return 1;
+            } else if (a.topicTitle < b.topicTitle) {
+              return  -1;
+            } else {
+              return 0;
+            }
+          });
+        });
+      }
       if (book != null) {
         this.activatedRoute.queryParams.subscribe(params => {
           if (!_.isEmpty(params)) {
@@ -148,6 +162,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
       this.chapterTitle = '';
       this.updateBookData();
       this.isSaving = false;
+      this.isAddingChapter = false;
     });
   }
 

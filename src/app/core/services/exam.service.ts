@@ -19,4 +19,8 @@ export class ExamService {
     return this.http.post(`${environment.apiUrl}/exam/add/${examId}`, examItem);
   }
 
+  deleteExam(examId: number) {
+    return this.http.post(`${environment.apiUrl}/exam/delete/${examId}`, {});
+  }
+
 }

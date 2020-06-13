@@ -8,7 +8,7 @@ import {Exam} from '../../../core/models/exam';
 export class ExamEditorService {
   private currentExam = new BehaviorSubject(null);
 
-  public setCurrentExam(exam: Exam) {
+  public updateCurrentExam(exam: Exam) {
     this.currentExam.next(exam);
   }
 

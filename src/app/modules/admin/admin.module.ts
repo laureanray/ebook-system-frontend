@@ -27,6 +27,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { AddStudentComponent } from './components/add-user/add-student/add-student.component';
 import { AddInstructorComponent } from './components/add-user/add-instructor/add-instructor.component';
 import { ArchivedComponent } from './components/archived/archived.component';
+import { SelectedBookEditExamComponent } from './components/selected-book/selected-book-edit-exam/selected-book-edit-exam.component';
+import { ExamItemEditorComponent } from './components/selected-book/selected-book-add-exam/exam-item-editor/exam-item-editor.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ArchivedComponent } from './components/archived/archived.component';
     AddStudentComponent,
     AddInstructorComponent,
     ArchivedComponent,
+    SelectedBookEditExamComponent,
+    ExamItemEditorComponent,
   ],
   imports: [
     CommonModule,

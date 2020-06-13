@@ -73,7 +73,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             // check if current chapter contains the topic
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
             this.chapter = chapter;
-            console.log(chapter.exam);
+            // console.log(chapter.exam);
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
@@ -186,10 +186,12 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   selectExam(id: number) {
     this.activeTopic = null;
     // console.log('add exam');
-    this.router.navigate(['exam'], {
+    this.router.navigate(['edit-exam'], {
       relativeTo: this.activatedRoute,
       queryParams: {
-        chapter: this.lastSelectedChapter
+        chapter: this.lastSelectedChapter,
+        exam: id,
+        book: this.book.id
       },
       queryParamsHandling: 'merge'
     }).then(() => {

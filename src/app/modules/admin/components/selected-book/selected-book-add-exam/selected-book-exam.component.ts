@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {ExamEditorService} from '../../../services/exam-editor.service';
 import {ExamService} from '../../../../../core/services/exam.service';
@@ -8,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 import * as _ from 'lodash';
 import {Book} from '../../../../../core/models/book';
 import {ExamItem} from '../../../../../core/models/exam-item';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-selected-book-add-exam',
@@ -16,7 +17,7 @@ import {ExamItem} from '../../../../../core/models/exam-item';
   encapsulation: ViewEncapsulation.None
 
 })
-export class SelectedBookExamComponent implements OnInit {
+export class SelectedBookExamComponent implements OnInit, OnDestroy {
   isAdding = false;
   isDisabled = false;
   identification = true;
@@ -26,16 +27,19 @@ export class SelectedBookExamComponent implements OnInit {
   exam: Exam;
   examItems: ExamItem[];
   chapter: Chapter;
-
+  examItemsCount = [];
+  querySub: Subscription;
+  bookSub: Subscription;
+  examEditorSub: Subscription;
   constructor(private examEditor: ExamEditorService,
               private examService: ExamService,
               private bookEditorService: BookEditorService,
               private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.querySub = this.activatedRoute.queryParams.subscribe(params => {
       if (!_.isEmpty(params)) {
         // tslint:disable-next-line:radix
         const chapterId = parseInt(params.chapter);
-        this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
+        this.bookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
             if (book != null) {
               book.chapters.forEach((c: Chapter) => {
                 if (c.id === chapterId) {
@@ -47,7 +51,7 @@ export class SelectedBookExamComponent implements OnInit {
       }
     });
 
-    this.examEditor.getCurrentExam().subscribe((ex: Exam) => {
+    this.examEditorSub = this.examEditor.getCurrentExam().subscribe((ex: Exam) => {
       console.log(ex);
     });
 
@@ -55,8 +59,16 @@ export class SelectedBookExamComponent implements OnInit {
   }
 
   addItem() {
-    this.isAdding = true;
-    this.isDisabled = true;
+    // this.isAdding = true;
+    // this.isDisabled = true;t
+    if (this.exam.examItems == null) {
+      this.exam.examItems = [];
+      this.exam.examItems.push(new ExamItem());
+    } else {
+      this.exam.examItems.push(new ExamItem());
+    }
+
+    this.update();
   }
   ngOnInit(): void {
     // this.bookEditorService.setCurrentChapterAndTopic(null, null);
@@ -70,6 +82,12 @@ export class SelectedBookExamComponent implements OnInit {
   update() {
     this.exam.instructions = this.instructions;
     this.examEditor.updateCurrentExam(this.exam);
+  }
+
+  ngOnDestroy(): void {
+    this.querySub.unsubscribe();
+    this.bookSub.unsubscribe();
+    this.examEditorSub.unsubscribe();
   }
 }
 

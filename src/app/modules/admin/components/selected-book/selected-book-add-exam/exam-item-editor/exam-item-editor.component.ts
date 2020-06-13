@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ExamEditorService} from '../../../../services/exam-editor.service';
+import {ExamItem} from '../../../../../../core/models/exam-item';
 
 @Component({
   selector: 'app-exam-item-editor',
@@ -7,13 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamItemEditorComponent implements OnInit {
   identification = true;
+  @Input() num: number;
+  examItem: ExamItem;
 
-  constructor() { }
+  constructor(private examEditorService: ExamEditorService) { }
 
   ngOnInit(): void {
   }
 
   toggle(bool: boolean) {
     this.identification = bool;
+  }
+
+
+  update() {
+    // trigger update here
+
   }
 }

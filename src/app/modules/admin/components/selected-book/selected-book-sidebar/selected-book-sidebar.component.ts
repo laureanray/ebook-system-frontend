@@ -36,6 +36,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
   faPlus = faPlus;
   isAddingExam = false;
+  isExamEmpty = false;
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
@@ -58,6 +59,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             // check if current chapter contains the topic
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
             this.chapter = chapter;
+            this.isExamEmpty = chapter.exam === null || chapter.exam === undefined;
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
@@ -163,6 +165,10 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
         chapterTitle: chapter.chapterTitle
       }
     });
+  }
+
+  selectExam(id: number) {
+    alert(id);
   }
 }
 

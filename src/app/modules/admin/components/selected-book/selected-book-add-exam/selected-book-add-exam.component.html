@@ -1,21 +1,19 @@
 <h1 class="sans-serif color-orange pt-4">Chapter 1 - Exam</h1>
 <h2 class="sans-serif">Instructions</h2>
-<form>
   <mat-form-field class="instruction" appearance="outline">
     <mat-label></mat-label>
-    <textarea matInput></textarea>
+    <textarea (keyup)="keyup()" matInput [(ngModel)]="instructions"></textarea>
   </mat-form-field>
-</form>
 <div class="d-flex justify-content-end">
   <button mat-button (click)="addItem()" [disabled]="isDisabled" class="mt-4 mr-4 add-button">
     <mat-icon class="add-icon">add</mat-icon>
     Add Item
   </button>
-  <button mat-button class="mt-4 button" [disabled]="saveDisabled">
-    Save
+  <button mat-button class="mt-4 button" (click)="next()" [disabled]="nextDisabled">
+    Next
   </button>
 </div>
-<div class="scroll">
+<div class="scroll" *ngIf="state === 'ADD_ITEM'">
   <div class="question-container" *ngIf="isAdding">
     <div class="row m-0">
       <p class="sans-serif font-16">1.

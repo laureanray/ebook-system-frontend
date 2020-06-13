@@ -28,6 +28,8 @@ export class SelectedBookComponent implements OnInit {
       this.bookService.getBook(this.bookId).subscribe((book: Book) => {
           this.bookEditorService.setCurrentBook(book);
           console.log(book);
+      }, error => {
+          console.log(error);
       });
     });
   }

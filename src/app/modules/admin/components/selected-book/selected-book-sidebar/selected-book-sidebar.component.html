@@ -20,10 +20,13 @@
         <div class="list-group sans-serif">
           <a class="list-group-item list-group-item-action" [ngClass]="{ 'active' : topic.id === activeTopic }"
              (click)="topicClicked(topic.id)" *ngFor="let topic of chapter.topics"> {{topic.topicTitle}} </a>
+          <ng-container #examNotEmpty>
+            <a class="list-group-item list-group-item-action" (click)="selectExam(chapter.exam.id)"> Chapter Exam </a>
+          </ng-container>
           <a class="list-group-item list-group-item-action text-dark" (click)="addTopic(chapter.id)">
             <fa-icon [icon]="faPlus"></fa-icon>
             Add Topic </a>
-          <a class="list-group-item list-group-item-action" (click)="addExam(chapter.id)"
+          <a class="list-group-item list-group-item-action" *ngIf="isExamEmpty; else examNotEmpty" (click)="addExam(chapter.id)"
             [ngClass]="{ 'active' : isAddingExam === true } "
             >
             <fa-icon [icon]="faPlus"></fa-icon> {{ isAddingExam ? 'Adding Exam' : 'Add Exam'}} </a>

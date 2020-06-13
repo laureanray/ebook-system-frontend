@@ -10,7 +10,7 @@ import {AddUserComponent} from './components/add-user/add-user.component';
 import {AccountSettingsComponent} from './components/account-settings/account-settings.component';
 import {SectionAssignmentComponent} from './components/section-assignment/section-assignment.component';
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
-import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
+import {SelectedBookExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-exam.component';
 import {SelectedBookEditorComponent} from './components/selected-book/selected-book-editor/selected-book-editor.component';
 import {ArchivedComponent} from './components/archived/archived.component';
 
@@ -27,7 +27,7 @@ const routes: Routes = [
         children: [
           {path: '', redirectTo: 'details'},
           {path: 'details', component: SelectedBookDetailsComponent},
-          {path: 'add-exam', component: SelectedBookAddExamComponent},
+          {path: 'exam', component: SelectedBookExamComponent},
           {path: 'editor', component: SelectedBookEditorComponent}
         ]
       },

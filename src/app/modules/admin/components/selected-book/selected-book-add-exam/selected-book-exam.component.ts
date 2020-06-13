@@ -7,12 +7,12 @@ import {Chapter} from '../../../../../core/models/chapter';
 
 @Component({
   selector: 'app-selected-book-add-exam',
-  templateUrl: './selected-book-add-exam.component.html',
-  styleUrls: ['./selected-book-add-exam.component.sass'],
+  templateUrl: './selected-book-exam.component.html',
+  styleUrls: ['./selected-book-exam.component.sass'],
   encapsulation: ViewEncapsulation.None
 
 })
-export class SelectedBookAddExamComponent implements OnInit {
+export class SelectedBookExamComponent implements OnInit {
 
   isAdding = false;
   isDisabled = false;
@@ -20,12 +20,14 @@ export class SelectedBookAddExamComponent implements OnInit {
   nextDisabled = true;
   state = 'INITIAL';
   instructions: string;
+  isEditing = false;
   chapter: Chapter;
 
   constructor(private examEditor: ExamEditorService, private exam: ExamService, private bookEditorService: BookEditorService) {
     this.bookEditorService.getCurrentChapter().subscribe((c: Chapter) => {
       console.log(c);
       this.chapter = c;
+      this.isEditing = this.chapter.exam !== null;
     });
   }
 

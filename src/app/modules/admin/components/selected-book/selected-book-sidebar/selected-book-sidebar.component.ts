@@ -36,7 +36,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
   faPlus = faPlus;
   isAddingExam = false;
-  isExamEmpty = false;
+  isExamEmpty = true;
 
   constructor(private bookEditorService: BookEditorService,
               private bookService: BookService,
@@ -59,7 +59,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
             // check if current chapter contains the topic
             const chapter = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
             this.chapter = chapter;
-            this.isExamEmpty = chapter.exam === null || chapter.exam === undefined;
+            console.log(chapter.exam);
             if (!_.find(chapter.topics, t => t.id === this.activeTopic)) {
             } else {
               this.bookEditorService.setCurrentChapterAndTopic(this.lastSelectedChapter, this.activeTopic);
@@ -110,6 +110,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
     this.lastSelectedChapter = id;
     const selected = _.find(this.book.chapters, c => c.id === this.lastSelectedChapter);
     this.bookEditorService.setCurrentChapter(selected);
+    this.isExamEmpty = selected.exam === null;
   }
 
 
@@ -127,7 +128,7 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   addExam(id: number) {
     this.activeTopic = null;
     // console.log('add exam');
-    this.router.navigate(['add-exam'], {
+    this.router.navigate(['exam'], {
       relativeTo: this.activatedRoute,
       queryParams: {
         chapter: this.lastSelectedChapter
@@ -168,7 +169,17 @@ export class SelectedBookSidebarComponent implements OnInit, OnDestroy {
   }
 
   selectExam(id: number) {
-    alert(id);
+    this.activeTopic = null;
+    // console.log('add exam');
+    this.router.navigate(['exam'], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        chapter: this.lastSelectedChapter
+      },
+      queryParamsHandling: 'merge'
+    }).then(() => {
+      this.isAddingExam = true;
+    });
   }
 }
 

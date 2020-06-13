@@ -3,7 +3,7 @@ import {Exam} from './exam';
 
 export class Chapter {
   id: number;
-  chapterTitle: string;
+   chapterTitle: string;
   topics: Topic[];
   exam: Exam;
   bookId: number;

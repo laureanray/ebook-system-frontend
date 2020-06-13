@@ -19,7 +19,7 @@ import {SelectedBookSidebarComponent} from './components/selected-book/selected-
 import {SelectedBookDetailsComponent} from './components/selected-book/selected-book-details/selected-book-details.component';
 import {SharedModule} from '../../shared/shared.module';
 import {DeleteModalComponent} from './components/selected-book/selected-book-editor/delete-modal/delete-modal.component';
-import {SelectedBookAddExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-add-exam.component';
+import {SelectedBookExamComponent} from './components/selected-book/selected-book-add-exam/selected-book-exam.component';
 import {RemoveAccessModalComponent} from './components/selected-book/selected-book-details/remove-access-modal/remove-access-modal.component';
 import {MaterialModule} from '../material.module';
 import { DeleteChapterModalComponent } from './components/selected-book/selected-book-editor/delete-chapter-modal/delete-chapter-modal.component';
@@ -44,7 +44,7 @@ import { ArchivedComponent } from './components/archived/archived.component';
     SectionAssignmentComponent,
     AddTopicModalComponent,
     DeleteModalComponent,
-    SelectedBookAddExamComponent,
+    SelectedBookExamComponent,
     RemoveAccessModalComponent,
     DeleteChapterModalComponent,
     AddStudentComponent,

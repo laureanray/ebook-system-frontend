@@ -41,4 +41,9 @@ export class InstructorService {
     return this.http
       .post(`${environment.apiUrl}/instructor/restore/${instructorId}`, {});
   }
+
+  resetPassword(studentId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/reset/${studentId}`, {});
+  }
 }

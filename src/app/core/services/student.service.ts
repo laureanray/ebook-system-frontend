@@ -28,7 +28,7 @@ export class StudentService {
 
   getArchivedStudents() {
     return this.http
-      .get(`${environment.apiUrl}/student-archived`);
+      .get(`${environment.apiUrl}/student/archived`);
   }
 
   updatePassword(newPassword: string, studentId: number) {
@@ -44,5 +44,10 @@ export class StudentService {
   restore(studentId: number) {
     return this.http
       .post(`${environment.apiUrl}/student/restore/${studentId}`, {});
+  }
+
+  resetPassword(studentId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/student/reset/${studentId}`, {});
   }
 }

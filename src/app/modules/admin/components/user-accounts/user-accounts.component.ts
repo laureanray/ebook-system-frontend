@@ -57,7 +57,7 @@ export class UserAccountsComponent implements OnInit {
 
 
   edit(id: number, type: string) {
-    this.router.navigate(['/edit'], {
+    this.router.navigate(['/admin/edit'], {
       queryParams: {
         id,
         type

@@ -36,6 +36,11 @@ export class StudentService {
       .post(`${environment.apiUrl}/student/update-password/${studentId}/${newPassword}`, {});
   }
 
+  update(student: Student) {
+    return this.http
+      .post(`${environment.apiUrl}/student/update-password/${student.id}}`, student);
+  }
+
   archive(studentId: number) {
     return this.http
       .post(`${environment.apiUrl}/student/archive/${studentId}`, {});

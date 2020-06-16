@@ -16,6 +16,7 @@ export class EditUserComponent implements OnInit {
   lastName = '';
   firstName = '';
   middleName = '';
+  isUpdating = false;
   user: User;
   isDisabled = true;
   isResetting = false;
@@ -65,10 +66,17 @@ export class EditUserComponent implements OnInit {
   }
 
 
+  keyup() {
+    this.isDisabled = !(this.firstName !== this.user.firstName ||
+      this.lastName !== this.user.lastName ||
+      this.middleName !== this.user.middleName);
+  }
+
   update() {
-    this.isDisabled = this.firstName !== this.user.firstName ||
-                      this.lastName !== this.user.lastName ||
-                      this.middleName !== this.user.middleName;
+    this.isUpdating = true;
+    if (this.type === 'student') {
+      this.studentService.update
+    }
   }
 
   reset() {

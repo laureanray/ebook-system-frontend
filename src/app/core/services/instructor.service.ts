@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Instructor} from '../models/instructor';
+import {Student} from '../models/student';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class InstructorService {
   addInstructor(instructor: Instructor) {
     return this.http
       .post(`${environment.apiUrl}/instructor/add`, instructor);
+  }
+
+  update(instructor: Instructor) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/update-password/${instructor.id}}`, instructor);
   }
 
   updatePassword(newPassword: string, instructorId: string) {

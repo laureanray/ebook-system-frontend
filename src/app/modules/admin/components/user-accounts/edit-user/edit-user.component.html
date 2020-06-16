@@ -7,17 +7,17 @@
   <div class="d-flex flex-column w-50">
     <mat-form-field appearance="outline" class="sans-serif w-50">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="" required (keyup)="update()" [(ngModel)]="lastName">
+      <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="lastName">
     </mat-form-field>
     <mat-form-field appearance="outline" class="sans-serif w-50">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="" required (keyup)="update()" [(ngModel)]="firstName">
+      <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="firstName">
     </mat-form-field>
     <mat-form-field appearance="outline" class="sans-serif w-50">
       <mat-label>Middle Name</mat-label>
-      <input matInput placeholder="" required (keyup)="update()" [(ngModel)]="middleName">
+      <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="middleName">
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="w-50" [disabled]="isDisabled"> Update </button>
+    <button mat-stroked-button color="primary" class="w-50" [disabled]="isDisabled || isUpdating"> {{ isUpdating ? 'Updating' : 'Update' }} </button>
     <button mat-stroked-button color="warn" class="w-50 my-3" [disabled]="isResetting" (click)="reset()"> {{ isResetting ? 'Resetting Password' : 'Reset Password' }} </button>
     <p> Resetting password will reset to default password <strong> 1234 </strong></p>
   </div>

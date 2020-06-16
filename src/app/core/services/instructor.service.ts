@@ -34,6 +34,11 @@ export class InstructorService {
 
   archive(instructorId: number) {
     return this.http
-      .post(`${environment.apiUrl}/instructor/archive/${instructorId}}`, {});
+      .post(`${environment.apiUrl}/instructor/archive/${instructorId}`, {});
+  }
+
+  restore(instructorId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/restore/${instructorId}`, {});
   }
 }

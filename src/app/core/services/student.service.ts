@@ -35,8 +35,14 @@ export class StudentService {
     return this.http
       .post(`${environment.apiUrl}/student/update-password/${studentId}/${newPassword}`, {});
   }
+
   archive(studentId: number) {
     return this.http
-      .post(`${environment.apiUrl}/student/archive/${studentId}}`, {});
+      .post(`${environment.apiUrl}/student/archive/${studentId}`, {});
+  }
+
+  restore(studentId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/student/restore/${studentId}`, {});
   }
 }

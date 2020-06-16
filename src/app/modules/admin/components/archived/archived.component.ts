@@ -30,13 +30,16 @@ export class ArchivedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.studentService.getAllStudents().subscribe((students: Student[]) => {
+    this.init();
+  }
+
+  init() {
+    this.studentService.getArchivedStudents().subscribe((students: Student[]) => {
       this.students = students;
       this.studentDataSource = new MatTableDataSource(students);
-      console.log(students);
     });
 
-    this.instructorService.getAllInstructors().subscribe((instructors: Instructor[]) => {
+    this.instructorService.getArchivedInstructors().subscribe((instructors: Instructor[]) => {
       this.instructors = instructors;
       this.instructorDataSource = new MatTableDataSource(instructors);
     });
@@ -46,4 +49,18 @@ export class ArchivedComponent implements OnInit {
     this.studentTable = bool;
   }
 
+  restore(id: any, type: string) {
+    switch (type) {
+      case 'student':
+        this.studentService.restore(id).subscribe(res => {
+          if (res) { this.init(); }
+        });
+        break;
+      case 'instructor':
+        this.instructorService.restore(id).subscribe(res => {
+          if (res) { this.init(); }
+        });
+        break;
+    }
+  }
 }

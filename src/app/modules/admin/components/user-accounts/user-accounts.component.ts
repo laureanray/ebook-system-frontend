@@ -34,7 +34,7 @@ export class UserAccountsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  init() {
     this.studentService.getAllStudents().subscribe((students: Student[]) => {
       this.students = students;
       this.studentDataSource = new MatTableDataSource(students);
@@ -45,6 +45,10 @@ export class UserAccountsComponent implements OnInit {
       this.instructors = instructors;
       this.instructorDataSource = new MatTableDataSource(instructors);
     });
+  }
+
+  ngOnInit(): void {
+    this.init();
   }
 
   toggle(bool: boolean) {
@@ -63,7 +67,19 @@ export class UserAccountsComponent implements OnInit {
   }
 
   archive(id: number, type: string) {
-
+    console.log(id);
+    switch (type) {
+      case 'student':
+        this.studentService.archive(id).subscribe(res => {
+          if (res) { this.init(); }
+        });
+        break;
+      case 'instructor':
+        this.instructorService.archive(id).subscribe(res => {
+          if (res) { this.init(); }
+        });
+        break;
+    }
   }
 }
 

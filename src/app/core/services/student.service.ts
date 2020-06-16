@@ -38,7 +38,7 @@ export class StudentService {
 
   update(student: Student) {
     return this.http
-      .post(`${environment.apiUrl}/student/update-password/${student.id}}`, student);
+      .post(`${environment.apiUrl}/student/update/${student.id}`, student);
   }
 
   archive(studentId: number) {

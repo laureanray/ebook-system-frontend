@@ -17,7 +17,7 @@
       <mat-label>Middle Name</mat-label>
       <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="middleName">
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="w-50" [disabled]="isDisabled || isUpdating"> {{ isUpdating ? 'Updating' : 'Update' }} </button>
+    <button mat-stroked-button color="primary" (click)="update()" class="w-50" [disabled]="isDisabled || isUpdating"> {{ isUpdating ? 'Updating' : 'Update' }} </button>
     <button mat-stroked-button color="warn" class="w-50 my-3" [disabled]="isResetting" (click)="reset()"> {{ isResetting ? 'Resetting Password' : 'Reset Password' }} </button>
     <p> Resetting password will reset to default password <strong> 1234 </strong></p>
   </div>

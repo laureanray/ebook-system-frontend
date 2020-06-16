@@ -4,6 +4,7 @@ import {InstructorService} from '../../../../../core/services/instructor.service
 import {ActivatedRoute, Router} from '@angular/router';
 import {Student} from '../../../../../core/models/student';
 import {User} from '../../../../../core/models/user';
+import {Instructor} from '../../../../../core/models/instructor';
 
 @Component({
   selector: 'app-edit-user',
@@ -75,7 +76,22 @@ export class EditUserComponent implements OnInit {
   update() {
     this.isUpdating = true;
     if (this.type === 'student') {
-      this.studentService.update
+      this.user.firstName = this.firstName;
+      this.user.middleName = this.middleName;
+      this.user.lastName = this.lastName;
+      this.studentService.update(this.user as Student).subscribe(res => {
+        if (res) {
+          alert('Updated!');
+          this.isUpdating = false;
+        }
+      });
+    } else if (this.type === 'instructor') {
+      this.instructorService.update(this.user as Instructor).subscribe(res => {
+        if (res) {
+          alert('Updated!');
+          this.isUpdating = false;
+        }
+      });
     }
   }
 

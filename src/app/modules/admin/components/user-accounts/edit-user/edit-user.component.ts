@@ -75,10 +75,10 @@ export class EditUserComponent implements OnInit {
 
   update() {
     this.isUpdating = true;
+    this.user.firstName = this.firstName;
+    this.user.middleName = this.middleName;
+    this.user.lastName = this.lastName;
     if (this.type === 'student') {
-      this.user.firstName = this.firstName;
-      this.user.middleName = this.middleName;
-      this.user.lastName = this.lastName;
       this.studentService.update(this.user as Student).subscribe(res => {
         if (res) {
           alert('Updated!');

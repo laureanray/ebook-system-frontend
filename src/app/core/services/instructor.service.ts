@@ -12,7 +12,7 @@ export class InstructorService {
   constructor(private http: HttpClient) { }
 
   getInstructor(id: number) {
-    return this.http.get(`${environment.apiUrl}/admin/${id}`);
+    return this.http.get(`${environment.apiUrl}/instructor/${id}`);
   }
 
   getAllInstructors() {

@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Instructor} from '../../../../../core/models/instructor';
 import {InstructorService} from '../../../../../core/services/instructor.service';
+import {Assignment} from '../../../../../core/models/assignment';
 
 @Component({
   selector: 'app-selected-instructor',
@@ -9,6 +10,7 @@ import {InstructorService} from '../../../../../core/services/instructor.service
 })
 export class SelectedInstructorComponent implements OnInit {
   @Input() instructor: Instructor;
+  @Output() needsUpdate = new EventEmitter<boolean>();
   isAddDisabled = true;
   course: string;
   year: string;
@@ -28,12 +30,26 @@ export class SelectedInstructorComponent implements OnInit {
     this.isAddDisabled = !(this.course && this.year && this.section);
   }
 
-  remove(id: number) {
-    this.instructorService.removeAssignment(id).subscribe(res => {
+  // tslint:disable-next-line:variable-name
+  remove(id: number, i_id: number) {
+    this.instructorService.removeAssignment(id, i_id).subscribe(res => {
       if (res) {
-        alert('assignment remove');
+        alert('Assignment Removed!');
         // update
+        this.needsUpdate.emit(true);
       }
+    });
+  }
+
+  add() {
+    const ass = new Assignment();
+    ass.course = this.course;
+    ass.year = this.year;
+    ass.section = this.section;
+    this.instructorService.addAssignment(ass, this.instructor.id).subscribe((ins: Instructor) => {
+        if (ins) {
+          this.needsUpdate.emit(true);
+        }
     });
   }
 }

@@ -32,14 +32,19 @@ export class SectionAssignmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.instructorService.getAllInstructors().subscribe((instructors: Instructor[])  => {
-      this.instructors = instructors;
-    });
+   this.update();
   }
 
   selectInstructor(id: number) {
     this.selected = this.instructors.find((i: Instructor) => {
       return i.id === id;
+    });
+  }
+
+  update() {
+    this.instructorService.getAllInstructors().subscribe((instructors: Instructor[])  => {
+      this.instructors = instructors;
+      this.selectInstructor(this.selected.id);
     });
   }
 }

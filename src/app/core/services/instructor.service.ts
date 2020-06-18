@@ -54,9 +54,10 @@ export class InstructorService {
       .post(`${environment.apiUrl}/instructor/reset/${studentId}`, {});
   }
 
-  removeAssignment(assignmentId: number) {
+  removeAssignment(assignmentId: number, instructorId: number) {
+    console.log(assignmentId, instructorId);
     return this.http
-      .post(`${environment.apiUrl}/instructor/remove-assignment/${assignmentId}`, {});
+      .post(`${environment.apiUrl}/instructor/remove-assignment/${instructorId}/${assignmentId}`, {});
   }
 
   addAssignment(assignment: Assignment, instructorId: number) {

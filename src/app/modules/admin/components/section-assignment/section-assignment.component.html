@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-9 border-left border-left-1">
-        <app-selected-instructor [instructor]="selected" *ngIf="selected; else pleaseSelect"></app-selected-instructor>
+        <app-selected-instructor [instructor]="selected" *ngIf="selected; else pleaseSelect" (needsUpdate)="update()"></app-selected-instructor>
         <ng-template #pleaseSelect>
           <h1> Select Instructor </h1>
         </ng-template>

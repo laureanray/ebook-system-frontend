@@ -2,17 +2,24 @@
   <h1 class="mat-h1 sans-serif"> {{ instructor.firstName }} {{ instructor.lastName}}</h1>
   <div class="assignments mt-2 py-2">
     <h2 class="mat-h2 sans-serif"> Assignments </h2>
-    <div class="row">
-      <div class="col">
-        <mat-form-field appearance="outline" class="mr-2" style="width: 25%">
+    <div class="row w-50">
+      <div class="col w-100">
+        <mat-form-field class="w-50 mr-2">
           <mat-label>Course</mat-label>
-          <input matInput placeholder="Course" [(ngModel)]="course" (keyup)="update()">
+          <mat-select [(ngModel)]="course" name="food"  (selectionChange)="update()">
+            <mat-option value="BSCPE">
+              BS in Computer Engineering
+            </mat-option>
+            <mat-option value="BSCS">
+              BS in Computer Science
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="mr-2" style="width: 10%">
+        <mat-form-field appearance="outline" class="ml-2 mr-2"  style="width: 15%">
           <mat-label>Year</mat-label>
           <input matInput placeholder="Year" [(ngModel)]="year" (keyup)="update()">
         </mat-form-field>
-        <mat-form-field appearance="outline" class="mr-4" style="width: 10%">
+        <mat-form-field appearance="outline" class=""  style="width: 15%">
           <mat-label>Section</mat-label>
           <input matInput placeholder="Section" [(ngModel)]="section" (keyup)="update()">
         </mat-form-field>
@@ -23,17 +30,22 @@
        <button mat-raised-button color="primary" class="p-2 mt-n2" [disabled]="isAddDisabled"> Add Assignment </button>
      </div>
     </div>
-    <mat-list>
-      <mat-list-item *ngFor="let ass of instructor.assignments" class="py-2 border-bottom-1 ">
+    <ul class="list-group list-group-flush w-50 mt-3" *ngIf="instructor.assignments > 0; else #empty" >
+      <li class="list-group-item" *ngFor="let ass of instructor.assignments">
         <div class="row">
           <div class="col">
             {{ ass.course }}  {{ ass.year }} - {{ ass.section }}
           </div>
           <div class="col-2 text-right">
-            <button mat-raised-button color="warn" (click)="remove(ass.id)"> Remove </button>
+            <button mat-raised-button color="warn" (click)="remove(ass.id, instructor.id)"> Remove </button>
           </div>
         </div>
-      </mat-list-item>
-    </mat-list>
+      </li>
+    </ul>
+    <ng-template #empty>
+      <h2 class="mat-h2">
+        No assigned sections.
+      </h2>
+    </ng-template>
   </div>
 </div>

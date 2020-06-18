@@ -33,7 +33,7 @@ export class AddBookComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       course: ['', Validators.required],
-      yearLevel: ['', Validators.required],
+      year: ['', Validators.required],
       giveAccessToAll: []
     });
   }
@@ -81,10 +81,10 @@ export class AddBookComponent implements OnInit {
     setTimeout(() => {
       if (this.secondFormGroup.controls.giveAccessToAll.value) {
         this.secondFormGroup.controls.course.disable();
-        this.secondFormGroup.controls.yearLevel.disable();
+        this.secondFormGroup.controls.year.disable();
       } else {
         this.secondFormGroup.controls.course.enable();
-        this.secondFormGroup.controls.yearLevel.enable();
+        this.secondFormGroup.controls.year.enable();
       }
     }, 5);
   }

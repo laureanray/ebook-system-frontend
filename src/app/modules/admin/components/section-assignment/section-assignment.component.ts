@@ -44,7 +44,7 @@ export class SectionAssignmentComponent implements OnInit {
   update() {
     this.instructorService.getAllInstructors().subscribe((instructors: Instructor[])  => {
       this.instructors = instructors;
-      this.selectInstructor(this.selected.id);
+      if (this.selected) { this.selectInstructor(this.selected.id); }
     });
   }
 }

@@ -19,8 +19,12 @@ export class EditUserComponent implements OnInit {
   middleName = '';
   isUpdating = false;
   user: User;
+  student: Student;
   isDisabled = true;
   isResetting = false;
+  course: string;
+  year: string;
+  section: string;
 
   constructor(private studentService: StudentService,
               private instructorService: InstructorService,
@@ -46,8 +50,12 @@ export class EditUserComponent implements OnInit {
     console.log('load user');
     switch (this.type) {
       case 'student':
-        this.studentService.getStudent(this.id).subscribe((user: User) => {
+        this.studentService.getStudent(this.id).subscribe((user: Student) => {
           this.user = user;
+          this.student = user;
+          this.course = user.course;
+          this.year = user.year;
+          this.section = user.section;
           this.initialize();
         });
         break;
@@ -68,9 +76,20 @@ export class EditUserComponent implements OnInit {
 
 
   keyup() {
-    this.isDisabled = !(this.firstName !== this.user.firstName ||
-      this.lastName !== this.user.lastName ||
-      this.middleName !== this.user.middleName);
+    if (this.type === 'student') {
+      this.isDisabled = !(this.firstName !== this.user.firstName ||
+        this.lastName !== this.user.lastName ||
+        this.middleName !== this.user.middleName ||
+        this.course !== this.student.course ||
+        this.year !== this.student.year ||
+        this.section !== this.student.section
+      );
+    } else {
+      this.isDisabled = !(this.firstName !== this.user.firstName ||
+        this.lastName !== this.user.lastName ||
+        this.middleName !== this.user.middleName
+      );
+    }
   }
 
   update() {
@@ -79,7 +98,12 @@ export class EditUserComponent implements OnInit {
     this.user.middleName = this.middleName;
     this.user.lastName = this.lastName;
     if (this.type === 'student') {
-      this.studentService.update(this.user as Student).subscribe(res => {
+      const stud = this.user as Student;
+      stud.course = this.course;
+      stud.year = this.year;
+      stud.section = this.section;
+      console.log(stud);
+      this.studentService.update(stud).subscribe(res => {
         if (res) {
           alert('Updated!');
           this.isUpdating = false;

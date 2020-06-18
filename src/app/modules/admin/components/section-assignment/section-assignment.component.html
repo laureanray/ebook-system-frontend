@@ -3,14 +3,7 @@
   <div>
     <div class="row">
       <div class="col-3">
-        <div class="label mt-4">
-          <p class="sans-serif color-orange font-16 mb-0" style="padding-top: 20px">Faculty Name</p>
-              <mat-form-field class="sans-serif w-100 pt-2" appearance="outline">
-                <mat-label>Search</mat-label>
-                <input matInput placeholder="">
-                <mat-icon matSuffix class="orange-icon">search</mat-icon>
-              </mat-form-field>
-        </div>
+        <p class="sans-serif color-orange font-16 mb-0" style="padding-top: 20px">Faculty Name</p>
         <div class="name-section">
           <mat-nav-list>
             <a mat-list-item class="sans-serif" *ngFor="let ins of instructors" [ngClass]="{ 'selected' : selected?.id === ins?.id }" (click)="selectInstructor(ins.id)">
@@ -24,99 +17,6 @@
         <ng-template #pleaseSelect>
           <h1> Select Instructor </h1>
         </ng-template>
-<!--
-<p class="sans-serif color-orange faculty-name">Engr. Laurean Ray S. Bahala</p>-->
-<!--        <div class="scroll" id="add-section-container">-->
-<!--          <table class="table">-->
-<!--            <thead class="sans-serif">-->
-<!--            <tr>-->
-<!--              <th>Book Title</th>-->
-<!--              <th>Course</th>-->
-<!--              <th>Year Level</th>-->
-<!--              <th>Section</th>-->
-<!--              <th></th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let field of fieldArray; let i = index">-->
-<!--              <td>-->
-<!--                <input [(ngModel)]="field.title" class="form-control font-16" type="text" name="{{field.title}}"-->
-<!--                       disabled="disabled"/>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <input [(ngModel)]="field.course" class="form-control font-16" type="text" name="{{field.course}}"-->
-<!--                       disabled="disabled"/>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <input [(ngModel)]="field.year" class="form-control font-16" type="text" name="{{field.year}}"-->
-<!--                       disabled="disabled"/>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <input [(ngModel)]="field.section" class="form-control font-16" type="text" name="{{field.section}}"-->
-<!--                       disabled="disabled"/>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <button class="btn" type="button" (click)="deleteFieldValue(i)">-->
-<!--                  <mat-icon>delete</mat-icon>-->
-<!--                </button>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <mat-form-field appearance="outline" class="sans-serif">-->
-<!--                  <mat-label class="sans-serif">Book Title</mat-label>-->
-<!--                  <mat-select id="newAttributeTitle" [(ngModel)]="newAttribute.title" name="newAttributeTitle" required>-->
-<!--                    <mat-option value="Basic C++" class="sans-serif">Basic C++</mat-option>-->
-<!--                    <mat-option value="Assembly" class="sans-serif">Assembly</mat-option>-->
-<!--                    <mat-option value="Discrete Mathematics" class="sans-serif">Discrete Mathematics</mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <mat-form-field appearance="outline" class="sans-serif" >-->
-<!--                  <mat-label class="sans-serif">Course</mat-label>-->
-<!--                  <mat-select id="newAttributeCourse" [(ngModel)]="newAttribute.course" name="newAttributeCourse" required>-->
-<!--                    <mat-option value="Bs in Computer Engineering" class="sans-serif">BS in Computer Engineering-->
-<!--                    </mat-option>-->
-<!--                    <mat-option value="BS in Information Technology" class="sans-serif">BS in Information Technology-->
-<!--                    </mat-option>-->
-<!--                    <mat-option value="BS in Computer Science" class="sans-serif">BS in Computer Science</mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <mat-form-field appearance="outline" class="sans-serif" style="width: 100px!important">-->
-<!--                  <mat-label class="sans-serif">Year</mat-label>-->
-<!--                  <mat-select id="newAttributeYear" [(ngModel)]="newAttribute.year" name="newAttributeYear" required>-->
-<!--                    <mat-option value="1st year" class="sans-serif">1st year</mat-option>-->
-<!--                    <mat-option value="2nd year" class="sans-serif">2nd year</mat-option>-->
-<!--                    <mat-option value="3rd year" class="sans-serif">3rd year</mat-option>-->
-<!--                    <mat-option value="4th year" class="sans-serif">4th year</mat-option>-->
-<!--                    <mat-option value="5th year" class="sans-serif">5th year</mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <mat-form-field appearance="outline" class="sans-serif" style="width: 100px!important">-->
-<!--                  <mat-label class="sans-serif">Section</mat-label>-->
-<!--                  <mat-select id="newAttributeSection" [(ngModel)]="newAttribute.section" name="newAttributeSection" multiple required>-->
-<!--                    <mat-option value="1" class="sans-serif">1</mat-option>-->
-<!--                    <mat-option value="2" class="sans-serif">2</mat-option>-->
-<!--                    <mat-option value="3" class="sans-serif">3</mat-option>-->
-<!--                    <mat-option value="4" class="sans-serif">4</mat-option>-->
-<!--                    <mat-option value="5" class="sans-serif">5</mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <button class="btn btn-default add-button" type="button" (click)="addFieldValue()">-->
-<!--                  <mat-icon>add</mat-icon>-->
-<!--                </button>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--        </div>-->
       </div>
     </div>
   </div>

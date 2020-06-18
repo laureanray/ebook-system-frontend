@@ -1,24 +1,64 @@
 <div class="container">
   <h1 class="mt-4"> Edit User </h1>
-  <div class="d-flex flex-row">
-    <button mat-button routerLink="../user-accounts" class="mt-2 add-user-button">
-      User Accounts</button>
+  <div class="d-flex flex-row my-3">
+    <button mat-raised-button color="primary" routerLink="../user-accounts" class="mt-2 add-user-button">
+      Back to User Accounts </button>
   </div>
-  <div class="d-flex flex-column w-50">
-    <mat-form-field appearance="outline" class="sans-serif w-50">
+  <div class="d-flex flex-column w-25 mt-3">
+    <mat-form-field appearance="outline" class="sans-serif w-100">
       <mat-label>Last Name</mat-label>
       <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="lastName">
     </mat-form-field>
-    <mat-form-field appearance="outline" class="sans-serif w-50">
+    <mat-form-field appearance="outline" class="sans-serif w-100">
       <mat-label>First Name</mat-label>
       <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="firstName">
     </mat-form-field>
-    <mat-form-field appearance="outline" class="sans-serif w-50">
+    <mat-form-field appearance="outline" class="sans-serif w-100">
       <mat-label>Middle Name</mat-label>
       <input matInput placeholder="" required (keyup)="keyup()" [(ngModel)]="middleName">
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="update()" class="w-50" [disabled]="isDisabled || isUpdating"> {{ isUpdating ? 'Updating' : 'Update' }} </button>
-    <button mat-stroked-button color="warn" class="w-50 my-3" [disabled]="isResetting" (click)="reset()"> {{ isResetting ? 'Resetting Password' : 'Reset Password' }} </button>
+    <div class="student" *ngIf="type === 'student'">
+      <mat-form-field class="w-100 sans-serif" appearance="outline">
+        <mat-label>Course</mat-label>
+        <mat-select [(ngModel)]="course"  (selectionChange)="keyup()">
+          <mat-option value="BSCPE">
+            BS in Computer Engineering
+          </mat-option>
+          <mat-option value="BSCS">
+            BS in Computer Science
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="d-flex justify-content-between">
+        <mat-form-field appearance="outline" style="width: 48%" class="sans-serif">
+          <mat-label>Year</mat-label>
+          <mat-select [(ngModel)]="year"  (selectionChange)="keyup()">
+            <mat-option value="1st">
+              1st
+            </mat-option>
+            <mat-option value="2nd">
+              2nd
+            </mat-option>
+            <mat-option value="3rd">
+              3rd
+            </mat-option>
+            <mat-option value="4th">
+              4th
+            </mat-option>
+            <mat-option value="5th">
+              5th
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 48%" class="sans-serif">
+          <mat-label>Section</mat-label>
+          <input matInput placeholder="Section" [(ngModel)]="section" (keyup)="keyup()">
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-stroked-button color="primary" (click)="update()" class="w-100" [disabled]="isDisabled || isUpdating"> {{ isUpdating ? 'Updating' : 'Update' }} </button>
+    <button mat-stroked-button color="warn" class="w-100 my-3" [disabled]="isResetting" (click)="reset()"> {{ isResetting ? 'Resetting Password' : 'Reset Password' }} </button>
     <p> Resetting password will reset to default password <strong> 1234 </strong></p>
   </div>
 </div>
+

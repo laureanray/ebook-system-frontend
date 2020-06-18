@@ -5,8 +5,16 @@
     <div class="row w-50">
       <div class="col w-100">
         <mat-form-field class="w-50 mr-2">
+          <mat-label>Book</mat-label>
+          <mat-select [(ngModel)]="bookId"  (selectionChange)="update()">
+            <mat-option *ngFor="let book of books | async" value="book.id">
+              {{ book.bookTitle }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-50 mr-2">
           <mat-label>Course</mat-label>
-          <mat-select [(ngModel)]="course" name="food"  (selectionChange)="update()">
+          <mat-select [(ngModel)]="course"  (selectionChange)="update()">
             <mat-option value="BSCPE">
               BS in Computer Engineering
             </mat-option>
@@ -15,11 +23,27 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="ml-2 mr-2"  style="width: 15%">
+        <mat-form-field appearance="outline" class="mx-2"  style="width: 20%">
           <mat-label>Year</mat-label>
-          <input matInput placeholder="Year" [(ngModel)]="year" (keyup)="update()">
+          <mat-select [(ngModel)]="year"  (selectionChange)="update()">
+          <mat-option value="1st">
+            1st
+          </mat-option>
+          <mat-option value="2nd">
+            2nd
+          </mat-option>
+          <mat-option value="3rd">
+            3rd
+          </mat-option>
+          <mat-option value="4th">
+            4th
+          </mat-option>
+          <mat-option value="5th">
+            5th
+          </mat-option>
+        </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline" class=""  style="width: 15%">
+        <mat-form-field appearance="outline" class="mx-2"  style="width: 20%">
           <mat-label>Section</mat-label>
           <input matInput placeholder="Section" [(ngModel)]="section" (keyup)="update()">
         </mat-form-field>
@@ -27,14 +51,17 @@
     </div>
     <div class="row">
      <div class="col">
-       <button mat-raised-button color="primary" class="p-2 mt-n2" [disabled]="isAddDisabled"> Add Assignment </button>
+       <button mat-raised-button color="primary" class="p-2 mt-n2" [disabled]="isAddDisabled || isAdding" (click)="add()" > {{ isAdding ? 'Adding' : 'Add Assignment'   }} </button>
      </div>
     </div>
-    <ul class="list-group list-group-flush w-50 mt-3" *ngIf="instructor.assignments > 0; else #empty" >
+    <ul class="list-group list-group-flush w-50 mt-3" *ngIf="instructor.assignments?.length > 0; else empty" >
       <li class="list-group-item" *ngFor="let ass of instructor.assignments">
         <div class="row">
           <div class="col">
-            {{ ass.course }}  {{ ass.year }} - {{ ass.section }}
+            <p class="sans-serif"> Book: {{ ass.book.bookTitle }} </p>
+            <p class="sans-serif">
+              Course: <strong> {{ ass.course }} </strong>  Year: <strong> {{ ass.year }} year </strong>  Section: <strong> {{ ass.section }} </strong>
+            </p>
           </div>
           <div class="col-2 text-right">
             <button mat-raised-button color="warn" (click)="remove(ass.id, instructor.id)"> Remove </button>
@@ -43,8 +70,8 @@
       </li>
     </ul>
     <ng-template #empty>
-      <h2 class="mat-h2">
-        No assigned sections.
+      <h2 class="mat-h2 my-4 text-muted">
+        No assigned sections yet.
       </h2>
     </ng-template>
   </div>

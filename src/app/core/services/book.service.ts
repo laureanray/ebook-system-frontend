@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {Topic} from '../models/topic';
 import {Book} from '../models/book';
 import {Chapter} from '../models/chapter';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,14 @@ export class BookService {
 
   getBook(id: number) {
     return this.http.get(`${environment.apiUrl}/book/${id}`);
+  }
+
+  getAccessibleBooks(studentId: number) {
+    return this.http.get(`${environment.apiUrl}/book/accessible/${studentId}`);
+  }
+
+  getAssignedProf(studentId: number, bookId: number) {
+    return this.http.get(`${environment.apiUrl}/book/get-assigned/${studentId}/${bookId}`);
   }
 
   updateTopic(topic: Topic) {

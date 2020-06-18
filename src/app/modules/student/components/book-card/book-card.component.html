@@ -1,10 +1,21 @@
-<a href="">
-  <div class="card">
-    <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/51KPj3gS0vL.jpg" alt="Card image cap">
+<!--<a href="">-->
+<!--  <div class="card">-->
+<!--    <img class="card-img-top" src="{{bookCoverURLParsed}}" alt="Card image cap">-->
+<!--    <div class="card-body">-->
+<!--      <h5 class="card-title"> {{ book.bookTitle }}</h5>-->
+<!--      <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>-->
+<!--      <p class="text-center small mb-0 sans-serif"> </p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</a>-->
+
+<a routerLink="/student/book/{{book.id}}">
+  <div class="card" (click)="bookClicked()">
+    <img class="card-img-top" src="{{ bookCoverURLParsed }}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title"> {{ book.bookTitle }}</h5>
-      <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-      <p class="text-center small mb-0 sans-serif"> </p>
+      <h2 class="card-title sans-serif mat-h2"> {{ this.book?.bookTitle }}</h2>
+      <p> Author: {{ this.book?.bookAuthor }}
+      <p> Instructor: {{ this.book?.instructor }}</p>
     </div>
   </div>
 </a>

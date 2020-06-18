@@ -7,6 +7,7 @@ import {BookLibraryComponent} from './components/book-library/book-library.compo
 import {GradesComponent} from './components/grades/grades.component';
 import {ViewProfileComponent} from './components/view-profile/view-profile.component';
 import {FirstLoginComponent} from './components/first-login/first-login.component';
+import {BookComponent} from './components/book/book.component';
 // import {InitialHomeComponent} from './components/initial-home/initial-home.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'book-library', component: BookLibraryComponent},
       { path: 'grades', component: GradesComponent},
       { path: 'profile', component: ViewProfileComponent},
+      { path: 'book', component: BookComponent }
     ]
     }
 ];

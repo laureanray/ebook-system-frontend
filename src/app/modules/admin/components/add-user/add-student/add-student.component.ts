@@ -22,7 +22,7 @@ export class AddStudentComponent implements OnInit {
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
       course: ['', Validators.required],
-      yearLevel: ['', Validators.required],
+      year: ['', Validators.required],
       section: ['', Validators.required]
     });
   }
@@ -36,7 +36,7 @@ export class AddStudentComponent implements OnInit {
     student.studentNumber = this.studentForm.controls.studentNumber.value;
     student.middleName = this.studentForm.controls.middleName.value;
     student.course = this.studentForm.controls.course.value;
-    student.yearLevel = this.studentForm.controls.yearLevel.value;
+    student.year = this.studentForm.controls.year.value;
     student.section = this.studentForm.controls.section.value;
 
     console.log(student);
@@ -56,7 +56,7 @@ export class AddStudentComponent implements OnInit {
       this.studentForm.controls.middleName.value &&
       this.studentForm.controls.studentNumber.value &&
       this.studentForm.controls.course.value &&
-      this.studentForm.controls.yearLevel.value &&
+      this.studentForm.controls.year.value &&
       this.studentForm.controls.section.value);
   }
 }

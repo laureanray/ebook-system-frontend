@@ -8,9 +8,17 @@ import {Book} from '../../../../core/models/book';
 })
 export class BookCardComponent implements OnInit {
   @Input() book: Book;
-  constructor() { }
+  public bookCoverURLParsed = '';
+  constructor() {
+    if (!this.book?.bookCoverURL) {
+      this.bookCoverURLParsed = '/assets/cover.png';
+    }
+  }
 
   ngOnInit(): void {
   }
 
+  bookClicked() {
+
+  }
 }

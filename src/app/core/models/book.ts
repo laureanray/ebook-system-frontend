@@ -12,4 +12,5 @@ export class Book {
   bookCoverURL: string;
   accessibleToAll: boolean;
   accesses: Access[];
+  instructor: string;
 }

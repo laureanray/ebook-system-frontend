@@ -4,6 +4,6 @@ export class Student extends User {
   studentNumber: string;
   firstLogin: boolean;
   course: string;
-  yearLevel: string;
+  year: string;
   section: string;
 }

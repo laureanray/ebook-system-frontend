@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Instructor} from '../models/instructor';
 import {Student} from '../models/student';
+import {Assignment} from '../models/assignment';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,15 @@ export class InstructorService {
   resetPassword(studentId: number) {
     return this.http
       .post(`${environment.apiUrl}/instructor/reset/${studentId}`, {});
+  }
+
+  removeAssignment(assignmentId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/remove-assignment/${assignmentId}`, {});
+  }
+
+  addAssignment(assignment: Assignment, instructorId: number) {
+    return this.http
+      .post(`${environment.apiUrl}/instructor/add-assignment/${instructorId}`, assignment);
   }
 }

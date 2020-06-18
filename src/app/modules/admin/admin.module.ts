@@ -30,6 +30,7 @@ import { ArchivedComponent } from './components/archived/archived.component';
 import { SelectedBookEditExamComponent } from './components/selected-book/selected-book-edit-exam/selected-book-edit-exam.component';
 import { ExamItemEditorComponent } from './components/selected-book/selected-book-add-exam/exam-item-editor/exam-item-editor.component';
 import { EditUserComponent } from './components/user-accounts/edit-user/edit-user.component';
+import { SelectedInstructorComponent } from './components/section-assignment/selected-instructor/selected-instructor.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditUserComponent } from './components/user-accounts/edit-user/edit-use
     SelectedBookEditExamComponent,
     ExamItemEditorComponent,
     EditUserComponent,
+    SelectedInstructorComponent,
   ],
   imports: [
     CommonModule,

@@ -71,9 +71,12 @@ export class StudentLoginComponent implements OnInit {
         error => {
           console.log(error);
 
-          if (error.status === 400) {
+          if (error) {
             this.invalidCredentials = true;
+            alert('Invalid credentails');
             console.log('invalid');
+          } else {
+            alert('Failed connecting to server');
           }
 
           this.submitted = false;

@@ -69,12 +69,13 @@ export class InstructorAdminLoginComponent implements OnInit {
           error => {
             console.log(error);
             this.submitted = false;
-            if (error.status === 400) {
-              // this.errors.push(error.error.message);
-              this.usernameFormControl.markAsTouched();
+            if (error) {
               this.invalidCredentials = true;
+              alert('Invalid credentails');
+              console.log('invalid');
+            } else {
+              alert('Failed connecting to server');
             }
-
             this.submitted = false;
           }
         );

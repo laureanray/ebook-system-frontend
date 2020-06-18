@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from '../../../../../core/services/book.service';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {Book} from '../../../../../core/models/book';
-import {Course} from '../../../../../core/models/course';
 import {environment} from '../../../../../../environments/environment';
 import {faMinusCircle, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {MatDialog} from '@angular/material/dialog';
 import {RemoveAccessModalComponent} from './remove-access-modal/remove-access-modal.component';
+import {Access} from '../../../../../core/models/access';
 
 @Component({
   selector: 'app-selected-book-details',
@@ -15,20 +15,20 @@ import {RemoveAccessModalComponent} from './remove-access-modal/remove-access-mo
 })
 export class SelectedBookDetailsComponent implements OnInit {
   book: Book;
-  courses: Course[];
-  newCourse: Course;
+  accesses: Access[];
+  newAccess: Access;
   accessibleToAll = false;
   bookCoverURLParsed: any;
   faTrash = faTrash;
   faMinus = faMinusCircle;
   isEditingAccess = false;
-  coursesCopy: Course[];
+  accessesCopy: Access[];
   editAccessibleToAll = false;
   toggleDisabled = false;
 
   addFieldValue() {
-    this.courses.push(this.newCourse);
-    this.newCourse = null;
+    this.accesses.push(this.newAccess);
+    this.newAccess = null;
 
     function updateScroll() {
       const element = document.getElementById('add-section-container');
@@ -39,7 +39,7 @@ export class SelectedBookDetailsComponent implements OnInit {
   }
 
   deleteFieldValue(index) {
-    this.courses.splice(index, 1);
+    this.accesses.splice(index, 1);
   }
 
   constructor(private bookEditorService: BookEditorService,
@@ -50,22 +50,9 @@ export class SelectedBookDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
-      this.courses = this.book?.courses;
-      if (this.courses != null) {
-        this.coursesCopy = this.courses;
-        for (const c of this.courses) {
-          c.yearsString = '';
-          let i = 0;
-          for (const y of c.years) {
-            if (i === (c.years.length - 1)) {
-              c.yearsString += (' and ' + y.yearLevel + ' year');
-            } else {
-              c.yearsString += (y.yearLevel + ', ');
-            }
-
-            i++;
-          }
-        }
+      this.accesses = this.book?.accesses;
+      if (this.accesses != null) {
+        this.accessesCopy = this.accesses;
       }
       if (!this.book || !this.book?.bookCoverURL) {
         // TODO: replace this with proper placeholder

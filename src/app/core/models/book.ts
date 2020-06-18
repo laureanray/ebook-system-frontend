@@ -1,5 +1,5 @@
 import {Chapter} from './chapter';
-import {Course} from './course';
+import {Access} from './access';
 
 export class Book {
   id: number;
@@ -11,5 +11,5 @@ export class Book {
   dateUpdated: string;
   bookCoverURL: string;
   accessibleToAll: boolean;
-  courses: Course[];
+  accesses: Access[];
 }

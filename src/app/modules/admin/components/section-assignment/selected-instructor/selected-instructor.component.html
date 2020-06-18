@@ -1,1 +1,39 @@
-<p>selected-instructor works!</p>
+<div>
+  <h1 class="mat-h1 sans-serif"> {{ instructor.firstName }} {{ instructor.lastName}}</h1>
+  <div class="assignments mt-2 py-2">
+    <h2 class="mat-h2 sans-serif"> Assignments </h2>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="outline" class="mr-2" style="width: 25%">
+          <mat-label>Course</mat-label>
+          <input matInput placeholder="Course" [(ngModel)]="course" (keyup)="update()">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mr-2" style="width: 10%">
+          <mat-label>Year</mat-label>
+          <input matInput placeholder="Year" [(ngModel)]="year" (keyup)="update()">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mr-4" style="width: 10%">
+          <mat-label>Section</mat-label>
+          <input matInput placeholder="Section" [(ngModel)]="section" (keyup)="update()">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+     <div class="col">
+       <button mat-raised-button color="primary" class="p-2 mt-n2" [disabled]="isAddDisabled"> Add Assignment </button>
+     </div>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let ass of instructor.assignments" class="py-2 border-bottom-1 ">
+        <div class="row">
+          <div class="col">
+            {{ ass.course }}  {{ ass.year }} - {{ ass.section }}
+          </div>
+          <div class="col-2 text-right">
+            <button mat-raised-button color="warn" (click)="remove(ass.id)"> Remove </button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

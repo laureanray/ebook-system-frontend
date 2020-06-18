@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InstructorService} from '../../../../core/services/instructor.service';
+import {Instructor} from '../../../../core/models/instructor';
 
 @Component({
   selector: 'app-section-assignment',
@@ -6,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-assignment.component.sass']
 })
 export class SectionAssignmentComponent implements OnInit {
-
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
+  instructors: Instructor[];
+  selected: Instructor;
+  constructor(private instructorService: InstructorService) {
+    this.selected = null;
+  }
+
   addFieldValue() {
     this.fieldArray.push(this.newAttribute);
     this.newAttribute = {};
@@ -19,10 +26,20 @@ export class SectionAssignmentComponent implements OnInit {
     }
     setInterval(updateScroll, 1);
   }
+
   deleteFieldValue(index) {
     this.fieldArray.splice(index, 1);
   }
+
   ngOnInit(): void {
+    this.instructorService.getAllInstructors().subscribe((instructors: Instructor[])  => {
+      this.instructors = instructors;
+    });
   }
 
+  selectInstructor(id: number) {
+    this.selected = this.instructors.find((i: Instructor) => {
+      return i.id === id;
+    });
+  }
 }

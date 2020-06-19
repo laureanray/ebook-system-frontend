@@ -12,6 +12,7 @@ import {MaterialModule} from '../material.module';
 import { BookComponent } from './components/book/book.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { FirstLoginComponent } from './components/first-login/first-login.component';
+import { ReadComponent } from './components/read/read.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FirstLoginComponent } from './components/first-login/first-login.compon
     ViewProfileComponent,
     BookComponent,
     BookCardComponent,
-    FirstLoginComponent],
+    FirstLoginComponent,
+    ReadComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,

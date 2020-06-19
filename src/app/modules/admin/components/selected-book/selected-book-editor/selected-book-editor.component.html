@@ -2,7 +2,7 @@
 <ng-template #loaded>
     <div class="pt-4 editor-main">
       <div class="row">
-        <div class="col-2">
+        <div class="col">
           <h1 class="mat-h1"> {{editingChapter?.chapterTitle}} </h1>
         </div>
       </div>
@@ -21,7 +21,7 @@
 
       <div class="border-bottom border-bottom-1"></div>
       <div >
-        <ckeditor [editor]="Editor" [config]="{ removePlugins: ['resize', 'autogrow'] }" [(ngModel)]="model.editorData"
+        <ckeditor [editor]="Editor" [config]="config" [(ngModel)]="model.editorData"
                   (change)="onChange($event)" (ready)="onReady($event)"></ckeditor>
       </div>
       <div class="row  my-4">

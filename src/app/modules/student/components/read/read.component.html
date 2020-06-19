@@ -1,0 +1,17 @@
+<div class="py-3">
+  <div class="row">
+    <div class="col-3">
+      <h1 class="mat-h1"> {{ book?.bookTitle }}</h1>
+      <h2 class="mat-h2 mt-2"> Table of Contents</h2>
+      <div class="border-top-1">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item pointer" *ngFor="let topic of chapter?.topics" routerLink="/student/read/{{bookId}}/{{chapterId}}/{{topic.id}}"> {{ topic.topicTitle }} </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="html-content" [innerHTML]="topic?.htmlContent">
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,8 @@ import {Topic} from '../../../../../core/models/topic';
 import {Chapter} from '../../../../../core/models/chapter';
 import {BookEditorService} from '../../../services/book-editor.service';
 import {Subscription} from 'rxjs';
-import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+// import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 import {BookService} from '../../../../../core/services/book.service';
@@ -16,6 +17,7 @@ import * as moment from 'moment';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {DeleteModalComponent} from './delete-modal/delete-modal.component';
 import {DeleteChapterModalComponent} from './delete-chapter-modal/delete-chapter-modal.component';
+// import * as CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 
 @Component({
   selector: 'app-selected-book-editor',
@@ -24,7 +26,7 @@ import {DeleteChapterModalComponent} from './delete-chapter-modal/delete-chapter
 })
 export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   // WYSIWYG editor
-  public Editor = DecoupledEditor;
+  public Editor = ClassicEditor;
 
   editingChapter: Chapter;
   editingTopic: Topic;
@@ -42,6 +44,13 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
   };
 
   loading = true;
+  config = {
+    removePlugins: ['resize', 'autogrow'], codeBlock: {
+      languages: [
+        {language: 'cpp', label: 'C++'},
+      ]
+    }, placeholder: 'tset'
+  };
 
   constructor(private formBuilder: FormBuilder,
               private bookEditorService: BookEditorService,
@@ -75,7 +84,7 @@ export class SelectedBookEditorComponent implements OnInit, OnDestroy {
     const data = editor.getData();
   }
 
-  public onReady(editor) {
+  public onReady( editor ) {
     editor.ui.getEditableElement().parentElement.insertBefore(
       editor.ui.view.toolbar.element,
       editor.ui.getEditableElement()

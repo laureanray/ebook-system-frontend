@@ -41,8 +41,18 @@ export class ReadComponent implements OnInit, OnDestroy {
         this.book = book;
         this.chapter = this.book.chapters
           .find((c => c.id === this.chapterId));
+        this.chapter.topics.sort((a: Topic, b: Topic) => {
+            if (a.topicTitle > b.topicTitle) {
+              return 1;
+            } else if (a.topicTitle < b.topicTitle) {
+              return -1;
+            } else {
+              return 0;
+            }
+        });
         this.topic = this.chapter.topics
           .find((t => t.id === this.topicId));
+
         console.log(this.topic);
       });
     }

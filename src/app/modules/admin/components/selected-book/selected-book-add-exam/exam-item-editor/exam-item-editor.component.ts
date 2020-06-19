@@ -17,6 +17,7 @@ export class ExamItemEditorComponent implements OnInit, OnDestroy {
   exam: Exam;
   question: string;
   answer: string;
+  examType = 'ID';
   options = [
     '',
     '',
@@ -26,7 +27,7 @@ export class ExamItemEditorComponent implements OnInit, OnDestroy {
 
 
   constructor(private examEditorService: ExamEditorService) {
-    this.examEditorService.getCurrentExam().subscribe((ex: Exam) => {
+    this.examEditorSub = this.examEditorService.getCurrentExam().subscribe((ex: Exam) => {
       if (ex) {
         this.exam = ex;
       }
@@ -44,8 +45,18 @@ export class ExamItemEditorComponent implements OnInit, OnDestroy {
 
   update() {
     // trigger update here
+    this.examItem.examType = this.identification ? 'ID' : 'MC';
     this.examItem.question = this.question;
-    this.examItem.answer = this.answer;
+    if (!this.identification) {
+      // tslint:disable-next-line:radix
+      this.examItem.answer = this.options[parseInt(this.answer) - 1];
+
+      if (!this.answer) {
+        this.answer = '1';
+      }
+    } else {
+      this.examItem.answer = this.answer;
+    }
     this.examItem.choices = [];
 
     for (let i = 0; i < 4; i++) {
@@ -64,5 +75,16 @@ export class ExamItemEditorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.examEditorSub.unsubscribe();
+  }
+
+  changeType() {
+
+  }
+
+  delete() {
+    this.exam.examItems = this.exam.examItems.filter((ei: ExamItem) => {
+      return ei.num !== this.examItem.num;
+    });
+    this.examEditorService.updateCurrentExam(this.exam);
   }
 }

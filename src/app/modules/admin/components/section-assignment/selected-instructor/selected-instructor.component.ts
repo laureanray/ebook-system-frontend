@@ -54,10 +54,20 @@ export class SelectedInstructorComponent implements OnInit {
           this.needsUpdate.emit(true);
           setTimeout(() => {
             this.isAdding = false;
+            this.clear();
           }, 500);
         }
     }, error => {
       alert('The section is already assigned.');
+      this.isAdding = false;
+      this.clear();
     });
+  }
+
+  clear() {
+    this.bookId = undefined;
+    this.course = '';
+    this.year = '';
+    this.section = '';
   }
 }

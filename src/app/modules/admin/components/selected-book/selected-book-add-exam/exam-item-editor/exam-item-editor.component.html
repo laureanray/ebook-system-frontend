@@ -1,14 +1,15 @@
-<div class="row m-0">
+<div class="row m-0 mt-4">
   <p class="sans-serif font-16">
     <span class="ml-4">
-            <mat-radio-group value="1" class="option">
-              <mat-radio-button color="primary" value="1" (click)="toggle(true)">Identification</mat-radio-button>
-              <mat-radio-button color="primary" value="2" (click)="toggle(false)">Multiple Choice</mat-radio-button>
+            <mat-radio-group value="ID" class="option" (change)="update()" [(ngModel)]="examType">
+              <mat-radio-button color="primary" value="ID">Identification</mat-radio-button>
+              <mat-radio-button color="primary" value="MC">Multiple Choice</mat-radio-button>
+              <mat-radio-button color="primary" value="CD">Coding</mat-radio-button>
             </mat-radio-group>
           </span>
   </p>
   <div class="col-11">
-    <div class="identification" *ngIf="identification">
+    <div class="identification" *ngIf="examType === 'ID'">
         <mat-form-field class="w-100">
           <mat-label>Type your question here</mat-label>
           <textarea matInput (blur)="update()" [(ngModel)]="question"></textarea>
@@ -18,7 +19,7 @@
           <input matInput  (blur)="update()" [(ngModel)]="answer">
         </mat-form-field>
     </div>
-    <div class="multiple" *ngIf="!identification">
+    <div class="multiple" *ngIf="examType === 'MC'">
         <mat-form-field class="w-100">
           <mat-label>Type your question here</mat-label>
           <textarea matInput [(ngModel)]="question"></textarea>
@@ -46,9 +47,19 @@
           </mat-radio-button>
         </mat-radio-group>
     </div>
+    <div class="identification" *ngIf="examType === 'CD'">
+      <mat-form-field class="w-100">
+        <mat-label>Type your question here</mat-label>
+        <textarea matInput (blur)="update()" [(ngModel)]="question"></textarea>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Output</mat-label>
+        <input matInput  (blur)="update()" [(ngModel)]="answer">
+      </mat-form-field>
+    </div>
   </div>
   <div class="col-1 d-flex align-items-center">
-    <button class="btn color-orange" type="button">
+    <button class="btn color-orange" type="button" (click)="delete()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

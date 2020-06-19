@@ -13,7 +13,7 @@ import {Instructor} from '../../../../core/models/instructor';
   templateUrl: './book-library.component.html',
   styleUrls: ['./book-library.component.sass']
 })
-export class BookLibraryComponent implements OnInit, OnDestroy {
+export class BookLibraryComponent implements OnInit {
   books: Book[];
   student: Student;
   bookSub: Subscription;
@@ -30,7 +30,7 @@ export class BookLibraryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.bookSub = this.bookService.getAccessibleBooks(this.student.id).subscribe((books: Book[]) => {
+    this.bookService.getAccessibleBooks(this.student.id).subscribe((books: Book[]) => {
       if (books) {
         this.books = books;
         for (const book of this.books) {
@@ -43,8 +43,4 @@ export class BookLibraryComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  ngOnDestroy(): void {
-    this.bookSub.unsubscribe();
   }
-}

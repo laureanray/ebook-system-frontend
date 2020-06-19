@@ -10,6 +10,9 @@
     <mat-icon class="add-icon">add</mat-icon>
     Add Item
   </button>
+  <button mat-button [disabled]="isSaveDisabled || isSaving" (click)="save()" class="mt-4 mr-4 add-button">
+    Save
+  </button>
 <!--  <button mat-button class="mt-4 button" (click)="next()" [disabled]="nextDisabled">-->
 <!--    Next-->
 <!--  </button>-->

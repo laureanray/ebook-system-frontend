@@ -31,6 +31,8 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
   querySub: Subscription;
   bookSub: Subscription;
   examEditorSub: Subscription;
+  isSaveDisabled = true;
+  isSaving = false;
   constructor(private examEditor: ExamEditorService,
               private examService: ExamService,
               private bookEditorService: BookEditorService,
@@ -58,6 +60,7 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
         ex.examItems?.forEach((i: ExamItem) => {
           console.table(i.choices);
         });
+        this.isSaveDisabled = !this.validate(ex);
       }
     });
 
@@ -70,11 +73,11 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
     const examItem = new ExamItem();
     if (this.exam.examItems == null) {
       this.exam.examItems = [];
-      this.exam.examItems.push(examItem);
       examItem.num = 1;
-    } else {
       this.exam.examItems.push(examItem);
+    } else {
       examItem.num = this.exam.examItems.length + 1;
+      this.exam.examItems.push(examItem);
     }
 
     this.update();
@@ -83,6 +86,18 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
     // this.bookEditorService.setCurrentChapterAndTopic(null, null);
   }
 
+  save() {
+    this.isSaving = true;
+    this.examService.createExam(this.exam, this.chapter.id).subscribe((exam: Exam) => {
+      if (exam) {
+        alert('Added Exam!');
+        this.isSaving = false;
+      }
+    }, error => {
+      alert('Error: ' + error);
+      this.isSaving = false;
+    });
+  }
 
   keyup() {
     this.nextDisabled = !this.instructions.length;
@@ -99,6 +114,21 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
     this.examEditorSub.unsubscribe();
   }
 
+
+  validate(exam: Exam) {
+    // if (!exam.examItems && exam.examItems.length <= 0) {
+    //   return false;
+    // }
+    //
+    // exam.examItems?.forEach((item: ExamItem) => {
+    //   console.log(item);
+    //   if (!item) {
+    //     return false;
+    //   }
+    // });
+
+    return true;
+  }
 
 }
 

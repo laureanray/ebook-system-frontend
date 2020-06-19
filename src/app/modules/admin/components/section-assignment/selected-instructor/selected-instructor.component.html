@@ -2,12 +2,12 @@
   <h1 class="mat-h1 sans-serif"> {{ instructor.firstName }} {{ instructor.lastName}}</h1>
   <div class="assignments mt-2 py-2">
     <h2 class="mat-h2 sans-serif"> Assignments </h2>
-    <div class="row w-50">
+    <div class="row w-75">
       <div class="col w-100">
         <mat-form-field class="w-50 mr-2">
           <mat-label>Book</mat-label>
           <mat-select [(ngModel)]="bookId"  (selectionChange)="update()">
-            <mat-option *ngFor="let book of books | async" value="book.id">
+            <mat-option *ngFor="let book of books | async" [value]="book.id">
               {{ book.bookTitle }}
             </mat-option>
           </mat-select>

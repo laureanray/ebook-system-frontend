@@ -1,7 +1,8 @@
 <div class="py-3">
   <div class="row">
     <div class="col">
-      <h1 class="mat-h1"> {{ book?.bookTitle }}</h1>
+      <h1 class="mat-h1 sans-serif"> {{ book?.bookTitle }}</h1>
+      <p> Author {{ book?.bookAuthor }}</p>
     </div>
     <div class="col text-right">
       <button mat-stroked-button color="white"> Next Chapter </button>
@@ -9,14 +10,16 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <h2 class="mat-h2 mt-2"> {{ chapter?.chapterTitle }}</h2>
+      <h2 class="mat-h2 mt-2 sans-serif"> {{ chapter?.chapterTitle }}</h2>
       <div class="border-top-1">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item pointer" *ngFor="let topic of chapter?.topics" (click)="changeTopic(topic.id)"> {{ topic.topicTitle }} </li>
-        </ul>
+          <li class="list-group-item pointer sans-serif" *ngFor="let topic of chapter?.topics" (click)="changeTopic(topic.id)"> {{ topic.topicTitle }} </li>
+          <li class="list-group-item pointer color-orange sans-serif" (click)="changeTopic(topic.id)"> Chapter Exam </li>
+          </ul>
       </div>
     </div>
     <div class="col-9">
+      <button mat-raised-button color="white" class="my-3"> Mark completed </button>
       <div class="html-content" [innerHTML]="topic?.htmlContent">
       </div>
     </div>

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Book} from '../../../../core/models/book';
 import {BookService} from '../../../../core/services/book.service';
@@ -21,20 +21,21 @@ export class ReadComponent implements OnInit, OnDestroy {
   topicId: number;
   chapterId: number;
   bookId: number;
-  constructor(private route: ActivatedRoute, private bookService: BookService, private currentBookService: CurrentBookService) {
-    this.routeSub = this.route.params.subscribe(params => {
-      if (params) {
-        // tslint:disable-next-line:radix
-        this.chapterId = parseInt(params.chapterId);
-        // tslint:disable-next-line:radix
-        this.topicId = parseInt(params.topicId);
-        // tslint:disable-next-line:radix
-        this.bookId = parseInt(params.bookId);
-      }
-    });
+
+  constructor(private route: ActivatedRoute, private bookService: BookService, private currentBookService: CurrentBookService, private router: Router) {
+    console.log('construct');
   }
 
   ngOnInit(): void {
+    this.routeSub = this.route.paramMap.subscribe((params: ParamMap) => {
+        // tslint:disable-next-line:radix
+        this.chapterId = parseInt(params.get('chapterId'));
+        // tslint:disable-next-line:radix
+        this.topicId = parseInt(params.get('topicId'));
+        // tslint:disable-next-line:radix
+        this.bookId = parseInt(params.get('bookId'));
+        console.log('arams');
+    });
     if (this.chapterId && this.topicId) {
       this.bookSub = this.bookService.getBook(this.bookId).subscribe((book: Book) => {
         this.book = book;
@@ -50,6 +51,12 @@ export class ReadComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
     this.bookSub.unsubscribe();
+    console.log('dstroy');
+
   }
 
+  changeTopic(id: number) {
+    this.router.navigate([`/student/read/${this.bookId}/${this.chapterId}/${id}`]);
+    this.topic = this.chapter.topics.find(t => t.id === id);
+  }
 }

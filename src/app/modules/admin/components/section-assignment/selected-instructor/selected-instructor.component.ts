@@ -54,12 +54,14 @@ export class SelectedInstructorComponent implements OnInit {
           this.needsUpdate.emit(true);
           setTimeout(() => {
             this.isAdding = false;
+            this.isAddDisabled = true;
             this.clear();
           }, 500);
         }
     }, error => {
       alert('The section is already assigned.');
       this.isAdding = false;
+      this.isAddDisabled = true;
       this.clear();
     });
   }

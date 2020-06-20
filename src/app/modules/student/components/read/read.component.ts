@@ -79,7 +79,7 @@ export class ReadComponent implements OnInit, OnDestroy {
     this.showCodingPlayground = false;
   }
 
-  codingPlayground() {
-    this.showCodingPlayground = true;
+  togglePlayground() {
+    this.showCodingPlayground = !this.showCodingPlayground;
   }
 }

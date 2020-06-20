@@ -1,6 +1,6 @@
 <div class="py-4">
   <h1 class="mat-h2 sans-serif"> Chapter Exam </h1>
-  <ng-template *ngIf="!taken; else score">
+  <div *ngIf="taken === false; else score">
    <div *ngFor="let examItem of exam?.examItems"  class="border-bottom-1" >
      <p class="border-bottom-1 pb-2"> {{ examItem.question }} </p>
      <mat-form-field appearance="outline" class="sans-serif" *ngIf="examItem.examType === 'ID'">
@@ -8,7 +8,7 @@
        <input matInput type="text" placeholder="" [(ngModel)]="answers[examItem.id.toString()]" (focusout)="update()">
      </mat-form-field>
      <div class="choices" *ngIf="examItem.examType === 'MC'">
-       <mat-radio-group class="d-flex flex-column" [(ngModel)]="answers[examItem.id.toString()]" (select)="update()">
+       <mat-radio-group class="d-flex flex-column" [(ngModel)]="answers[examItem.id.toString()]" (ngModelChange)="update()" >
          <mat-radio-button [value]="choice.choiceText" color="primary"  *ngFor="let choice of examItem?.choices" >
             <p class="pt-2 pl-2 sans-serif"> {{ choice.choiceText }}</p>
          </mat-radio-button>
@@ -16,7 +16,7 @@
      </div>
    </div>
   <button mat-raised-button (click)="submit()" [disabled]="isDisabled || isSubmitting"> {{ isSubmitting ? 'Submitting' : 'Submit Exam' }} </button>
-  </ng-template>
+  </div>
 
   <ng-template #score>
     <h2 class="mat-h2 sans-serif">

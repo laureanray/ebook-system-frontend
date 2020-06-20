@@ -25,7 +25,8 @@ export class TakeExamComponent implements OnInit, OnDestroy {
   grade: Grade;
   percent: string;
   constructor(private route: ActivatedRoute, private examService: ExamService, private authenticationService: AuthenticationService) {
-
+    console.log(this.exam);
+    console.log(this.taken);
   }
 
   ngOnInit(): void {
@@ -35,6 +36,8 @@ export class TakeExamComponent implements OnInit, OnDestroy {
         this.grade = grade;
         this.percent = (Math.trunc((this.grade.score / this.grade.total)  * 100.0)) + '%';
       }
+    }, error => {
+      this.taken = false;
     });
     this.authSub = this.authenticationService.currentUser.subscribe((student: Student) => {
       this.student = student;
@@ -59,6 +62,7 @@ export class TakeExamComponent implements OnInit, OnDestroy {
         // Show success
         console.log(g);
         this.isSubmitting = false;
+        this.taken = true;
       }
     }, err => {
       alert('Error occurred: ' + err);

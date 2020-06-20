@@ -31,6 +31,7 @@ export class GradesComponent implements OnInit, OnDestroy {
       if (this.student) {
         this.gradeSub = this.examService.getGrades(this.student.id).subscribe((grades: Grade[]) => {
           this.grades = grades;
+          console.log(grades);
           if (this.grades) {
             this.grades.forEach((g: Grade) => {
               g.percent = Math.trunc((g.score / g.total ) * 100 );

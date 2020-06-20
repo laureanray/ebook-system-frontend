@@ -14,6 +14,7 @@ import {BookEditorService} from '../../../services/book-editor.service';
 export class SelectedBookEditExamComponent implements OnInit {
   examId: number;
   bookId: number;
+  exam: Exam;
   constructor(private activatedRoute: ActivatedRoute,
               private examService: ExamService,
               private bookService: BookService,
@@ -30,6 +31,12 @@ export class SelectedBookEditExamComponent implements OnInit {
       this.bookId = parseInt(params.book);
       console.log(this.examId);
       console.log(params);
+
+      this.examService.getExam(this.examId).subscribe((exam: Exam) => {
+        if (exam) {
+          this.exam = exam;
+        }
+      });
     });
   }
 

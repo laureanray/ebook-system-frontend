@@ -1,4 +1,4 @@
-<div class="d-flex flex-row mb-4">
+<div class="d-flex flex-row mb-2">
   <p class="mt-4 sans-serif title mb-0">Book Library</p>
 </div>
 <div class="book-container pt-2">
@@ -9,8 +9,8 @@
     <h1 class="sans-serif text-muted"> You don't have access to any books. Please contact administrator. </h1>
   </div>
   <ng-template #mayBook>
-    <div class="card-container book-container d-flex flex-wrap" *ngFor="let book of books">
-      <app-book-card [book]="book" ></app-book-card>
+    <div class="book-container d-flex flex-wrap">
+      <app-book-card *ngFor="let book of books" [book]="book" ></app-book-card>
     </div>
   </ng-template>
   </div>

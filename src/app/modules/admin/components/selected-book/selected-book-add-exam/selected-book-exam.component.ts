@@ -4,11 +4,12 @@ import {ExamEditorService} from '../../../services/exam-editor.service';
 import {ExamService} from '../../../../../core/services/exam.service';
 import {Exam} from '../../../../../core/models/exam';
 import {Chapter} from '../../../../../core/models/chapter';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {Book} from '../../../../../core/models/book';
 import {ExamItem} from '../../../../../core/models/exam-item';
 import {Subscription} from 'rxjs';
+import {BookService} from '../../../../../core/services/book.service';
 
 @Component({
   selector: 'app-selected-book-add-exam',
@@ -33,9 +34,12 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
   examEditorSub: Subscription;
   isSaveDisabled = true;
   isSaving = false;
+  book: Book;
   constructor(private examEditor: ExamEditorService,
               private examService: ExamService,
               private bookEditorService: BookEditorService,
+              private bookService: BookService,
+              private router: Router,
               private activatedRoute: ActivatedRoute) {
     this.querySub = this.activatedRoute.queryParams.subscribe(params => {
       if (!_.isEmpty(params)) {
@@ -43,6 +47,7 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
         const chapterId = parseInt(params.chapter);
         this.bookSub = this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
             if (book != null) {
+              this.book = book;
               book.chapters.forEach((c: Chapter) => {
                 if (c.id === chapterId) {
                   this.chapter = c;
@@ -92,6 +97,12 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
       if (exam) {
         alert('Added Exam!');
         this.isSaving = false;
+        this.bookService.getBook(this.book.id).subscribe((book: Book) => {
+          if (book) {
+            this.bookEditorService.setCurrentBook(book);
+            this.router.navigate([`/admin/book/${this.book.id}/details`]);
+          }
+        });
       }
     }, error => {
       alert('Error: ' + error);

@@ -10,7 +10,7 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <h2 class="mat-h2 mt-2 sans-serif color-orange coding" (click)="togglePlayground()"> {{ showCodingPlayground ? 'Hide editor' : 'Show editor' }} </h2>
+      <h2 class="mat-h2 mt-2 sans-serif color-orange coding" *ngIf="book.bookTitle === 'C++ Programming'" (click)="togglePlayground()"> {{ showCodingPlayground ? 'Hide editor' : 'Show editor' }} </h2>
       <h2 class="mat-h2 mt-2 sans-serif"> {{ chapter?.chapterTitle }}</h2>
       <div class="border-top-1">
         <ul class="list-group list-group-flush">

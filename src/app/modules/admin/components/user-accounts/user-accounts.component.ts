@@ -38,7 +38,6 @@ export class UserAccountsComponent implements OnInit {
     this.studentService.getAllStudents().subscribe((students: Student[]) => {
       this.students = students;
       this.studentDataSource = new MatTableDataSource(students);
-      console.log(students);
     });
 
     this.instructorService.getAllInstructors().subscribe((instructors: Instructor[]) => {
@@ -67,7 +66,6 @@ export class UserAccountsComponent implements OnInit {
   }
 
   archive(id: number, type: string) {
-    console.log(id);
     switch (type) {
       case 'student':
         this.studentService.archive(id).subscribe(res => {

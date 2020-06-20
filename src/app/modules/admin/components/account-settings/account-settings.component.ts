@@ -29,9 +29,7 @@ export class AccountSettingsComponent implements OnInit {
   updatePass() {
     this.isDisabled = true;
     this.authService.currentUser.subscribe((admin: User) => {
-      console.log(admin);
       this.adminService.updatePassword(this.newPassword, admin.id).subscribe((res) => {
-        console.log(res);
         this.isDisabled = false;
         alert('You will be logged out, please login with your new password.');
         this.authService.logout();

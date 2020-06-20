@@ -45,7 +45,7 @@ export class ExamItemEditorComponent implements OnInit, OnDestroy {
 
   update() {
     // trigger update here
-    this.examItem.examType = this.identification ? 'ID' : 'MC';
+    this.examItem.examType = this.examType;
     this.examItem.question = this.question;
     if (!this.identification) {
       // tslint:disable-next-line:radix

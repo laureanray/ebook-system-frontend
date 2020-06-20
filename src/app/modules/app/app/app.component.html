@@ -15,10 +15,7 @@
         <a routerLink="/student/profile" class="nav-top-link mr-3 text-dark">Profile</a>
       </div>
       <div *ngIf="user.role === 'Instructor'">
-        <a routerLink="/admin/book-manager" class="nav-top-link mr-3 text-dark">Book Manager</a>
-        <a routerLink="/admin/user-accounts" class="nav-top-link mr-3 text-dark">User Accounts</a>
-        <a routerLink="/admin/section-assignment" class="nav-top-link mr-3 text-dark">Section Assignments</a>
-        <a routerLink="/admin/account-settings" class="nav-top-link mr-3 text-dark ">Account Settings</a>
+        <a routerLink="/instructor/assigned-sections" class="nav-top-link mr-3 text-dark">Assigned Sections</a>
       </div>
       <a (click)="logout()" class="ml-auto nav-top-link" type="submit">Logout</a>
     </ng-template>

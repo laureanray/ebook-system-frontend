@@ -1,0 +1,14 @@
+<div class="py-4">
+  <h1 class="mat-h1 sans-serif color-orange">
+    Assigned Sections
+  </h1>
+  <div class="row">
+    <div class="col-5">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let ass of assignments"> {{ ass.book.bookTitle }} - {{ ass.course }} - {{ ass.year }} - {{ ass.section }}</li>
+      </ul>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>

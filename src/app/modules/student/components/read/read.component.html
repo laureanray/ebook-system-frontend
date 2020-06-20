@@ -5,23 +5,32 @@
       <p> Author {{ book?.bookAuthor }}</p>
     </div>
     <div class="col text-right">
-      <button mat-stroked-button color="white"> Next Chapter </button>
+<!--      <button mat-stroked-button color="white"> Next Chapter </button>-->
     </div>
   </div>
   <div class="row">
     <div class="col-3">
+      <h2 class="mat-h2 mt-2 sans-serif color-orange coding" (click)="codingPlayground()"> {{ showCodingPlayground ? 'Hide editor' : 'Show editor' }} </h2>
       <h2 class="mat-h2 mt-2 sans-serif"> {{ chapter?.chapterTitle }}</h2>
       <div class="border-top-1">
         <ul class="list-group list-group-flush">
           <li class="list-group-item pointer sans-serif" *ngFor="let topic of chapter?.topics" (click)="changeTopic(topic.id)"> {{ topic.topicTitle }} </li>
-          <li class="list-group-item pointer color-orange sans-serif" (click)="changeTopic(topic.id)"> Chapter Exam </li>
+          <li class="list-group-item pointer color-orange sans-serif" *ngIf="chapter?.exam" (click)="exam()"> Chapter Exam </li>
           </ul>
       </div>
     </div>
     <div class="col-9">
-      <button mat-raised-button color="white" class="my-3"> Mark completed </button>
-      <div class="html-content" [innerHTML]="topic?.htmlContent">
+      <div *ngIf="showCodingPlayground">
+        <app-coding-playground></app-coding-playground>
       </div>
+      <div *ngIf="!showExam; else showExams">
+<!--        <button mat-raised-button color="white" class="my-3"> Mark completed </button>-->
+        <div class="html-content" [innerHTML]="topic?.htmlContent">
+        </div>
+      </div>
+      <ng-template #showExams>
+        <app-take-exam [exam]="chapter.exam"></app-take-exam>
+      </ng-template>
     </div>
   </div>
 </div>

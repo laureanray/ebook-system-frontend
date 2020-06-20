@@ -21,9 +21,10 @@ export class ReadComponent implements OnInit, OnDestroy {
   topicId: number;
   chapterId: number;
   bookId: number;
+  showExam = false;
+  showCodingPlayground = false;
 
   constructor(private route: ActivatedRoute, private bookService: BookService, private currentBookService: CurrentBookService, private router: Router) {
-    console.log('construct');
   }
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class ReadComponent implements OnInit, OnDestroy {
     if (this.chapterId && this.topicId) {
       this.bookSub = this.bookService.getBook(this.bookId).subscribe((book: Book) => {
         this.book = book;
+        console.log(this.book);
         this.chapter = this.book.chapters
           .find((c => c.id === this.chapterId));
         this.chapter.topics.sort((a: Topic, b: Topic) => {
@@ -68,5 +70,16 @@ export class ReadComponent implements OnInit, OnDestroy {
   changeTopic(id: number) {
     this.router.navigate([`/student/read/${this.bookId}/${this.chapterId}/${id}`]);
     this.topic = this.chapter.topics.find(t => t.id === id);
+    this.showExam = false;
+  }
+
+  exam() {
+    console.log(this.chapter);
+    this.showExam = true;
+    this.showCodingPlayground = false;
+  }
+
+  codingPlayground() {
+    this.showCodingPlayground = true;
   }
 }

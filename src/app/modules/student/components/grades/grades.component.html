@@ -1,39 +1,33 @@
-<p class="mt-4 sans-serif title">Grades</p>
+<div>
+  <p class="mt-4 sans-serif title">Grades</p>
 
-<div class="mt-4">
-  <mat-form-field appearance="outline">
-    <mat-label>Book Title</mat-label>
-    <mat-select matNativeControl (selectionChange)="onChanges()" [(ngModel)]="selected">
-      <mat-option value="cplus">Basic C++</mat-option>
-      <mat-option value="discrete" >Discrete Mathematics</mat-option>
-      <mat-option value="assembly">Assembly Language</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<ng-container>
   <div class="example-container">
-    <table mat-table [dataSource]="GradeDataSource">
+    <table mat-table [dataSource]="grades">
+      <!-- Book Column -->
+      <ng-container matColumnDef="book">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Book </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.exam.chapter.book.bookTitle}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="chapter">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Chapter  </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.exam.chapter.chapterTitle}} </td>
+      </ng-container>
 
       <!-- Chapter Column -->
-      <ng-container matColumnDef="chapter">
-        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Chapters </th>
-        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.chapter}} </td>
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Score </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.score}} / {{ element.total }} </td>
       </ng-container>
 
       <!-- Score Column -->
-      <ng-container matColumnDef="score">
-        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Scores </th>
-        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.score}} </td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="grade">
-        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Grades </th>
-        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.grade}} </td>
+      <ng-container matColumnDef="percent">
+        <th mat-header-cell *matHeaderCellDef class="font-16 color-orange sans-serif"> Percentage </th>
+        <td mat-cell *matCellDef="let element" class="sans-serif"> {{element.percent}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="GradesDisplayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: GradesDisplayedColumns;"></tr>
     </table>
   </div>
-</ng-container>
+</div>

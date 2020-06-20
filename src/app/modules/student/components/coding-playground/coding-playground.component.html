@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col">
+    <h2 class="mat-h2 sans-serif color-orange">
+      C++ Code
+    </h2>
+  </div>
+  <div class="col-3 text-right">
+    <button mat-stroked-button color="primary" [disabled]="isRunning" (click)="runCode()"> {{ isRunning ? 'Running code' : 'Run Code' }} </button>
+  </div>
+</div>
+<div class="code-editor">
+  <ngs-code-editor
+    [theme]="theme"
+    [codeModel]="codeModel"
+    [options]="options"
+  >
+  </ngs-code-editor>
+</div>
+<div class="output my-3" *ngIf="error">
+  <h3 class="mat-h3 border-bottom-1 sans-serif text-danger"> Error! </h3>
+  <pre class="border-1">
+  <code class="language-cpp">
+      {{ error }}
+  </code>
+</pre>
+</div>
+
+<div class="output my-3" *ngIf="output && !error">
+  <h3 class="mat-h3 border-bottom-1 sans-serif color-orange "> Output </h3>
+  <pre class="border-1">
+  <code class="language-cpp">
+      {{ output }}
+  </code>
+</pre>
+</div>

@@ -9,10 +9,11 @@ import {ViewProfileComponent} from './components/view-profile/view-profile.compo
 import {FirstLoginComponent} from './components/first-login/first-login.component';
 import {BookComponent} from './components/book/book.component';
 import {ReadComponent} from './components/read/read.component';
+import {TakeExamComponent} from './components/take-exam/take-exam.component';
 // import {InitialHomeComponent} from './components/initial-home/initial-home.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'book-library'},
+  { path: '', redirectTo: 'book-library'},
   { path: 'set-password', component: SetPasswordComponent},
   { path: '', component: StudentComponent,
     children: [

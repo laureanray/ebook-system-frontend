@@ -64,4 +64,9 @@ export class InstructorService {
     return this.http
       .post(`${environment.apiUrl}/instructor/add-assignment/${instructorId}`, assignment);
   }
+
+  getAssignments(instructorId: number) {
+    return this.http
+      .get(`${environment.apiUrl}/instructor/assignments/${instructorId}`);
+  }
 }

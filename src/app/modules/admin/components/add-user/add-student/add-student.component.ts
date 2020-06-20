@@ -39,11 +39,9 @@ export class AddStudentComponent implements OnInit {
     student.year = this.studentForm.controls.year.value;
     student.section = this.studentForm.controls.section.value;
 
-    console.log(student);
     this.studentService.addStudent(student).subscribe((s: Student) => {
         // trigger data fetch?
         this.isSaving = false;
-        console.log(s);
         this.router.navigate(['/admin/user-accounts']);
     }, error => {
       alert('An error has occurred.');

@@ -19,15 +19,18 @@ export class SelectedBookEditExamComponent implements OnInit {
               private bookService: BookService,
               private bookEditorService: BookEditorService,
               private router: Router) {
-    this.activatedRoute.params.subscribe(params => {
+      console.log('edit exam');
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
       // tslint:disable-next-line:radix
       this.examId = parseInt(params.exam);
       // tslint:disable-next-line:radix
       this.bookId = parseInt(params.book);
+      console.log(this.examId);
+      console.log(params);
     });
-  }
-
-  ngOnInit(): void {
   }
 
   delete() {

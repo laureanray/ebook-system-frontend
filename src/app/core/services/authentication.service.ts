@@ -39,7 +39,6 @@ export class AuthenticationService {
         this.currentUserSubject.next(student);
         student = _.merge(student, response);
         localStorage.setItem('currentUser', JSON.stringify(student));
-        console.log(student);
         return student;
       }));
   }
@@ -48,7 +47,6 @@ export class AuthenticationService {
     return this.http
       .post(`${environment.apiUrl}/admin/auth`, { uniqueIdentifier: username, password})
       .pipe(map(response => {
-        console.log(response);
       }));
   }
 

@@ -13,6 +13,9 @@ import { BookComponent } from './components/book/book.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { FirstLoginComponent } from './components/first-login/first-login.component';
 import { ReadComponent } from './components/read/read.component';
+import { TakeExamComponent } from './components/take-exam/take-exam.component';
+import { CodingPlaygroundComponent } from './components/coding-playground/coding-playground.component';
+import {CodeEditorModule} from '@ngstack/code-editor';
 
 @NgModule({
   declarations: [
@@ -25,13 +28,16 @@ import { ReadComponent } from './components/read/read.component';
     BookComponent,
     BookCardComponent,
     FirstLoginComponent,
-    ReadComponent],
-  imports: [
-    CommonModule,
-    StudentRoutingModule,
-    FormsModule,
-    MaterialModule
-  ],
+    ReadComponent,
+    TakeExamComponent,
+    CodingPlaygroundComponent],
+    imports: [
+        CommonModule,
+        StudentRoutingModule,
+        FormsModule,
+        MaterialModule,
+        CodeEditorModule
+    ],
   bootstrap: [StudentComponent]
 })
 export class StudentModule {

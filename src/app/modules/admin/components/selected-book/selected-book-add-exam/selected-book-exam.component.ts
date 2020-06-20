@@ -55,11 +55,11 @@ export class SelectedBookExamComponent implements OnInit, OnDestroy {
 
     this.examEditorSub = this.examEditor.getCurrentExam().subscribe((ex: Exam) => {
       if (ex !== null) {
-        console.clear();
-        console.table(ex?.examItems);
-        ex.examItems?.forEach((i: ExamItem) => {
-          console.table(i.choices);
-        });
+        // console.clear();
+        // console.table(ex?.examItems);
+        // ex.examItems?.forEach((i: ExamItem) => {
+        //   console.table(i.choices);
+        // });
         this.isSaveDisabled = !this.validate(ex);
       }
     });

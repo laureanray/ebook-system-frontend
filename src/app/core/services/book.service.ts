@@ -10,10 +10,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class BookService {
-
   constructor(private http: HttpClient) {
   }
-
   getAllBooks() {
     return this.http.get(`${environment.apiUrl}/book`);
   }
@@ -54,8 +52,18 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/book/upload-cover`, formData, {reportProgress: true, observe: 'events'});
   }
 
+
+  updateBookCover(book: Book) {
+    return this.http.post(`${environment.apiUrl}/book/update-cover`,  book);
+  }
+
   addBook(book: Book) {
     return this.http.post(`${environment.apiUrl}/book/add`, book);
+  }
+
+  updateDetails(book: Book) {
+    console.log('book details');
+    // return this.http.post(`${environment.apiUrl}/book/update-details`,  book);
   }
 
   removeCourse(bookId: number, courseId: number) {
@@ -68,5 +76,9 @@ export class BookService {
 
   makeNotAccessibleToAll(bookId: number) {
     return this.http.get(`${environment.apiUrl}/book/makeNotAccessibleToAll/${bookId}`);
+  }
+
+  anotherOne(b: Book) {
+    return this.http.post(`${environment.apiUrl}/book/update-details`, b);
   }
 }

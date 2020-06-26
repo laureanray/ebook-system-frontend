@@ -7,6 +7,8 @@ import {faMinusCircle, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {MatDialog} from '@angular/material/dialog';
 import {RemoveAccessModalComponent} from './remove-access-modal/remove-access-modal.component';
 import {Access} from '../../../../../core/models/access';
+import {HttpEventType} from '@angular/common/http';
+import {UploadResponse} from '../../../../../core/models/upload-response';
 
 @Component({
   selector: 'app-selected-book-details',
@@ -25,6 +27,16 @@ export class SelectedBookDetailsComponent implements OnInit {
   accessesCopy: Access[];
   editAccessibleToAll = false;
   toggleDisabled = false;
+  progress: number;
+  message: string;
+  uploadedFilePath: string;
+  isUpdatingDetails = false;
+  isSaving = false;
+  isDisabled = false;
+
+  bookTitle: string;
+  bookAuthor: string;
+  bookDesc: string;
 
   addFieldValue() {
     this.accesses.push(this.newAccess);
@@ -50,6 +62,11 @@ export class SelectedBookDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.bookEditorService.getCurrentBook().subscribe((book: Book) => {
       this.book = book;
+      if (this.book) {
+        this.bookAuthor = this.book.bookAuthor;
+        this.bookTitle = this.book.bookTitle;
+        this.bookDesc = this.book.bookDescription;
+      }
       this.accesses = this.book?.accesses;
       if (this.accesses != null) {
         this.accessesCopy = this.accesses;
@@ -63,8 +80,7 @@ export class SelectedBookDetailsComponent implements OnInit {
     });
   }
 
-  edit() {
-    this.isEditingAccess = true;
+  edit() { this.isEditingAccess = true;
   }
 
   done() {
@@ -100,5 +116,81 @@ export class SelectedBookDetailsComponent implements OnInit {
         });
       });
     }
+  }
+
+
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = files[0] as File;
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.bookService.uploadBookCover(formData)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event.type === HttpEventType.Response) {
+          this.message = 'Upload success.';
+          const body = event.body as UploadResponse;
+          this.uploadedFilePath = body.dbPath;
+          this.book.bookCoverURL = this.uploadedFilePath;
+          this.bookService.updateBookCover(this.book).subscribe((bookUpdated: Book) => {
+            if (bookUpdated.bookCoverURL === this.uploadedFilePath) {
+              this.bookEditorService.setCurrentBook(bookUpdated);
+            } else {
+              alert('Unexpected error occured when uploading.');
+            }
+          });
+        }
+      });
+  }
+
+
+
+  fileChange(files) {
+    this.uploadFile(files);
+  }
+
+  updateDetails() {
+    this.isUpdatingDetails = !this.isUpdatingDetails;
+
+    if (!this.isUpdatingDetails) {
+      console.log('Updating');
+      this.isDisabled = true;
+      this.isSaving = true;
+      this.book.bookTitle = this.bookTitle;
+      this.book.bookAuthor = this.bookAuthor;
+      this.book.bookDescription = this.bookDesc;
+      this.bookService.anotherOne(this.book).subscribe((a: Book) => {
+        console.log(a);
+        this.bookEditorService.setCurrentBook(a);
+        this.isSaving = false;
+        this.isDisabled = false;
+        this.isUpdatingDetails = false;
+      });
+      // this.bookService.test(this.book).subscribe((b: Book) => {
+      //     if (b) {
+      //       this.bookEditorService.setCurrentBook(b);
+      //       this.isSaving = false;
+      //       this.isDisabled = false;
+      //       this.isUpdatingDetails = false;
+      //     }
+      // }, error => {
+      //   alert('Error updating');
+      //   this.isSaving = false;
+      //   this.isDisabled = false;
+      //   this.isUpdatingDetails = false;
+      // });
+    } else {
+      console.log('Else');
+    }
+  }
+
+
+  keyup() {
+    this.isDisabled = !(this.bookTitle && this.bookAuthor && this.bookDesc);
   }
 }

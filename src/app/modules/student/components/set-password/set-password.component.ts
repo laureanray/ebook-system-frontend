@@ -18,7 +18,10 @@ export class SetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  update() {
+  update($event) {
+    if ($event.key === 'Enter') {
+      this.changePassword();
+    }
     this.isDisabled = !(this.confirmPassword === this.newPassword);
   }
 

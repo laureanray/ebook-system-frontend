@@ -4,6 +4,7 @@ import {Assignment} from '../../../core/models/assignment';
 import {AuthenticationService} from '../../../core/services/authentication.service';
 import {Instructor} from '../../../core/models/instructor';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-assigned-sections',
@@ -16,10 +17,18 @@ export class AssignedSectionsComponent implements OnInit, OnDestroy {
   authSub: Subscription;
   insSub: Subscription;
   constructor(private instructorService: InstructorService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private router: Router) {
     this.authSub = this.authService.currentUser.subscribe((instructor: Instructor) => {
         this.instructor = instructor;
+        if (instructor) {
+          console.log(instructor.firstLogin);
+          if (instructor.firstLogin === true) {
+            this.router.navigate(['/instructor/set-password']);
+          }
+        }
     });
+
   }
 
   ngOnInit(): void {
@@ -35,7 +44,7 @@ export class AssignedSectionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.insSub.unsubscribe();
-    this.authSub.unsubscribe();
+    // this.insSub.unsubscribe();
+    // this.authSub.unsubscribe();
   }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../../../core/services/authentication.service';
+import {Instructor} from '../../../core/models/instructor';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-instructor',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructorComponent implements OnInit {
 
-  constructor() { }
+
 
   ngOnInit(): void {
   }

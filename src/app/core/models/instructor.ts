@@ -6,4 +6,5 @@ export class Instructor extends User {
   employeeNumber: string;
   honorifics: string;
   assignments: Assignment[];
+  firstLogin: boolean;
 }

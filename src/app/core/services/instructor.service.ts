@@ -34,9 +34,9 @@ export class InstructorService {
       .post(`${environment.apiUrl}/instructor/update/${instructor.id}`, instructor);
   }
 
-  updatePassword(newPassword: string, instructorId: string) {
+  updatePassword(newPassword: string, instructorId: number) {
     return this.http
-      .post(`${environment.apiUrl}/instructor/update-id/${instructorId}`, {});
+      .post(`${environment.apiUrl}/instructor/update-password/${instructorId}/${newPassword}`, {});
   }
 
   archive(instructorId: number) {

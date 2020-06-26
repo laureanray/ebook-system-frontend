@@ -193,4 +193,8 @@ export class SelectedBookDetailsComponent implements OnInit {
   keyup() {
     this.isDisabled = !(this.bookTitle && this.bookAuthor && this.bookDesc);
   }
+
+  delete(id: number) {
+    // test
+  }
 }

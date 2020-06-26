@@ -4,10 +4,12 @@
     <p>
       <input type="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
              style="display:none;">
+<!--      <button type="button" mat-raised-button color="warn" (click)="delete(book?.id)">Delete Book</button>-->
       <button type="button" mat-raised-button color="primary" (click)="file.click()">Upload Image</button>
       <button type="button" mat-raised-button class="ml-2" (click)="updateDetails()" [disabled]="isSaving || isDisabled">
         {{ isUpdatingDetails ? 'Save' : 'Update Book Details' }}
       </button>
+
     </p>
 
   </div>

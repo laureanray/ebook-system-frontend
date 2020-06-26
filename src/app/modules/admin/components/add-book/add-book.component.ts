@@ -4,6 +4,8 @@ import {BookService} from '../../../../core/services/book.service';
 import {HttpEventType} from '@angular/common/http';
 import {UploadResponse} from '../../../../core/models/upload-response';
 import {Book} from '../../../../core/models/book';
+import {Access} from '../../../../core/models/access';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-book',
@@ -21,7 +23,7 @@ export class AddBookComponent implements OnInit {
   public message: string;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _formBuilder: FormBuilder, private bookService: BookService) {
+  constructor(private _formBuilder: FormBuilder, private bookService: BookService, private router: Router) {
   }
 
 
@@ -68,11 +70,15 @@ export class AddBookComponent implements OnInit {
     const book = new Book();
     book.bookTitle = this.firstFormGroup.controls.bookTitle.value;
     book.bookAuthor = this.firstFormGroup.controls.authors.value;
-    book.accessibleToAll = this.secondFormGroup.controls.giveAccessToAll.value;
     book.bookCoverURL = this.uploadedFilePath;
+    const access = new Access();
+    access.course = this.secondFormGroup.controls.course.value;
+    access.year = this.secondFormGroup.controls.year.value;
+    book.accesses = [access];
     this.bookService.addBook(book).subscribe((b: Book) => {
       if (b) {
-        alert('added');
+        alert('Book added!');
+        this.router.navigate(['/admin/book-manager']);
       }
     });
   }

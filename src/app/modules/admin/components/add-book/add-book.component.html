@@ -39,30 +39,29 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Add Access</ng-template>
+        <ng-template matStepLabel>Accessibility</ng-template>
         <div class="d-flex flex-column mt-4">
-          <mat-checkbox class="sans-serif" (click)="toggle()" formControlName="giveAccessToAll">Give access to all</mat-checkbox>
           <div class="row">
             <div class="col-4">
               <mat-form-field appearance="outline" class="sans-serif w-100">
                 <mat-label>Course</mat-label>
                 <mat-select  formControlName="course">
-                  <mat-option value="option" class="sans-serif">Bs in Computer Engineering</mat-option>
-                  <mat-option value="option" class="sans-serif">Bs in Computer Science</mat-option>
-                  <mat-option value="option" class="sans-serif">Bs in Information Technology</mat-option>
+                  <mat-option value="BSCPE" class="sans-serif">BS in Computer Engineering</mat-option>
+                  <mat-option value="BSCS" class="sans-serif">BS in Computer Science</mat-option>
+                  <mat-option value="BSIT" class="sans-serif">BS in Information Technology</mat-option>
                 </mat-select>
-              </mat-form-field>
+              </mat-form-field>s
             </div>
             <div class="col">
               <div>
                 <mat-form-field appearance="outline" class="sans-serif w-25">
                   <mat-label>Year Level</mat-label>
-                  <mat-select  formControlName="yearLevel">
-                    <mat-option value="option" class="sans-serif">1st Year</mat-option>
-                    <mat-option value="option" class="sans-serif">2nd Year</mat-option>
-                    <mat-option value="option" class="sans-serif">3rd Year</mat-option>
-                    <mat-option value="option" class="sans-serif">4th Year</mat-option>
-                    <mat-option value="option" class="sans-serif">5th Year</mat-option>
+                  <mat-select  formControlName="year">
+                    <mat-option value="1st" class="sans-serif">1st Year</mat-option>
+                    <mat-option value="2nd" class="sans-serif">2nd Year</mat-option>
+                    <mat-option value="3rd" class="sans-serif">3rd Year</mat-option>
+                    <mat-option value="4th" class="sans-serif">4th Year</mat-option>
+                    <mat-option value="5th" class="sans-serif">5th Year</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -70,7 +69,6 @@
           </div>
 
         </div>
-        <a href="" class="add-more-button">Add More</a>
           <div class="mt-4 buttons">
             <button mat-button matStepperPrevious class="button">Back</button>
             <button (click)="save()"  mat-button matStepperNext class="button">Save</button>
